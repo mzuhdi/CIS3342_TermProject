@@ -139,6 +139,15 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.TextBox txtSPassword;
         
         /// <summary>
+        /// btnStudentSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnStudentSubmit;
+        
+        /// <summary>
         /// courseBuilderRegister control.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,15 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.TextBox txtCPassword;
         
         /// <summary>
+        /// btnCBSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCBSubmit;
+        
+        /// <summary>
         /// adminRegister control.
         /// </summary>
         /// <remarks>
@@ -299,5 +317,14 @@ namespace TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAPassword;
+        
+        /// <summary>
+        /// btnAdminSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdminSubmit;
     }
 }

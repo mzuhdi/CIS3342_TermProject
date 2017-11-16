@@ -30,6 +30,12 @@ namespace TermProjectWebService
         }
 
         [WebMethod]
+        public void addStudent(string key)
+        {
+
+        }
+
+        [WebMethod]
         public void createCourse(string key)
         {
             

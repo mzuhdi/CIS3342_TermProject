@@ -19,6 +19,7 @@
         <asp:TextBox ID="txtSUsername" runat="server"></asp:TextBox>
         <asp:Label ID="lblSPassword" runat="server" Text="Label"></asp:Label>
         <asp:TextBox ID="txtSPassword" runat="server"></asp:TextBox>
+        <asp:Button ID="btnStudentSubmit" runat="server" Text="Register" />
     </div>
     <div id="courseBuilderRegister" runat="server" visible="false">
         <h2>Course Builder Registration</h2>
@@ -30,6 +31,7 @@
         <asp:TextBox ID="txtCUserName" runat="server"></asp:TextBox>
         <asp:Label ID="lblCPassword" runat="server" Text="Label"></asp:Label>
         <asp:TextBox ID="txtCPassword" runat="server"></asp:TextBox>
+        <asp:Button ID="btnCBSubmit" runat="server" Text="Register" />
     </div>
     <div id="adminRegister" runat="server" visible="false">
         <h2>Administrator Registration</h2>
@@ -41,5 +43,6 @@
         <asp:TextBox ID="txtAUserName" runat="server"></asp:TextBox>
         <asp:Label ID="lblAPassword" runat="server" Text="Label"></asp:Label>
         <asp:TextBox ID="txtAPassword" runat="server"></asp:TextBox>
+        <asp:Button ID="btnAdminSubmit" runat="server" Text="Register" />
     </div>
 </asp:Content>
