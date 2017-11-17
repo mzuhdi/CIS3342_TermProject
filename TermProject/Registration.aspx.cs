@@ -16,6 +16,49 @@ namespace TermProject
             if (!IsPostBack)
             {
                 getUserType();
+                getDepartment();
+            }
+        }
+        public void AddStudent()
+        {
+            BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
+
+            student.FirstName = txtSFirstName.Text;
+            student.LastName = txtSLastName.Text;
+            student.Major = txtMajor.Text;
+            student.Username = txtSUsername.Text;
+            student.Password = txtSPassword.Text;
+
+
+            if (pxy.addStudent(student, key))
+            {
+                lblSuccess.Text = "The student is created.";
+                
+            }
+            else
+            {
+                lblSuccess.Text = "A problem occured. Data is not recorded";
+            }
+        }
+        public void AddCourseBuilder()
+        {
+            BlackboardSvcPxy.CourseBuilder cb = new BlackboardSvcPxy.CourseBuilder();
+
+            cb.FirstName = txtCFirstName.Text;
+            cb.LastName = txtCLastName.Text;
+            cb.FK_DeptID = int.Parse(ddlDepartment.SelectedValue.ToString());
+            cb.Username = txtCUserName.Text;
+            cb.Password = txtCPassword.Text;
+
+
+            if (pxy.addCourseBuilder(cb, key))
+            {
+                lblSuccess.Text = "The course builder is created.";
+
+            }
+            else
+            {
+                lblSuccess.Text = "A problem occured. Data is not recorded";
             }
         }
         public void getUserType()
@@ -26,6 +69,21 @@ namespace TermProject
                 ddlUserType.DataValueField = "UserTypeID";
                 ddlUserType.DataTextField = "Name";
                 ddlUserType.DataBind();
+            }
+            else
+            {
+                lblInvalidKey.Text = "Please provide correct API Key";
+                lblInvalidKey.Visible = true;
+            }
+        }
+        public void getDepartment()
+        {
+            if (pxy.GetDepartment(key) != null)
+            {
+                ddlDepartment.DataSource = pxy.GetDepartment(key);
+                ddlDepartment.DataValueField = "DepartmentID";
+                ddlDepartment.DataTextField = "Name";
+                ddlDepartment.DataBind();
             }
             else
             {
@@ -54,6 +112,21 @@ namespace TermProject
                 courseBuilderRegister.Visible = false;
                 adminRegister.Visible = true;
             }
+        }
+
+        protected void btnStudentSubmit_Click(object sender, EventArgs e)
+        {
+            AddStudent();
+        }
+
+        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCBSubmit_Click(object sender, EventArgs e)
+        {
+            AddCourseBuilder();
         }
     }
 }
