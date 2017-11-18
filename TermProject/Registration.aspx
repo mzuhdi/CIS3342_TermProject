@@ -37,15 +37,15 @@
     </div>
     <div id="adminRegister" runat="server" visible="false">
         <h2>Administrator Registration</h2>
-        <asp:Label ID="lblAFirstName" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblAFirstName" runat="server" Text="First Name: "></asp:Label>
         <asp:TextBox ID="txtAFirstName" runat="server"></asp:TextBox>
-        <asp:Label ID="lblALastName" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblALastName" runat="server" Text="Last Name: "></asp:Label>
         <asp:TextBox ID="txtALastName" runat="server"></asp:TextBox>
-        <asp:Label ID="lblAUserName" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblAUserName" runat="server" Text="Username: "></asp:Label>
         <asp:TextBox ID="txtAUserName" runat="server"></asp:TextBox>
-        <asp:Label ID="lblAPassword" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblAPassword" runat="server" Text="Password: "></asp:Label>
         <asp:TextBox ID="txtAPassword" runat="server"></asp:TextBox>
-        <asp:Button ID="btnAdminSubmit" runat="server" Text="Register" />
+        <asp:Button ID="btnAdminSubmit" runat="server" Text="Register" OnClick="btnAdminSubmit_Click" />
     </div>
     <asp:Label ID="lblSuccess" runat="server" Text=""></asp:Label>
 </asp:Content>

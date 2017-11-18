@@ -61,7 +61,7 @@ namespace TermProjectWebService
                 SqlCommand objCommand = new SqlCommand();
 
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_AddStudent";
+                objCommand.CommandText = "TP_AddCourseBuilder";
                 objCommand.Parameters.AddWithValue("@FirstName", cb.FirstName);
                 objCommand.Parameters.AddWithValue("@LastName", cb.LastName);
                 objCommand.Parameters.AddWithValue("@Username", cb.Username);
@@ -83,7 +83,7 @@ namespace TermProjectWebService
                 SqlCommand objCommand = new SqlCommand();
 
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_AddStudent";
+                objCommand.CommandText = "TP_AddBBAdmin";
                 objCommand.Parameters.AddWithValue("@FirstName", admin.FirstName);
                 objCommand.Parameters.AddWithValue("@LastName", admin.LastName);
                 objCommand.Parameters.AddWithValue("@Username", admin.Username);

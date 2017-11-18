@@ -61,6 +61,26 @@ namespace TermProject
                 lblSuccess.Text = "A problem occured. Data is not recorded";
             }
         }
+        public void AddBBAdmin()
+        {
+            BlackboardSvcPxy.BBAdmin admin = new BlackboardSvcPxy.BBAdmin();
+
+            admin.FirstName = txtAFirstName.Text;
+            admin.LastName = txtALastName.Text;
+            admin.Username = txtAUserName.Text;
+            admin.Password = txtAPassword.Text;
+
+
+            if (pxy.addBBAdmin(admin, key))
+            {
+                lblSuccess.Text = "The administrator is created.";
+
+            }
+            else
+            {
+                lblSuccess.Text = "A problem occured. Data is not recorded";
+            }
+        }
         public void getUserType()
         {
             if (pxy.GetUserType(key) != null)
@@ -127,6 +147,11 @@ namespace TermProject
         protected void btnCBSubmit_Click(object sender, EventArgs e)
         {
             AddCourseBuilder();
+        }
+
+        protected void btnAdminSubmit_Click(object sender, EventArgs e)
+        {
+            AddBBAdmin();
         }
     }
 }
