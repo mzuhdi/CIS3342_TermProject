@@ -8,6 +8,7 @@ namespace TermProjectClassLibrary
 {
     public class Course
     {
+        public 
         public Course() { }
     }
 }
