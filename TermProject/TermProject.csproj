@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="AddCourse.aspx.cs">
       <DependentUpon>AddCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AddCourse.aspx.designer.cs">
       <DependentUpon>AddCourse.aspx</DependentUpon>

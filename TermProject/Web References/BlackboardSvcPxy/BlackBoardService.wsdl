@@ -83,15 +83,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="createCourse">
+      <s:element name="addCourse">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="course" type="tns:Course" />
             <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="createCourseResponse">
-        <s:complexType />
+      <s:complexType name="Course">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CourseID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FK_TermID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FK_CBID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="addCourseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="addCourseResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="DeleteCourse">
         <s:complexType>
@@ -165,6 +178,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetTerm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTermResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTermResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -191,11 +225,11 @@
   <wsdl:message name="addBBAdminSoapOut">
     <wsdl:part name="parameters" element="tns:addBBAdminResponse" />
   </wsdl:message>
-  <wsdl:message name="createCourseSoapIn">
-    <wsdl:part name="parameters" element="tns:createCourse" />
+  <wsdl:message name="addCourseSoapIn">
+    <wsdl:part name="parameters" element="tns:addCourse" />
   </wsdl:message>
-  <wsdl:message name="createCourseSoapOut">
-    <wsdl:part name="parameters" element="tns:createCourseResponse" />
+  <wsdl:message name="addCourseSoapOut">
+    <wsdl:part name="parameters" element="tns:addCourseResponse" />
   </wsdl:message>
   <wsdl:message name="DeleteCourseSoapIn">
     <wsdl:part name="parameters" element="tns:DeleteCourse" />
@@ -227,6 +261,12 @@
   <wsdl:message name="GetDepartmentSoapOut">
     <wsdl:part name="parameters" element="tns:GetDepartmentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetTermSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTerm" />
+  </wsdl:message>
+  <wsdl:message name="GetTermSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTermResponse" />
+  </wsdl:message>
   <wsdl:portType name="BlackBoardServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -244,9 +284,9 @@
       <wsdl:input message="tns:addBBAdminSoapIn" />
       <wsdl:output message="tns:addBBAdminSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="createCourse">
-      <wsdl:input message="tns:createCourseSoapIn" />
-      <wsdl:output message="tns:createCourseSoapOut" />
+    <wsdl:operation name="addCourse">
+      <wsdl:input message="tns:addCourseSoapIn" />
+      <wsdl:output message="tns:addCourseSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DeleteCourse">
       <wsdl:input message="tns:DeleteCourseSoapIn" />
@@ -267,6 +307,10 @@
     <wsdl:operation name="GetDepartment">
       <wsdl:input message="tns:GetDepartmentSoapIn" />
       <wsdl:output message="tns:GetDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerm">
+      <wsdl:input message="tns:GetTermSoapIn" />
+      <wsdl:output message="tns:GetTermSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BlackBoardServiceSoap" type="tns:BlackBoardServiceSoap">
@@ -307,8 +351,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="createCourse">
-      <soap:operation soapAction="http://tempuri.org/createCourse" style="document" />
+    <wsdl:operation name="addCourse">
+      <soap:operation soapAction="http://tempuri.org/addCourse" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -361,6 +405,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTerm">
+      <soap:operation soapAction="http://tempuri.org/GetTerm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BlackBoardServiceSoap12" type="tns:BlackBoardServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -400,8 +453,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="createCourse">
-      <soap12:operation soapAction="http://tempuri.org/createCourse" style="document" />
+    <wsdl:operation name="addCourse">
+      <soap12:operation soapAction="http://tempuri.org/addCourse" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -447,6 +500,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDepartment">
       <soap12:operation soapAction="http://tempuri.org/GetDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerm">
+      <soap12:operation soapAction="http://tempuri.org/GetTerm" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

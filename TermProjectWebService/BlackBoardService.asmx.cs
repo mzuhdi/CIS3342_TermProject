@@ -97,9 +97,25 @@ namespace TermProjectWebService
         }
 
         [WebMethod]
-        public void createCourse(string key)
+        public bool addCourse(Course course, string key)
         {
-            
+            if (course != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddCourse";
+                objCommand.Parameters.AddWithValue("@courseID", course.CourseID);
+                objCommand.Parameters.AddWithValue("@Name", course.Name);
+                objCommand.Parameters.AddWithValue("@FK_TermID", course.FK_TermID);
+                objCommand.Parameters.AddWithValue("@FK_CBID", course.FK_CBID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            return false;
         }
 
         [WebMethod]
@@ -159,7 +175,26 @@ namespace TermProjectWebService
             {
                 return null;
             }
+        }
+        [WebMethod]
+        public DataSet GetTerm(string key)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
 
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetTerm";
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
