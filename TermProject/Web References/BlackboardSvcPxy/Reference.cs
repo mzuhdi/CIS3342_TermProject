@@ -52,6 +52,8 @@ namespace TermProject.BlackboardSvcPxy {
         
         private System.Threading.SendOrPostCallback GetTermOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetCourseByTermOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -122,6 +124,9 @@ namespace TermProject.BlackboardSvcPxy {
         
         /// <remarks/>
         public event GetTermCompletedEventHandler GetTermCompleted;
+        
+        /// <remarks/>
+        public event GetCourseByTermCompletedEventHandler GetCourseByTermCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -442,6 +447,37 @@ namespace TermProject.BlackboardSvcPxy {
             if ((this.GetTermCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetTermCompleted(this, new GetTermCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCourseByTerm", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetCourseByTerm(string fk_termid, string key) {
+            object[] results = this.Invoke("GetCourseByTerm", new object[] {
+                        fk_termid,
+                        key});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCourseByTermAsync(string fk_termid, string key) {
+            this.GetCourseByTermAsync(fk_termid, key, null);
+        }
+        
+        /// <remarks/>
+        public void GetCourseByTermAsync(string fk_termid, string key, object userState) {
+            if ((this.GetCourseByTermOperationCompleted == null)) {
+                this.GetCourseByTermOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCourseByTermOperationCompleted);
+            }
+            this.InvokeAsync("GetCourseByTerm", new object[] {
+                        fk_termid,
+                        key}, this.GetCourseByTermOperationCompleted, userState);
+        }
+        
+        private void OnGetCourseByTermOperationCompleted(object arg) {
+            if ((this.GetCourseByTermCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCourseByTermCompleted(this, new GetCourseByTermCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -923,6 +959,32 @@ namespace TermProject.BlackboardSvcPxy {
         private object[] results;
         
         internal GetTermCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetCourseByTermCompletedEventHandler(object sender, GetCourseByTermCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCourseByTermCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCourseByTermCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

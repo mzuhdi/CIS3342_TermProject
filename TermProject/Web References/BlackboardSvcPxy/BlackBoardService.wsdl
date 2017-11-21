@@ -199,6 +199,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetCourseByTerm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fk_termid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCourseByTermResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCourseByTermResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -267,6 +289,12 @@
   <wsdl:message name="GetTermSoapOut">
     <wsdl:part name="parameters" element="tns:GetTermResponse" />
   </wsdl:message>
+  <wsdl:message name="GetCourseByTermSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCourseByTerm" />
+  </wsdl:message>
+  <wsdl:message name="GetCourseByTermSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCourseByTermResponse" />
+  </wsdl:message>
   <wsdl:portType name="BlackBoardServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -311,6 +339,10 @@
     <wsdl:operation name="GetTerm">
       <wsdl:input message="tns:GetTermSoapIn" />
       <wsdl:output message="tns:GetTermSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByTerm">
+      <wsdl:input message="tns:GetCourseByTermSoapIn" />
+      <wsdl:output message="tns:GetCourseByTermSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BlackBoardServiceSoap" type="tns:BlackBoardServiceSoap">
@@ -414,6 +446,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCourseByTerm">
+      <soap:operation soapAction="http://tempuri.org/GetCourseByTerm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BlackBoardServiceSoap12" type="tns:BlackBoardServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -509,6 +550,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTerm">
       <soap12:operation soapAction="http://tempuri.org/GetTerm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByTerm">
+      <soap12:operation soapAction="http://tempuri.org/GetCourseByTerm" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
