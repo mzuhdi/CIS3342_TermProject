@@ -68,9 +68,29 @@ namespace TermProject
             }
         }
 
+        public void UpdateCourse()
+        {
+            BlackboardSvcPxy.Course course = new BlackboardSvcPxy.Course();
+
+            course.CourseID = txtIDUpdate.Text;
+            course.Name = txtNameUpdate.Text;
+            course.FK_TermID = ddlTerm.SelectedValue.ToString();
+            course.FK_CBID = 1; // will get CBID using session
+
+            if (pxy.UpdateCourse(course, key))
+            {
+                lblSuccess.Text = "The course is update.";
+            }
+            else
+            {
+                lblSuccess.Text = "A problem occured. Data is not recorded";
+            }
+        }
+
         protected void btnAddCourse_Click(object sender, EventArgs e)
         {
             addCourseMethod();
+            GetCourseByTerm();
         }
 
         protected void gvCourses_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -122,7 +142,7 @@ namespace TermProject
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            UpdateCourse();
         }
     }
 }

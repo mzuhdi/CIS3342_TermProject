@@ -54,6 +54,8 @@ namespace TermProject.BlackboardSvcPxy {
         
         private System.Threading.SendOrPostCallback GetCourseByTermOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateCourseOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -127,6 +129,9 @@ namespace TermProject.BlackboardSvcPxy {
         
         /// <remarks/>
         public event GetCourseByTermCompletedEventHandler GetCourseByTermCompleted;
+        
+        /// <remarks/>
+        public event UpdateCourseCompletedEventHandler UpdateCourseCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -281,29 +286,32 @@ namespace TermProject.BlackboardSvcPxy {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteCourse", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DeleteCourse(string key) {
-            this.Invoke("DeleteCourse", new object[] {
+        public bool DeleteCourse(Course course, string key) {
+            object[] results = this.Invoke("DeleteCourse", new object[] {
+                        course,
                         key});
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void DeleteCourseAsync(string key) {
-            this.DeleteCourseAsync(key, null);
+        public void DeleteCourseAsync(Course course, string key) {
+            this.DeleteCourseAsync(course, key, null);
         }
         
         /// <remarks/>
-        public void DeleteCourseAsync(string key, object userState) {
+        public void DeleteCourseAsync(Course course, string key, object userState) {
             if ((this.DeleteCourseOperationCompleted == null)) {
                 this.DeleteCourseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteCourseOperationCompleted);
             }
             this.InvokeAsync("DeleteCourse", new object[] {
+                        course,
                         key}, this.DeleteCourseOperationCompleted, userState);
         }
         
         private void OnDeleteCourseOperationCompleted(object arg) {
             if ((this.DeleteCourseCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.DeleteCourseCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.DeleteCourseCompleted(this, new DeleteCourseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -478,6 +486,37 @@ namespace TermProject.BlackboardSvcPxy {
             if ((this.GetCourseByTermCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetCourseByTermCompleted(this, new GetCourseByTermCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateCourse", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateCourse(Course course, string key) {
+            object[] results = this.Invoke("UpdateCourse", new object[] {
+                        course,
+                        key});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateCourseAsync(Course course, string key) {
+            this.UpdateCourseAsync(course, key, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateCourseAsync(Course course, string key, object userState) {
+            if ((this.UpdateCourseOperationCompleted == null)) {
+                this.UpdateCourseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCourseOperationCompleted);
+            }
+            this.InvokeAsync("UpdateCourse", new object[] {
+                        course,
+                        key}, this.UpdateCourseOperationCompleted, userState);
+        }
+        
+        private void OnUpdateCourseOperationCompleted(object arg) {
+            if ((this.UpdateCourseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateCourseCompleted(this, new UpdateCourseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -884,7 +923,29 @@ namespace TermProject.BlackboardSvcPxy {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void DeleteCourseCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void DeleteCourseCompletedEventHandler(object sender, DeleteCourseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteCourseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteCourseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
@@ -994,6 +1055,32 @@ namespace TermProject.BlackboardSvcPxy {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void UpdateCourseCompletedEventHandler(object sender, UpdateCourseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateCourseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateCourseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

@@ -119,9 +119,22 @@ namespace TermProjectWebService
         }
 
         [WebMethod]
-        public void DeleteCourse(string key)
+        public bool DeleteCourse(Course course,string key)
         {
-            
+            if (course != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_DeleteCourse";
+                objCommand.Parameters.AddWithValue("@courseID", course.CourseID);
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            return false;
         }
 
         [WebMethod]
@@ -217,6 +230,28 @@ namespace TermProjectWebService
             {
                 return null;
             }
+        }
+        [WebMethod]
+        public bool UpdateCourse(Course course, string key)
+            //Not working because i'm changing the courseid therefore it doesn't know which to update.
+        {
+            if (course != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_UpdateCourse";
+                objCommand.Parameters.AddWithValue("@courseID", course.CourseID);
+                objCommand.Parameters.AddWithValue("@Name", course.Name);
+                objCommand.Parameters.AddWithValue("@FK_TermID", course.FK_TermID);
+                objCommand.Parameters.AddWithValue("@FK_CBID", course.FK_CBID);
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            return false;
         }
     }
 }
