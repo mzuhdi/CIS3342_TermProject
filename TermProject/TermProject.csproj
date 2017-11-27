@@ -79,10 +79,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\BlackboardSvcPxy\BlackBoardService.wsdl" />
-    <Content Include="Web References\BlackboardSvcPxy\Reference.map">
+    <None Include="Web References\BlackboardSvcPxy\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -162,7 +162,7 @@
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TermProject_BlackBoardSvcPxy_BlackBoardService</CachedSettingsPropName>
+      <CachedSettingsPropName>TermProject_BlackboardSvcPxy_BlackBoardService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>

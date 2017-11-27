@@ -296,7 +296,6 @@ namespace TermProjectWebService
         }
         [WebMethod]
         public bool UpdateCourse(Course course, string key)
-            //Not working because i'm changing the courseid therefore it doesn't know which to update.
         {
             if (course != null && key == "zuhdi")
             {

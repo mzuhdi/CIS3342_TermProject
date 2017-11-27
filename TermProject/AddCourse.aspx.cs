@@ -53,7 +53,7 @@ namespace TermProject
         {
             BlackboardSvcPxy.Course course = new BlackboardSvcPxy.Course();
 
-            course.CourseID = txtID.Text;
+            course.CourseCode = txtCCode.Text;
             course.Name = txtName.Text;
             course.FK_TermID = ddlTerm.SelectedValue.ToString();
             course.FK_CBID = 1; // will get CBID using session
@@ -74,6 +74,7 @@ namespace TermProject
         {
             BlackboardSvcPxy.Course course = new BlackboardSvcPxy.Course();
 
+            course.CourseID = lblCourseID.Text;
             course.CourseCode = txtCCodeUpdate.Text;
             course.Name = txtNameUpdate.Text;
             course.FK_TermID = ddlTerm.SelectedValue.ToString();
@@ -101,8 +102,10 @@ namespace TermProject
             if (e.CommandName == "Update")
             {
                 ManageCourseFormDiv.Visible = true;
-                txtCCodeUpdate.Text = gvCourses.Rows[rowIndex].Cells[0].Text;
-                txtNameUpdate.Text = gvCourses.Rows[rowIndex].Cells[1].Text;
+                int courseID = (int)gvCourses.DataKeys[rowIndex]["CourseID"];
+                lblCourseID.Text = courseID.ToString();
+                txtCCodeUpdate.Text = gvCourses.Rows[rowIndex].Cells[1].Text;
+                txtNameUpdate.Text = gvCourses.Rows[rowIndex].Cells[2].Text;
             }
             else if (e.CommandName == "Delete")
             {
@@ -116,7 +119,7 @@ namespace TermProject
                 //txtCurrentBalance.Text = gvCreditCard.Rows[rowIndex].Cells[5].Text;
 
             }
-            else if (e.CommandName == "Transaction")
+            else if (e.CommandName == "Manage Student")
             {
                 //AddEditForm.Visible = false;
                 //balance.Visible = false;
@@ -145,6 +148,7 @@ namespace TermProject
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             UpdateCourse();
+            GetCourseByTerm();
         }
     }
 }

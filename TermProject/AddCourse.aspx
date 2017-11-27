@@ -10,8 +10,8 @@
     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
     <div id="addCourseDiv" runat="server" visible="false">
         <h2>Add Course</h2>
-        <asp:Label ID="lblID" runat="server" Text="Course ID: "></asp:Label>
-        <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
+        <asp:Label ID="lblCCode" runat="server" Text="Course Code: "></asp:Label>
+        <asp:TextBox ID="txtCCode" runat="server"></asp:TextBox>
         <asp:Label ID="lblName" runat="server" Text="Course Name: "></asp:Label>
         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
         <asp:Label ID="lblCBID" runat="server" Visible="false"></asp:Label>
@@ -20,15 +20,18 @@
     <div id="ManageCourseDiv" runat="server" visible="false">
         <h2>Manage Course</h2>
         <asp:GridView ID="gvCourses" runat="server" AutoGenerateColumns="false"
-            OnRowCommand="gvCourses_RowCommand" OnRowUpdating="gvCourses_RowUpdating">
+            OnRowCommand="gvCourses_RowCommand" OnRowUpdating="gvCourses_RowUpdating" DataKeyNames="CourseID">
             <Columns>
+                <asp:BoundField DataField="CourseID" HeaderText="CourseID" Visible="false" />
                 <asp:BoundField DataField="CourseCode" HeaderText="Course Code" ReadOnly="true" />
                 <asp:BoundField DataField="Name" HeaderText="Name" />
                 <asp:ButtonField runat="server" Text="Update Course" HeaderText="Update Course" CommandName="Update" ButtonType="Button" />
                 <asp:ButtonField runat="server" Text="Delete Course" HeaderText="Delete Course" CommandName="Delete" ButtonType="Button" />
+                <asp:ButtonField runat="server" Text="Manage Student" HeaderText="Manage Students" CommandName="Manage Students" ButtonType="Button" />
             </Columns>
         </asp:GridView>
         <div id="ManageCourseFormDiv" runat="server" visible="false">
+            <asp:Label ID="lblCourseID" runat="server"></asp:Label> 
             <asp:Label ID="lblCCodeUpdate" runat="server" Text="Course Code: "></asp:Label>
             <asp:TextBox ID="txtCCodeUpdate" runat="server"></asp:TextBox>
             <asp:Label ID="lblCNameUpdate" runat="server" Text="Course Name: "></asp:Label>

@@ -112,6 +112,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="FK_TermID" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="FK_CBID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CourseCode" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="addCourseResponse">

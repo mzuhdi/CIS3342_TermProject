@@ -58,22 +58,22 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addCourseDiv;
         
         /// <summary>
-        /// lblID control.
+        /// lblCCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblID;
+        protected global::System.Web.UI.WebControls.Label lblCCode;
         
         /// <summary>
-        /// txtID control.
+        /// txtCCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID;
+        protected global::System.Web.UI.WebControls.TextBox txtCCode;
         
         /// <summary>
         /// lblName control.
@@ -137,6 +137,15 @@ namespace TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ManageCourseFormDiv;
+        
+        /// <summary>
+        /// lblCourseID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCourseID;
         
         /// <summary>
         /// lblCCodeUpdate control.
