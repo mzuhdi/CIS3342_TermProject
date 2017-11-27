@@ -34,12 +34,12 @@
             <div class="row justify-content-center align-items-center">
                 <div id="login-form">
                     <div class="card card-container">
-                        <asp:Label ID="lblLoginError" CssClass="alert alert-danger" runat="server" Text="" Visible="False"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Please enter a valid email</asp:Label>
+                        <asp:Label ID="lblLoginError" CssClass="alert alert-danger" runat="server" Text="" Visible="False"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Please enter a valid username/password</asp:Label>
                         <%--<img id="profile-img" class="" src="Img/checkmark.png" />--%>
                         <div id="login-inputs">
                             <div class="input-group">
-                                <div class="input-group-addon" id="email-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-                                <asp:TextBox ID="txtEmail" class="form-control" placeholder="Username" runat="server" required autofocus></asp:TextBox>
+                                <div class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                                <asp:TextBox ID="txtUsername" class="form-control" placeholder="Username" runat="server" required autofocus></asp:TextBox>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-addon" id="password-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>

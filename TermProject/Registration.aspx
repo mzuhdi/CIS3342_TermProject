@@ -16,7 +16,7 @@
         <asp:Label ID="lblMajor" runat="server" Text="Major: "></asp:Label>
         <asp:TextBox ID="txtMajor" runat="server"></asp:TextBox>
         <asp:Label ID="lblSUsername" runat="server" Text="Username: "></asp:Label>
-        <asp:TextBox ID="txtSUsername" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtSUsername" runat="server" Enabled="False"></asp:TextBox>
         <asp:Label ID="lblSPassword" runat="server" Text="Password: "></asp:Label>
         <asp:TextBox ID="txtSPassword" runat="server"></asp:TextBox>
         <asp:Button ID="btnStudentSubmit" runat="server" Text="Register" OnClick="btnStudentSubmit_Click" />
