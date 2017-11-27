@@ -72,6 +72,7 @@
     <Content Include="Img\checkmark.png" />
     <Content Include="Img\temple_diamond_pattern.jpg" />
     <Content Include="Login.aspx" />
+    <Content Include="ManageStudents.aspx" />
     <Content Include="MasterPage.Master" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageStudents.aspx.cs">
+      <DependentUpon>ManageStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageStudents.aspx.designer.cs">
+      <DependentUpon>ManageStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
