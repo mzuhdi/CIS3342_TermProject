@@ -17,7 +17,16 @@ namespace TermProject
             {
                 getUserType();
                 getDepartment();
+                generateStudentUsername();
             }
+        }
+
+        public void generateStudentUsername()
+        {
+            Random rand = new Random();
+            int id = rand.Next(00000, 99999);
+            string username = "st" + id.ToString();
+            txtSUsername.Text = username;   
         }
         public void AddStudent()
         {
@@ -58,7 +67,7 @@ namespace TermProject
             }
             else
             {
-                lblSuccess.Text = "A problem occured. Data is not recorded";
+                lblSuccess.Text = "Username not available, please choose a different one.";
             }
         }
         public void AddBBAdmin()
@@ -73,12 +82,12 @@ namespace TermProject
 
             if (pxy.addBBAdmin(admin, key))
             {
-                lblSuccess.Text = "The administrator is created.";
+                lblSuccess.Text = "The administrator is created successfully.";
 
             }
             else
             {
-                lblSuccess.Text = "A problem occured. Data is not recorded";
+                lblSuccess.Text = "Username not available, please choose a different one.";
             }
         }
         public void getUserType()
@@ -136,7 +145,14 @@ namespace TermProject
 
         protected void btnStudentSubmit_Click(object sender, EventArgs e)
         {
-            AddStudent();
+            if (txtSFirstName.Text != "" && txtSLastName.Text != "" && txtSUsername.Text != "" && txtSPassword.Text != "")
+            {
+                AddStudent();
+            }
+            else
+            {
+                lblSuccess.Text = "Please fill in all values.";
+            }
         }
 
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -146,12 +162,26 @@ namespace TermProject
 
         protected void btnCBSubmit_Click(object sender, EventArgs e)
         {
-            AddCourseBuilder();
+            if (txtCFirstName.Text != "" && txtCLastName.Text != "" && txtCUserName.Text != "" && txtCPassword.Text != "")
+            {
+                AddCourseBuilder();
+            }
+            else
+            {
+                lblSuccess.Text = "Please fill in all values.";
+            }
         }
 
         protected void btnAdminSubmit_Click(object sender, EventArgs e)
         {
-            AddBBAdmin();
+            if (txtAFirstName.Text != "" && txtALastName.Text != "" && txtAUserName.Text != "" && txtAPassword.Text != "")
+            {
+                AddBBAdmin();
+            }
+            else
+            {
+                lblSuccess.Text = "Please fill in all values.";
+            }
         }
     }
 }

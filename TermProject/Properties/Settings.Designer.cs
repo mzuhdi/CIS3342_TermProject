@@ -12,7 +12,7 @@ namespace TermProject.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -27,9 +27,9 @@ namespace TermProject.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:49823/BlackBoardService.asmx")]
-        public string TermProject_BlackboardSvcPxy_BlackBoardService {
+        public string TermProject_BlackBoardSvcPxy_BlackBoardService {
             get {
-                return ((string)(this["TermProject_BlackboardSvcPxy_BlackBoardService"]));
+                return ((string)(this["TermProject_BlackBoardSvcPxy_BlackBoardService"]));
             }
         }
     }

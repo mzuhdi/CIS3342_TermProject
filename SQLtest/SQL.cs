@@ -1,58 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
-using System.Web.Services;
 
+using TermProjectClassLibrary;
 using Utilities;
 using System.Data;
 using System.Data.SqlClient;
-using TermProjectClassLibrary;
 using System.Collections;
 
-namespace TermProjectWebService
+namespace SQLtest
 {
-    /// <summary>
-    /// Summary description for BlackBoardService
-    /// </summary>
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [System.ComponentModel.ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
-    public class BlackBoardService : System.Web.Services.WebService
+    public class SQL
     {
-
-        [WebMethod]
-        public string HelloWorld()
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
+        
         public int verifyLogin(string username, string password)
         {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+            //if (cb != null && key == "zuhdi")
+            //{
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
 
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_verifyUserForLogin";
-                objCommand.Parameters.AddWithValue("@Username", username);
-                objCommand.Parameters.AddWithValue("@Password", password);
-                SqlParameter returnValue = new SqlParameter("@Result", 0);
-                
-                returnValue.Direction = ParameterDirection.Output;
-                objCommand.Parameters.Add(returnValue);
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_verifyUserForLogin";
+            objCommand.Parameters.AddWithValue("@Username", username);
+            objCommand.Parameters.AddWithValue("@Password", password);
+            SqlParameter returnValue = new SqlParameter("@Result", 0);
+            ;
+            returnValue.Direction = ParameterDirection.Output;
+            objCommand.Parameters.Add(returnValue);
 
-                objDB.GetDataSetUsingCmdObj(objCommand);
+            objDB.GetDataSetUsingCmdObj(objCommand);
 
-                int result = int.Parse(objCommand.Parameters["@Result"].Value.ToString());
+            int result = int.Parse(objCommand.Parameters["@Result"].Value.ToString());
 
-                return result;
+            return result;
+            //}
+
+            //return 0;
         }
 
-        [WebMethod]
+        
         public bool addStudent(Student student, string key)
         {
             if (student != null && key == "zuhdi")
@@ -67,7 +58,7 @@ namespace TermProjectWebService
                 objCommand.Parameters.AddWithValue("@Major", student.Major);
                 objCommand.Parameters.AddWithValue("@Username", student.Username);
                 objCommand.Parameters.AddWithValue("@Password", student.Password);
-                
+
                 DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                 objCommand.Parameters.Clear();
                 return true;
@@ -75,7 +66,7 @@ namespace TermProjectWebService
             return false;
         }
 
-        [WebMethod]
+        
         public bool addCourseBuilder(CourseBuilder cb, string key)
         {
             if (cb != null && key == "zuhdi")
@@ -115,7 +106,7 @@ namespace TermProjectWebService
                 return false;
             }
         }
-        [WebMethod]
+        
         public bool addBBAdmin(BBAdmin admin, string key)
         {
             if (admin != null && key == "zuhdi")
@@ -159,7 +150,7 @@ namespace TermProjectWebService
             }
         }
 
-        [WebMethod]
+        
         public bool addCourse(Course course, string key)
         {
             if (course != null && key == "zuhdi")
@@ -181,8 +172,8 @@ namespace TermProjectWebService
             return false;
         }
 
-        [WebMethod]
-        public bool DeleteCourse(Course course,string key)
+        
+        public bool DeleteCourse(Course course, string key)
         {
             if (course != null && key == "zuhdi")
             {
@@ -200,19 +191,19 @@ namespace TermProjectWebService
             return false;
         }
 
-        [WebMethod]
+        
         public void EnrollCourse(string key)
         {
-            
+
         }
 
-        [WebMethod]
+        
         public void EmailCourse(string key)
         {
-           
+
         }
 
-        [WebMethod]
+        
         public DataSet GetUserType(string key)
         {
             if (key == "zuhdi")
@@ -232,7 +223,7 @@ namespace TermProjectWebService
                 return null;
             }
         }
-        [WebMethod]
+        
         public DataSet GetDepartment(string key)
         {
             if (key == "zuhdi")
@@ -252,7 +243,7 @@ namespace TermProjectWebService
                 return null;
             }
         }
-        [WebMethod]
+        
         public DataSet GetTerm(string key)
         {
             if (key == "zuhdi")
@@ -273,7 +264,7 @@ namespace TermProjectWebService
             }
         }
 
-        [WebMethod]
+        
         public DataSet GetCourseByTerm(string fk_termid, string key)
         {
             if (key == "zuhdi")
@@ -294,9 +285,9 @@ namespace TermProjectWebService
                 return null;
             }
         }
-        [WebMethod]
+        
         public bool UpdateCourse(Course course, string key)
-            //Not working because i'm changing the courseid therefore it doesn't know which to update.
+        //Not working because i'm changing the courseid therefore it doesn't know which to update.
         {
             if (course != null && key == "zuhdi")
             {
