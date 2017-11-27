@@ -15,6 +15,8 @@ namespace TermProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
+            string key = "zuhdi";
 
             if (!IsPostBack)
             {
@@ -66,7 +68,7 @@ namespace TermProject
             return objDB.GetDataSetUsingCmdObj(objCommand);
         }
 
-        public DataSet populateStudentsInCourse(string major)
+        public DataSet pop(string major)
         {
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
@@ -83,37 +85,43 @@ namespace TermProject
             return objDB.GetDataSetUsingCmdObj(objCommand);
         }
 
+        public DataSet populateStudentsInCourse(string key, string courseID)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_PopulateStudentsInCourse";
+                objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         protected void ddlMajor_SelectedIndexChanged(object sender, EventArgs e)
         {
             populateByMajor(ddlMajor.SelectedValue.ToString());
         }
 
-        public List<string> packageStudents()
+        public ArrayList packageStudents()
         {
-            List<string> packageStudents = new List<string>();
+            ArrayList packageStudents = new ArrayList();
 
-            //int count = 0;
-            //for (int row = 0; row < gvSearch.Rows.Count; row++)
-            //{
-            //    CheckBox cbox;
-            //    cbox = (CheckBox)gvSearch.Rows[row].FindControl("chkSelect");
-            //    if (cbox.Checked)
-            //    {
-            //        string studentID = "";
-
-            //        studentID = gvSearch.DataKeys[0]["StudentID"].ToString();
-            //        packageStudents.Add(studentID);
-
-            //    }
-            //}
-            //return packageStudents;
             foreach (GridViewRow row in gvSearch.Rows)
             {
-                // Access the CheckBox
                 CheckBox cb = (CheckBox)row.FindControl("chkSelect");
                 if (cb != null && cb.Checked)
                 {
-                    string StudentID = gvSearch.DataKeys[0]["StudentID"].ToString();
+                    GridViewRow index = GridView1.SelectedRow;
+                    int rowid = row.RowIndex;
+                    string StudentID = gvSearch.DataKeys[rowid]["StudentID"].ToString();
                     packageStudents.Add(StudentID);
                 }
             }
@@ -122,7 +130,8 @@ namespace TermProject
 
         public void addStudentsToCourse(ArrayList arrStudents, string courseID)
         {
-            for (int i = 0; i < arrStudents.Count; i++)
+          
+            foreach (string stdID in arrStudents)
             {
 
                 DBConnect objDB = new DBConnect();
@@ -132,7 +141,7 @@ namespace TermProject
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_AddStudentsToCourse";
 
-                objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(arrStudents[i]));
+                objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(stdID));
                 objCommand.Parameters.AddWithValue("@CourseID", courseID);//Convert.ToInt32(Session["CourseID"]));
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
@@ -140,22 +149,21 @@ namespace TermProject
             }
         }
 
-        public string arrayTest(List<string> arrStudents)
+        public string arrayTest(ArrayList arrStudents)
         {
-            string ID = "";
-            for (int i = 0; i < arrStudents.Count; i++)
-            {
-                string Student = "";
+            
+            string str = string.Empty;
 
-                ID = arrStudents[i].ToString() + ", ";
+            foreach (string strName in arrStudents)
+            {
+                str += strName + ", ";
             }
-            return ID;
+            return str;
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            // addStudentsToCourse(packageStudents(), "1");
-            lblSearchError.Text = arrayTest(packageStudents());
+            addStudentsToCourse(packageStudents(), "1"); //Session["CourseID'].ToString());
         }
     }
 }

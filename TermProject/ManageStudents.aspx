@@ -48,7 +48,7 @@
                     <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                     <asp:BoundField DataField="LastName" HeaderText="Last Name" />
                     <asp:BoundField DataField="Major" HeaderText="Major" />
-                    <asp:BoundField DataField="StudentID" HeaderText="StudentID" />
+                    <asp:BoundField DataField="StudentID" HeaderText="StudentID" Visible ="true" />
                 </Columns>
             </asp:GridView>
             <br />
