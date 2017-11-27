@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TermProjectClassLibrary;
+
 
 namespace TermProject
 {
@@ -72,7 +74,7 @@ namespace TermProject
         {
             BlackboardSvcPxy.Course course = new BlackboardSvcPxy.Course();
 
-            course.CourseID = txtIDUpdate.Text;
+            course.CourseCode = txtCCodeUpdate.Text;
             course.Name = txtNameUpdate.Text;
             course.FK_TermID = ddlTerm.SelectedValue.ToString();
             course.FK_CBID = 1; // will get CBID using session
@@ -99,7 +101,7 @@ namespace TermProject
             if (e.CommandName == "Update")
             {
                 ManageCourseFormDiv.Visible = true;
-                txtIDUpdate.Text = gvCourses.Rows[rowIndex].Cells[0].Text;
+                txtCCodeUpdate.Text = gvCourses.Rows[rowIndex].Cells[0].Text;
                 txtNameUpdate.Text = gvCourses.Rows[rowIndex].Cells[1].Text;
             }
             else if (e.CommandName == "Delete")

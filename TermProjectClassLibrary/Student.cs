@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TermProjectClassLibrary
 {
+    [Serializable]
     public class Student
     {
         public string FirstName { get; set; }

@@ -139,22 +139,22 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ManageCourseFormDiv;
         
         /// <summary>
-        /// lblCIDUpdate control.
+        /// lblCCodeUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCIDUpdate;
+        protected global::System.Web.UI.WebControls.Label lblCCodeUpdate;
         
         /// <summary>
-        /// txtIDUpdate control.
+        /// txtCCodeUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIDUpdate;
+        protected global::System.Web.UI.WebControls.TextBox txtCCodeUpdate;
         
         /// <summary>
         /// lblCNameUpdate control.

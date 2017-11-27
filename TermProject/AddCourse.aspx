@@ -22,15 +22,15 @@
         <asp:GridView ID="gvCourses" runat="server" AutoGenerateColumns="false"
             OnRowCommand="gvCourses_RowCommand" OnRowUpdating="gvCourses_RowUpdating">
             <Columns>
-                <asp:BoundField DataField="CourseID" HeaderText="Credit ID" ReadOnly="true" />
-                <asp:BoundField DataField="Name" HeaderText="Card Number" />
+                <asp:BoundField DataField="CourseCode" HeaderText="Course Code" ReadOnly="true" />
+                <asp:BoundField DataField="Name" HeaderText="Name" />
                 <asp:ButtonField runat="server" Text="Update Course" HeaderText="Update Course" CommandName="Update" ButtonType="Button" />
                 <asp:ButtonField runat="server" Text="Delete Course" HeaderText="Delete Course" CommandName="Delete" ButtonType="Button" />
             </Columns>
         </asp:GridView>
         <div id="ManageCourseFormDiv" runat="server" visible="false">
-            <asp:Label ID="lblCIDUpdate" runat="server" Text="Course ID: "></asp:Label>
-            <asp:TextBox ID="txtIDUpdate" runat="server"></asp:TextBox>
+            <asp:Label ID="lblCCodeUpdate" runat="server" Text="Course Code: "></asp:Label>
+            <asp:TextBox ID="txtCCodeUpdate" runat="server"></asp:TextBox>
             <asp:Label ID="lblCNameUpdate" runat="server" Text="Course Name: "></asp:Label>
             <asp:TextBox ID="txtNameUpdate" runat="server"></asp:TextBox>
             <asp:Button ID="btnUpdate" runat="server" Text="Update Course" OnClick="btnUpdate_Click" />

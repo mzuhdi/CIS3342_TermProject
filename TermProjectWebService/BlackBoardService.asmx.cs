@@ -246,6 +246,7 @@ namespace TermProjectWebService
                 objCommand.Parameters.AddWithValue("@Name", course.Name);
                 objCommand.Parameters.AddWithValue("@FK_TermID", course.FK_TermID);
                 objCommand.Parameters.AddWithValue("@FK_CBID", course.FK_CBID);
+                objCommand.Parameters.AddWithValue("@CourseCode", course.CourseCode);
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
                 objCommand.Parameters.Clear();

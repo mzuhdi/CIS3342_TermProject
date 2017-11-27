@@ -12,7 +12,7 @@ namespace TermProjectClassLibrary
         public string Name { get; set; }
         public string FK_TermID { get; set; }
         public int FK_CBID { get; set; }
-
+        public string CourseCode { get; set; }
         public Course() { }
 
         public Course (string courseid, string name, string fk_termid, int fk_cbid)
