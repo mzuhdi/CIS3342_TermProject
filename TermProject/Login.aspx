@@ -51,6 +51,7 @@
                                 </label>
                             </div>
                             <asp:Button ID="btnLogin" class="btn btn-lg btn-primary btn-block btn-signin" runat="server" Text="Sign In" OnClick="btnLogin_Click" />
+                            <asp:HyperLink ID="SignUp" runat="server" NavigateUrl="~/Registration.aspx">Sign Up</asp:HyperLink>
                         </div>
                     </div>
                 </div>

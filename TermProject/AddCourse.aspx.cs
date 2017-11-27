@@ -102,8 +102,7 @@ namespace TermProject
             if (e.CommandName == "Update")
             {
                 ManageCourseFormDiv.Visible = true;
-                int courseID = (int)gvCourses.DataKeys[rowIndex]["CourseID"];
-                lblCourseID.Text = courseID.ToString();
+                lblCourseID.Text = (string)gvCourses.DataKeys[rowIndex]["CourseID"];
                 txtCCodeUpdate.Text = gvCourses.Rows[rowIndex].Cells[1].Text;
                 txtNameUpdate.Text = gvCourses.Rows[rowIndex].Cells[2].Text;
             }

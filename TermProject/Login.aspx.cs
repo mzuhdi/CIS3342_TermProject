@@ -15,7 +15,11 @@ namespace TermProject
         string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                HttpCookie objCookie = Request.Cookies["theCookie"];
+                txtUsername.Text = objCookie.Values["Username"];
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -34,6 +38,14 @@ namespace TermProject
                     //go to student page with session 
                     lblLoginError.Visible = true;
                     lblLoginError.Text = "student";
+                    if(chkRememberMe.Checked == true)
+                    {
+                        HttpCookie myCookie = new HttpCookie("theCookie");
+                        myCookie.Value = "Student";
+                        myCookie.Expires = new DateTime(2018, 1, 1);
+                        myCookie.Values["Username"] = txtUsername.Text;
+                        Response.Cookies.Add(myCookie);
+                    }
                 }
                 if (returnValue == 2)
                 {
@@ -41,6 +53,14 @@ namespace TermProject
                     //go to Admin page with session
                     lblLoginError.Visible = true;
                     lblLoginError.Text = "admin";
+                    if (chkRememberMe.Checked == true)
+                    {
+                        HttpCookie myCookie = new HttpCookie("theCookie");
+                        myCookie.Value = "admin";
+                        myCookie.Expires = new DateTime(2018, 1, 1);
+                        myCookie.Values["Username"] = txtUsername.Text;
+                        Response.Cookies.Add(myCookie);
+                    }
                 }
                 if (returnValue == 3)
                 {
@@ -48,6 +68,14 @@ namespace TermProject
                     ////go to CourseBuilder page with session
                     lblLoginError.Visible = true;
                     lblLoginError.Text = "coursebuilder";
+                    if (chkRememberMe.Checked == true)
+                    {
+                        HttpCookie myCookie = new HttpCookie("theCookie");
+                        myCookie.Value = "CourseBuilder";
+                        myCookie.Expires = new DateTime(2018, 1, 1);
+                        myCookie.Values["Username"] = txtUsername.Text;
+                        Response.Cookies.Add(myCookie);
+                    }
                 }
                 if (returnValue == 0)
                 {
@@ -61,5 +89,6 @@ namespace TermProject
                 lblLoginError.Visible = true;
             }
         }
+
     }
 }
