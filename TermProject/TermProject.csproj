@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddCourse.aspx" />
+    <Content Include="AdminMain.aspx" />
+    <Content Include="CBMain.aspx" />
     <Content Include="css\Login.css" />
     <Content Include="Img\checkmark.png" />
     <Content Include="Img\temple_diamond_pattern.jpg" />
@@ -94,6 +96,7 @@
   <ItemGroup>
     <Content Include="Registration.aspx" />
     <None Include="Web References\BlackboardSvcPxy\BlackBoardService.disco" />
+    <Content Include="StudentMain.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +106,20 @@
     </Compile>
     <Compile Include="AddCourse.aspx.designer.cs">
       <DependentUpon>AddCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMain.aspx.cs">
+      <DependentUpon>AdminMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMain.aspx.designer.cs">
+      <DependentUpon>AdminMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CBMain.aspx.cs">
+      <DependentUpon>CBMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CBMain.aspx.designer.cs">
+      <DependentUpon>CBMain.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -137,6 +154,13 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentMain.aspx.cs">
+      <DependentUpon>StudentMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentMain.aspx.designer.cs">
+      <DependentUpon>StudentMain.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\BlackboardSvcPxy\Reference.cs">
       <AutoGen>True</AutoGen>

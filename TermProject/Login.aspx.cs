@@ -18,7 +18,10 @@ namespace TermProject
             if (!IsPostBack)
             {
                 HttpCookie objCookie = Request.Cookies["theCookie"];
-                txtUsername.Text = objCookie.Values["Username"];
+                if (objCookie != null)
+                {
+                    txtUsername.Text = objCookie.Values["Username"];
+                }
             }
         }
 
@@ -36,8 +39,9 @@ namespace TermProject
                 {
                     //lblLoginError.Visible = false;
                     //go to student page with session 
-                    lblLoginError.Visible = true;
-                    lblLoginError.Text = "student";
+                    //lblLoginError.Visible = true;
+                    lblLoginError.Text = returnValue.ToString();
+                    Session["StudentID"] = 1; // swithc to studentuser
                     if(chkRememberMe.Checked == true)
                     {
                         HttpCookie myCookie = new HttpCookie("theCookie");
@@ -46,13 +50,15 @@ namespace TermProject
                         myCookie.Values["Username"] = txtUsername.Text;
                         Response.Cookies.Add(myCookie);
                     }
+                    Response.Redirect("StudentMain.aspx");
                 }
                 if (returnValue == 2)
                 {
                     //lblLoginError.Visible = false;
                     //go to Admin page with session
-                    lblLoginError.Visible = true;
-                    lblLoginError.Text = "admin";
+                    //lblLoginError.Visible = true;
+                    //lblLoginError.Text = "admin";
+                    Session["AdminID"] = 1;
                     if (chkRememberMe.Checked == true)
                     {
                         HttpCookie myCookie = new HttpCookie("theCookie");
@@ -61,13 +67,15 @@ namespace TermProject
                         myCookie.Values["Username"] = txtUsername.Text;
                         Response.Cookies.Add(myCookie);
                     }
+                    Response.Redirect("AdminMain.aspx");
                 }
                 if (returnValue == 3)
                 {
                     //lblLoginError.Visible = false;
                     ////go to CourseBuilder page with session
-                    lblLoginError.Visible = true;
-                    lblLoginError.Text = "coursebuilder";
+                    //lblLoginError.Visible = true;
+                    //lblLoginError.Text = "coursebuilder";
+                    Session["CBID"] = 1;
                     if (chkRememberMe.Checked == true)
                     {
                         HttpCookie myCookie = new HttpCookie("theCookie");
@@ -76,6 +84,7 @@ namespace TermProject
                         myCookie.Values["Username"] = txtUsername.Text;
                         Response.Cookies.Add(myCookie);
                     }
+                    Response.Redirect("CBMain.aspx");
                 }
                 if (returnValue == 0)
                 {
