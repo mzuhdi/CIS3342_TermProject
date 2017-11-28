@@ -257,6 +257,44 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="populateStudentsInCourse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="courseID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="populateStudentsInCourseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="populateStudentsInCourseResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addStudentsToCourse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arrStudents" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="courseID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="addStudentsToCourseResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -343,6 +381,18 @@
   <wsdl:message name="UpdateCourseSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateCourseResponse" />
   </wsdl:message>
+  <wsdl:message name="populateStudentsInCourseSoapIn">
+    <wsdl:part name="parameters" element="tns:populateStudentsInCourse" />
+  </wsdl:message>
+  <wsdl:message name="populateStudentsInCourseSoapOut">
+    <wsdl:part name="parameters" element="tns:populateStudentsInCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="addStudentsToCourseSoapIn">
+    <wsdl:part name="parameters" element="tns:addStudentsToCourse" />
+  </wsdl:message>
+  <wsdl:message name="addStudentsToCourseSoapOut">
+    <wsdl:part name="parameters" element="tns:addStudentsToCourseResponse" />
+  </wsdl:message>
   <wsdl:portType name="BlackBoardServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -399,6 +449,14 @@
     <wsdl:operation name="UpdateCourse">
       <wsdl:input message="tns:UpdateCourseSoapIn" />
       <wsdl:output message="tns:UpdateCourseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="populateStudentsInCourse">
+      <wsdl:input message="tns:populateStudentsInCourseSoapIn" />
+      <wsdl:output message="tns:populateStudentsInCourseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addStudentsToCourse">
+      <wsdl:input message="tns:addStudentsToCourseSoapIn" />
+      <wsdl:output message="tns:addStudentsToCourseSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BlackBoardServiceSoap" type="tns:BlackBoardServiceSoap">
@@ -529,6 +587,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="populateStudentsInCourse">
+      <soap:operation soapAction="http://tempuri.org/populateStudentsInCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addStudentsToCourse">
+      <soap:operation soapAction="http://tempuri.org/addStudentsToCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BlackBoardServiceSoap12" type="tns:BlackBoardServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -651,6 +727,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateCourse">
       <soap12:operation soapAction="http://tempuri.org/UpdateCourse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="populateStudentsInCourse">
+      <soap12:operation soapAction="http://tempuri.org/populateStudentsInCourse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addStudentsToCourse">
+      <soap12:operation soapAction="http://tempuri.org/addStudentsToCourse" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

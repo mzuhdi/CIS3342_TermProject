@@ -316,5 +316,49 @@ namespace TermProjectWebService
             }
             return false;
         }
+
+        [WebMethod]
+        public DataSet populateStudentsInCourse(string key, string courseID)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.Parameters.Clear();
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_PopulateStudentsInCourse";
+                objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+                //objCommand.Parameters.AddWithValue("@CourseID", courseID);
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [WebMethod]
+        public void addStudentsToCourse(ArrayList arrStudents, string courseID)
+        {
+
+            foreach (string stdID in arrStudents)
+            {
+
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddStudentsToCourse";
+
+                objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(stdID));
+                objCommand.Parameters.AddWithValue("@CourseID", courseID);//Convert.ToInt32(Session["CourseID"]));
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+            }
+        }
     }
 }

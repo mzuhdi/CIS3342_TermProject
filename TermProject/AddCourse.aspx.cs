@@ -127,6 +127,9 @@ namespace TermProject
                 //btnUpdateCC.Visible = false;
                 //transactionsDiv.Visible = true;
                 //GetCreditPurchaseByCCID(int.Parse(gvCreditCard.Rows[rowIndex].Cells[0].Text.ToString()));
+                lblCourseID.Text = (string)gvCourses.DataKeys[rowIndex]["CourseID"];
+                Session["CourseID"] = lblCourseID.Text;
+                Response.Redirect("ManageStudents.aspx");
 
             }
 

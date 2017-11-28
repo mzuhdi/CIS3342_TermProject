@@ -31,18 +31,10 @@
             <asp:Button ID="btnAddStudents" runat="server" Text="Add Students" OnClick="btnAddStudents_Click" />
             &nbsp;&nbsp;&nbsp;<asp:Button ID="btnEmailAll" runat="server" OnClick="Button1_Click" Text="Email All Students" />
 &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
         </p>
         <asp:Panel ID="PanelAddStudents" runat="server" Visible="False">
             <h2>Add Student(s)</h2>
-            <p>
-                Username:
-                <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btnSearch" runat="server" Text="Search" />
-                &nbsp;&nbsp;&nbsp;
-                <asp:Label ID="lblSearchError" runat="server"></asp:Label>
-            </p>
             <asp:GridView ID="gvSearch" runat="server" AutoGenerateColumns="false" DataKeyNames="StudentID">
                 <Columns>
                     <asp:TemplateField HeaderText="Select">

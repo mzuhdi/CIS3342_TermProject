@@ -96,8 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Registration.aspx" />
-    <None Include="Web References\BlackboardSvcPxy\BlackBoardService.disco" />
     <Content Include="StudentMain.aspx" />
+    <None Include="Web References\BlackboardSvcPxy\BlackBoardService.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

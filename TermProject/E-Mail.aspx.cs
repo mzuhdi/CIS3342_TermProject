@@ -24,7 +24,8 @@ namespace TermProject
                 }
                 else
                 {
-                    txtEmailTO.Text = breakArray((ArrayList)Session["StudentEmail"]);
+                    txtEmailTO.Text = "All Students";
+                    //txtEmailTO.Text = breakArray((ArrayList)Session["StudentEmail"]);
                 } 
             }
         }
@@ -57,6 +58,12 @@ namespace TermProject
             {
                 lblDisplay.Text = "The email wasn't sent because one of the required fields was missing.";
             }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("ManageStudents.aspx");
         }
     }
 }

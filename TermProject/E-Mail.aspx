@@ -42,6 +42,8 @@
                 <td>
                     <asp:Button ID="btnSendMail" runat="server" Height="29px" Text="Send Mail"
                         Width="107px" OnClick="btnSendMail_Click" />
+                &nbsp;&nbsp;
+                    <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" />
                 </td>
             </tr>
             <tr>
