@@ -333,7 +333,7 @@ namespace TermProject.BlackboardSvcPxy {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteCourse", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool DeleteCourse(Course course, string key) {
+        public bool DeleteCourse(string course, string key) {
             object[] results = this.Invoke("DeleteCourse", new object[] {
                         course,
                         key});
@@ -341,12 +341,12 @@ namespace TermProject.BlackboardSvcPxy {
         }
         
         /// <remarks/>
-        public void DeleteCourseAsync(Course course, string key) {
+        public void DeleteCourseAsync(string course, string key) {
             this.DeleteCourseAsync(course, key, null);
         }
         
         /// <remarks/>
-        public void DeleteCourseAsync(Course course, string key, object userState) {
+        public void DeleteCourseAsync(string course, string key, object userState) {
             if ((this.DeleteCourseOperationCompleted == null)) {
                 this.DeleteCourseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteCourseOperationCompleted);
             }

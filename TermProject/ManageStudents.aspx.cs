@@ -32,7 +32,7 @@ namespace TermProject
         public void studentsInClass()
         {
             BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
-            DataSet myDS = pxy.populateStudentsInCourse(key, "2");//Session["CourseID].ToString());
+            DataSet myDS = pxy.populateStudentsInCourse(key, Session["CourseID"].ToString());
             if (myDS.Tables[0].Rows.Count == 0)
             {
                 lblStudentError.Visible = true;
@@ -99,33 +99,13 @@ namespace TermProject
                 objCommand.CommandText = "TP_AddStudentsToCourse";
 
                 objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(stdID));
-                objCommand.Parameters.AddWithValue("@CourseID", courseID);//Convert.ToInt32(Session["CourseID"]));
+                objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(Session["CourseID"]));
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
                 objCommand.Parameters.Clear();
             }
         }
 
-        //public DataSet populateStudentsInCourse(string key, string courseID)
-        //{
-        //    if (key == "zuhdi")
-        //    {
-        //        DBConnect objDB = new DBConnect();
-        //        SqlCommand objCommand = new SqlCommand();
-        //        objCommand.Parameters.Clear();
-        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-        //        objCommand.CommandText = "TP_PopulateStudentsInCourse";
-        //        objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
-        //        //objCommand.Parameters.AddWithValue("@CourseID", courseID);
-        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-
-        //        return myDataSet;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
 
         public string arrayTest(ArrayList arrStudents)
         {

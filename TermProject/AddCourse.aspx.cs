@@ -116,9 +116,14 @@ namespace TermProject
                 //Payment.Visible = true;
                 //lblCCID.Text = gvCreditCard.Rows[rowIndex].Cells[0].Text.ToString();
                 //txtCurrentBalance.Text = gvCreditCard.Rows[rowIndex].Cells[5].Text;
+                BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
+                int rowInd = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvCourses.Rows[rowIndex];
+                pxy.DeleteCourse(Convert.ToString(gvCourses.DataKeys[rowInd]["CourseID"]), key);
+                GetCourseByTerm();
 
             }
-            else if (e.CommandName == "Manage Student")
+            else if (e.CommandName == "Manage Students")
             {
                 //AddEditForm.Visible = false;
                 //balance.Visible = false;
@@ -127,7 +132,9 @@ namespace TermProject
                 //btnUpdateCC.Visible = false;
                 //transactionsDiv.Visible = true;
                 //GetCreditPurchaseByCCID(int.Parse(gvCreditCard.Rows[rowIndex].Cells[0].Text.ToString()));
-                lblCourseID.Text = (string)gvCourses.DataKeys[rowIndex]["CourseID"];
+                int rowInd = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvCourses.Rows[rowIndex];
+                lblCourseID.Text = Convert.ToString(gvCourses.DataKeys[rowInd]["CourseID"]);
                 Session["CourseID"] = lblCourseID.Text;
                 Response.Redirect("ManageStudents.aspx");
 

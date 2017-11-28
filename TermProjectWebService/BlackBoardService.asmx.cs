@@ -182,7 +182,7 @@ namespace TermProjectWebService
         }
 
         [WebMethod]
-        public bool DeleteCourse(Course course,string key)
+        public bool DeleteCourse(string course,string key)
         {
             if (course != null && key == "zuhdi")
             {
@@ -191,7 +191,7 @@ namespace TermProjectWebService
 
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_DeleteCourse";
-                objCommand.Parameters.AddWithValue("@courseID", course.CourseID);
+                objCommand.Parameters.AddWithValue("@courseID", Convert.ToInt32(course));
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
                 objCommand.Parameters.Clear();
