@@ -13,21 +13,17 @@ namespace TermProject
 {
     public partial class ManageStudents : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
+        string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
-            BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
-            string key = "zuhdi";
+
 
             if (!IsPostBack)
             {
-                DBConnect objDB = new DBConnect();
-                String strSQL = "SELECT DISTINCT Major FROM TP_Student";
-                ddlMajor.DataSource = objDB.GetDataSet(strSQL);
-                ddlMajor.DataTextField = "Major";
-                ddlMajor.DataValueField = "Major";
-                ddlMajor.DataBind();
-
+                studentsInClass();
                 popStudents();
+
             }
         }
 
@@ -42,6 +38,22 @@ namespace TermProject
             gvSearch.DataSource = objDB.GetDataSet(strSQL);
             gvSearch.DataBind();
 
+        }
+
+        public void studentsInClass()
+        {
+            DataSet myDS = populateStudentsInCourse(key, "2");//Session["CourseID].ToString());
+            if (myDS.Tables[0].Rows.Count == 0)
+            {
+                lblStudentError.Visible = true;
+                lblStudentError.Visible = false;
+                lblStudentError.Text = "No students found.";
+            }
+            else
+            {
+                gvStudents.DataSource = myDS;
+                gvStudents.DataBind();
+            }
         }
 
         public void popByMajor(string major)
@@ -85,29 +97,27 @@ namespace TermProject
             return objDB.GetDataSetUsingCmdObj(objCommand);
         }
 
-        public DataSet populateStudentsInCourse(string key, string courseID)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_PopulateStudentsInCourse";
-                objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return myDataSet;
-            }
-            else
-            {
-                return null;
-            }
-        }
 
         protected void ddlMajor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            populateByMajor(ddlMajor.SelectedValue.ToString());
+        }
+
+        protected void gvStudents_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            if (e.CommandName == "Email")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvStudents.Rows[index];
+                string email = gvStudents.Rows[index].Cells[0].Text + "@school.edu";
+                Session["StudentEmail"] = email;
+                Response.Redirect("E-Mail.aspx");
+            }
+        }
+        protected void gvStudents_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
         }
 
         public ArrayList packageStudents()
@@ -119,7 +129,7 @@ namespace TermProject
                 CheckBox cb = (CheckBox)row.FindControl("chkSelect");
                 if (cb != null && cb.Checked)
                 {
-                    GridViewRow index = GridView1.SelectedRow;
+                    GridViewRow index = gvStudents.SelectedRow;
                     int rowid = row.RowIndex;
                     string StudentID = gvSearch.DataKeys[rowid]["StudentID"].ToString();
                     packageStudents.Add(StudentID);
@@ -130,7 +140,7 @@ namespace TermProject
 
         public void addStudentsToCourse(ArrayList arrStudents, string courseID)
         {
-          
+
             foreach (string stdID in arrStudents)
             {
 
@@ -149,9 +159,30 @@ namespace TermProject
             }
         }
 
+        public DataSet populateStudentsInCourse(string key, string courseID)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.Parameters.Clear();
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_PopulateStudentsInCourse";
+                objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+                //objCommand.Parameters.AddWithValue("@CourseID", courseID);
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public string arrayTest(ArrayList arrStudents)
         {
-            
+
             string str = string.Empty;
 
             foreach (string strName in arrStudents)
@@ -163,7 +194,41 @@ namespace TermProject
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            addStudentsToCourse(packageStudents(), "1"); //Session["CourseID'].ToString());
+            addStudentsToCourse(packageStudents(), "2"); //Session["CourseID'].ToString());
         }
+
+        protected void btnAddStudents_Click(object sender, EventArgs e)
+        {
+            btnAddStudents.Enabled = false;
+            PanelAddStudents.Visible = true;
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            btnAddStudents.Enabled = true;
+            PanelAddStudents.Visible = false;
+        }
+
+        protected void gvStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ArrayList studentEmails = new ArrayList();
+
+            foreach (GridViewRow row in gvStudents.Rows)
+            {
+                string emails = row.Cells[0].Text + "@school.edu;";
+                studentEmails.Add(emails);
+            }
+
+            arrayTest(studentEmails);
+
+            //Session["StudentEmails"] = studentEmails;
+            //Response.Redirect("E-Mail.aspx");
+        }
+
     }
 }

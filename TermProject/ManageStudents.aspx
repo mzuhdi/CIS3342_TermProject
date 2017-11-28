@@ -13,24 +13,30 @@
             <h1>Manage Students</h1>
 
         </div>
-        <h2>Studnets Enrolled</h2>
+        <h2>Students Enrolled</h2>
         <p>
-            <asp:GridView ID="GridView1" runat="server">
+            <asp:GridView ID="gvStudents" runat="server" DataKeyNames ="StudentID" OnRowCommand="gvStudents_RowCommand" OnRowUpdating="gvStudents_RowUpdating" OnSelectedIndexChanged="gvStudents_SelectedIndexChanged" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="Username" HeaderText="Username" />
+                    <asp:BoundField DataField="FirstName" HeaderText="First Name" />
+                    <asp:BoundField DataField="LastName" HeaderText="Last Name" />
+                    <asp:BoundField DataField="Major" HeaderText="Major" />
+                    <asp:BoundField DataField="StudentID" HeaderText="StudentID" Visible ="true" />
+                    <asp:ButtonField runat="server" Text="Email Student" CommandName="Email" ButtonType="Button" />
+                </Columns>
             </asp:GridView>
             <asp:Label ID="lblStudentError" runat="server"></asp:Label>
         </p>
         <p>
-            <asp:Button ID="btnAddStudents" runat="server" Text="Add Students" />
-            &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnAddStudents" runat="server" Text="Add Students" OnClick="btnAddStudents_Click" />
+            &nbsp;&nbsp;&nbsp;<asp:Button ID="btnEmailAll" runat="server" OnClick="Button1_Click" Text="Email All Students" />
+&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
         </p>
-        <asp:Panel ID="PanelAddStudents" runat="server">
+        <asp:Panel ID="PanelAddStudents" runat="server" Visible="False">
             <h2>Add Student(s)</h2>
             <p>
-                Major:
-                <asp:DropDownList ID="ddlMajor" runat="server" OnSelectedIndexChanged="ddlMajor_SelectedIndexChanged">
-                </asp:DropDownList>
-                &nbsp;&nbsp;&nbsp; Username:
+                Username:
                 <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnSearch" runat="server" Text="Search" />
@@ -48,13 +54,13 @@
                     <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                     <asp:BoundField DataField="LastName" HeaderText="Last Name" />
                     <asp:BoundField DataField="Major" HeaderText="Major" />
-                    <asp:BoundField DataField="StudentID" HeaderText="StudentID" Visible ="true" />
+                    <asp:BoundField DataField="StudentID" HeaderText="StudentID" Visible ="false" />
                 </Columns>
             </asp:GridView>
             <br />
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnClose" runat="server" Text="Close" />
+            <asp:Button ID="btnClose" runat="server" Text="Close" OnClick="btnClose_Click" />
             <br />
             <h2>&nbsp;</h2>
         </asp:Panel>

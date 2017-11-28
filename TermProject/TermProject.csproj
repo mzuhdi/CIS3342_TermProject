@@ -71,6 +71,7 @@
     <Content Include="AdminMain.aspx" />
     <Content Include="CBMain.aspx" />
     <Content Include="css\Login.css" />
+    <Content Include="E-Mail.aspx" />
     <Content Include="Img\checkmark.png" />
     <Content Include="Img\temple_diamond_pattern.jpg" />
     <Content Include="Login.aspx" />
@@ -120,6 +121,13 @@
     </Compile>
     <Compile Include="CBMain.aspx.designer.cs">
       <DependentUpon>CBMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="E-Mail.aspx.cs">
+      <DependentUpon>E-Mail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="E-Mail.aspx.designer.cs">
+      <DependentUpon>E-Mail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
