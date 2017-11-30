@@ -25,32 +25,34 @@ namespace Utilities
         {
             try
             {
-                this.Recipient = recipient;
-                this.Sender = sender;
-                this.Subject = subject;
-                this.Message = body;
+                
+                    this.Recipient = recipient;
+                    this.Sender = sender;
+                    this.Subject = subject;
+                    this.Message = body;
 
-                objMail.To.Add(this.toAddress);
-                objMail.From = this.fromAddress;
-                objMail.Subject = this.subject;
-                objMail.Body = this.messageBody;
-                objMail.IsBodyHtml = this.isHTMLBody;
-                objMail.Priority = this.priority;
+                    objMail.To.Add(this.toAddress);
+                    objMail.From = this.fromAddress;
+                    objMail.Subject = this.subject;
+                    objMail.Body = this.messageBody;
+                    objMail.IsBodyHtml = this.isHTMLBody;
+                    objMail.Priority = this.priority;
 
-                if (cc != null && !cc.Equals(String.Empty))
-                {
-                    this.CCAddress = cc;
-                    objMail.CC.Add(this.ccAddress);
-                }
+                    if (cc != null && !cc.Equals(String.Empty))
+                    {
+                        this.CCAddress = cc;
+                        objMail.CC.Add(this.ccAddress);
+                    }
 
-                if (bcc != null && !bcc.Equals(String.Empty))
-                {
-                    this.BCCAddress = bcc;
-                    objMail.Bcc.Add(this.bccAddress);
-                }
+                    if (bcc != null && !bcc.Equals(String.Empty))
+                    {
+                        this.BCCAddress = bcc;
+                        objMail.Bcc.Add(this.bccAddress);
+                    }
 
-                SmtpClient smtpMailClient = new SmtpClient(this.mailHost);
-                smtpMailClient.Send(objMail);
+                    SmtpClient smtpMailClient = new SmtpClient(this.mailHost);
+                    smtpMailClient.Send(objMail);
+                
             }
             catch (Exception ex)
             {

@@ -154,14 +154,15 @@ namespace TermProject
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            //ArrayList studentEmails = new ArrayList();
+            ArrayList studentEmails = new ArrayList();
 
-            //foreach (GridViewRow row in gvStudents.Rows)
-            //{
-                
-            //    string email = gvStudents.Rows.ToString();
-            //    studentEmails.Add(email);
-            //}
+            foreach (GridViewRow row in gvStudents.Rows)
+            {
+                int index = 0;
+                string email = gvStudents.Rows[index].Cells[0].ToString();
+                studentEmails.Add(email);
+                index++;
+            } // work in progress.
 
             //arrayTest(studentEmails);
 

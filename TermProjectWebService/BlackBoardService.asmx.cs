@@ -169,10 +169,10 @@ namespace TermProjectWebService
 
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_AddCourse";
-                objCommand.Parameters.AddWithValue("@courseID", course.CourseID);
                 objCommand.Parameters.AddWithValue("@Name", course.Name);
                 objCommand.Parameters.AddWithValue("@FK_TermID", course.FK_TermID);
                 objCommand.Parameters.AddWithValue("@FK_CBID", course.FK_CBID);
+                objCommand.Parameters.AddWithValue("@CourseCode", course.CourseCode);
 
                 DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                 objCommand.Parameters.Clear();

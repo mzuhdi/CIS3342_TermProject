@@ -37,7 +37,7 @@ namespace TermProject
         }
         public void GetCourseByTerm()
         {
-            if (pxy.GetCourseByTerm(ddlTerm.SelectedValue.ToString(),key) != null)
+            if (pxy.GetCourseByTerm(ddlTerm.SelectedValue.ToString(), key) != null)
             {
                 gvCourses.DataSource = pxy.GetCourseByTerm(ddlTerm.SelectedValue.ToString(), key);
                 gvCourses.DataBind();
@@ -57,7 +57,7 @@ namespace TermProject
             course.Name = txtName.Text;
             course.FK_TermID = ddlTerm.SelectedValue.ToString();
             course.FK_CBID = 1; // will get CBID using session
-            
+
 
             if (pxy.addCourse(course, key))
             {
@@ -82,13 +82,14 @@ namespace TermProject
 
             if (pxy.UpdateCourse(course, key))
             {
-                lblSuccess.Text = "The course is update.";
+                lblSuccess.Text = "The course is updated.";
             }
             else
             {
                 lblSuccess.Text = "A problem occured. Data is not recorded";
             }
         }
+
 
         protected void btnAddCourse_Click(object sender, EventArgs e)
         {
@@ -108,30 +109,27 @@ namespace TermProject
             }
             else if (e.CommandName == "Delete")
             {
-                //AddEditForm.Visible = false;
-                //balance.Visible = false;
-                //btnAddCreditCard.Visible = false;
-                //btnCreateCC.Visible = false;
-                //btnUpdateCC.Visible = false;
-                //Payment.Visible = true;
-                //lblCCID.Text = gvCreditCard.Rows[rowIndex].Cells[0].Text.ToString();
-                //txtCurrentBalance.Text = gvCreditCard.Rows[rowIndex].Cells[5].Text;
+
                 BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
                 int rowInd = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvCourses.Rows[rowIndex];
-                pxy.DeleteCourse(Convert.ToString(gvCourses.DataKeys[rowInd]["CourseID"]), key);
+                if (pxy.DeleteCourse(Convert.ToString(gvCourses.DataKeys[rowInd]["CourseID"]), key))
+
+                {
+                    lblSuccess.Text = "The course is deleted.";
+                }
+                else
+                {
+                    lblSuccess.Text = "A problem occured. Data is not recorded";
+                }
+
                 GetCourseByTerm();
+
 
             }
             else if (e.CommandName == "Manage Students")
             {
-                //AddEditForm.Visible = false;
-                //balance.Visible = false;
-                //btnAddCreditCard.Visible = false;
-                //btnCreateCC.Visible = false;
-                //btnUpdateCC.Visible = false;
-                //transactionsDiv.Visible = true;
-                //GetCreditPurchaseByCCID(int.Parse(gvCreditCard.Rows[rowIndex].Cells[0].Text.ToString()));
+             
                 int rowInd = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvCourses.Rows[rowIndex];
                 lblCourseID.Text = Convert.ToString(gvCourses.DataKeys[rowInd]["CourseID"]);
@@ -158,6 +156,11 @@ namespace TermProject
         {
             UpdateCourse();
             GetCourseByTerm();
+        }
+
+        protected void gvCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
         }
     }
 }

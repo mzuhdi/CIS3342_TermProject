@@ -20,7 +20,7 @@
     <div id="ManageCourseDiv" runat="server" visible="false">
         <h2>Manage Course</h2>
         <asp:GridView ID="gvCourses" runat="server" AutoGenerateColumns="false"
-            OnRowCommand="gvCourses_RowCommand" OnRowUpdating="gvCourses_RowUpdating" DataKeyNames="CourseID">
+            OnRowCommand="gvCourses_RowCommand" OnRowUpdating="gvCourses_RowUpdating" DataKeyNames="CourseID" OnRowDeleting="gvCourses_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="CourseID" HeaderText="CourseID" Visible="false" />
                 <asp:BoundField DataField="CourseCode" HeaderText="Course Code" ReadOnly="true" />
