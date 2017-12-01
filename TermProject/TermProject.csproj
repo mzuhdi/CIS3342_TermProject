@@ -98,6 +98,7 @@
     <Content Include="Registration.aspx" />
     <Content Include="StudentMain.aspx" />
     <None Include="Web References\BlackboardSvcPxy\BlackBoardService.disco" />
+    <Content Include="ViewCourses.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="StudentMain.aspx.designer.cs">
       <DependentUpon>StudentMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCourses.ascx.cs">
+      <DependentUpon>ViewCourses.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCourses.ascx.designer.cs">
+      <DependentUpon>ViewCourses.ascx</DependentUpon>
     </Compile>
     <Compile Include="Web References\BlackboardSvcPxy\Reference.cs">
       <AutoGen>True</AutoGen>

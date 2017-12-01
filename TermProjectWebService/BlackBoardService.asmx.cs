@@ -294,6 +294,28 @@ namespace TermProjectWebService
                 return null;
             }
         }
+
+        [WebMethod]
+        public DataSet GetCourseByCBID(int fk_CBID, string key)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetCourseByCBID";
+                objCommand.Parameters.AddWithValue("@FK_CBID", fk_CBID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
         [WebMethod]
         public bool UpdateCourse(Course course, string key)
         {

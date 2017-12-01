@@ -10,16 +10,16 @@
 namespace TermProject {
     
     
-    public partial class CBMain {
+    public partial class ViewCourses {
         
         /// <summary>
-        /// lblSuccess control.
+        /// title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuccess;
+        protected global::System.Web.UI.WebControls.Label title;
         
         /// <summary>
         /// gvCourses control.
@@ -28,6 +28,6 @@ namespace TermProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject.ViewCourses gvCourses;
+        protected global::System.Web.UI.WebControls.GridView gvCourses;
     }
 }

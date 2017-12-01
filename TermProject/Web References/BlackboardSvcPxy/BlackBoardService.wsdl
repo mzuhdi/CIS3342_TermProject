@@ -242,6 +242,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetCourseByCBID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fk_CBID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCourseByCBIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCourseByCBIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UpdateCourse">
         <s:complexType>
           <s:sequence>
@@ -375,6 +397,12 @@
   <wsdl:message name="GetCourseByTermSoapOut">
     <wsdl:part name="parameters" element="tns:GetCourseByTermResponse" />
   </wsdl:message>
+  <wsdl:message name="GetCourseByCBIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCourseByCBID" />
+  </wsdl:message>
+  <wsdl:message name="GetCourseByCBIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCourseByCBIDResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdateCourseSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateCourse" />
   </wsdl:message>
@@ -445,6 +473,10 @@
     <wsdl:operation name="GetCourseByTerm">
       <wsdl:input message="tns:GetCourseByTermSoapIn" />
       <wsdl:output message="tns:GetCourseByTermSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByCBID">
+      <wsdl:input message="tns:GetCourseByCBIDSoapIn" />
+      <wsdl:output message="tns:GetCourseByCBIDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateCourse">
       <wsdl:input message="tns:UpdateCourseSoapIn" />
@@ -571,6 +603,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCourseByTerm">
       <soap:operation soapAction="http://tempuri.org/GetCourseByTerm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByCBID">
+      <soap:operation soapAction="http://tempuri.org/GetCourseByCBID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -718,6 +759,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCourseByTerm">
       <soap12:operation soapAction="http://tempuri.org/GetCourseByTerm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByCBID">
+      <soap12:operation soapAction="http://tempuri.org/GetCourseByCBID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

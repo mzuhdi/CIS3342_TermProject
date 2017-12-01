@@ -57,6 +57,8 @@ namespace TermProject.BlackboardSvcPxy {
         
         private System.Threading.SendOrPostCallback GetCourseByTermOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetCourseByCBIDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdateCourseOperationCompleted;
         
         private System.Threading.SendOrPostCallback populateStudentsInCourseOperationCompleted;
@@ -139,6 +141,9 @@ namespace TermProject.BlackboardSvcPxy {
         
         /// <remarks/>
         public event GetCourseByTermCompletedEventHandler GetCourseByTermCompleted;
+        
+        /// <remarks/>
+        public event GetCourseByCBIDCompletedEventHandler GetCourseByCBIDCompleted;
         
         /// <remarks/>
         public event UpdateCourseCompletedEventHandler UpdateCourseCompleted;
@@ -533,6 +538,37 @@ namespace TermProject.BlackboardSvcPxy {
             if ((this.GetCourseByTermCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetCourseByTermCompleted(this, new GetCourseByTermCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCourseByCBID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetCourseByCBID(int fk_CBID, string key) {
+            object[] results = this.Invoke("GetCourseByCBID", new object[] {
+                        fk_CBID,
+                        key});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCourseByCBIDAsync(int fk_CBID, string key) {
+            this.GetCourseByCBIDAsync(fk_CBID, key, null);
+        }
+        
+        /// <remarks/>
+        public void GetCourseByCBIDAsync(int fk_CBID, string key, object userState) {
+            if ((this.GetCourseByCBIDOperationCompleted == null)) {
+                this.GetCourseByCBIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCourseByCBIDOperationCompleted);
+            }
+            this.InvokeAsync("GetCourseByCBID", new object[] {
+                        fk_CBID,
+                        key}, this.GetCourseByCBIDOperationCompleted, userState);
+        }
+        
+        private void OnGetCourseByCBIDOperationCompleted(object arg) {
+            if ((this.GetCourseByCBIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCourseByCBIDCompleted(this, new GetCourseByCBIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1192,6 +1228,32 @@ namespace TermProject.BlackboardSvcPxy {
         private object[] results;
         
         internal GetCourseByTermCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetCourseByCBIDCompletedEventHandler(object sender, GetCourseByCBIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCourseByCBIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCourseByCBIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
