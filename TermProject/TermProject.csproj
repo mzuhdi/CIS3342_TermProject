@@ -67,6 +67,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Announcement.aspx" />
     <Content Include="AddCourse.aspx" />
     <Content Include="AdminMain.aspx" />
     <Content Include="CBMain.aspx" />
@@ -102,6 +103,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Announcement.aspx.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Announcement.aspx.designer.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddCourse.aspx.cs">
       <DependentUpon>AddCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
