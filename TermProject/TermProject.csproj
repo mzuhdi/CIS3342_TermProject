@@ -70,6 +70,7 @@
     <Content Include="Announcement.aspx" />
     <Content Include="AddCourse.aspx" />
     <Content Include="AdminMain.aspx" />
+    <Content Include="AssignmentPage.aspx" />
     <Content Include="CBMain.aspx" />
     <Content Include="css\Login.css" />
     <Content Include="E-Mail.aspx" />
@@ -123,6 +124,13 @@
     </Compile>
     <Compile Include="AdminMain.aspx.designer.cs">
       <DependentUpon>AdminMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssignmentPage.aspx.cs">
+      <DependentUpon>AssignmentPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssignmentPage.aspx.designer.cs">
+      <DependentUpon>AssignmentPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="CBMain.aspx.cs">
       <DependentUpon>CBMain.aspx</DependentUpon>

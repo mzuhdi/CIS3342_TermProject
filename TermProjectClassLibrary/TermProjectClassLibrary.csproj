@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annoucement.cs" />
+    <Compile Include="Assignment.cs" />
     <Compile Include="BBAdmin.cs" />
     <Compile Include="CourseBuilder.cs" />
     <Compile Include="Student.cs" />
