@@ -17,24 +17,24 @@ namespace TermProject
         {
             if (!IsPostBack)
             {
-                getTerm();
+                //getTerm();
             }
         }
-        public void getTerm()
-        {
-            if (pxy.GetUserType(key) != null)
-            {
-                ddlTerm.DataSource = pxy.GetTerm(key);
-                ddlTerm.DataValueField = "TermID";
-                ddlTerm.DataTextField = "TermName";
-                ddlTerm.DataBind();
-            }
-            else
-            {
-                lblInvalidKey.Text = "Please provide correct API Key";
-                lblInvalidKey.Visible = true;
-            }
-        }
+        //public void getTerm()
+        //{
+        //    //if (pxy.GetUserType(key) != null)
+        //    {
+        //        ddlTerm.DataSource = pxy.GetTerm(key);
+        //        ddlTerm.DataValueField = "TermID";
+        //        ddlTerm.DataTextField = "TermName";
+        //        ddlTerm.DataBind();
+        //    }
+        //    else
+        //    {
+        //        lblInvalidKey.Text = "Please provide correct API Key";
+        //        lblInvalidKey.Visible = true;
+        //    }
+        //}
         public void GetCourseByTerm()
         {
             if (pxy.GetCourseByTerm(ddlTerm.SelectedValue.ToString(), key) != null)

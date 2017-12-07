@@ -23,30 +23,42 @@ namespace TermProject
 
             if (!IsPostBack)
             {
+                lblName.Text = bindName();
+
                 if (Session["User"] != null && Session["User"].ToString() == "1")
                 {
+                    
+
                     DBConnect objDB = new DBConnect();
                     int count = 0;
 
-                    objDB.GetDataSet("SELECT DISTINCT FK_CourseID FROM TP_CourseStudent WHERE FK_StudentID = " + Session["StudentID"].ToString() + "", out count);
+                    DataSet myDS = objDB.GetDataSet("SELECT AnnoucementID, FK_CourseID FROM TP_Announcement WHERE FK_CourseID = " + Session["CourseID"].ToString(), out count);
 
-                    // Create a Custom User Control (ASCX) object for each record in the dataset
-                    for (int recordNumber = 0; recordNumber < count; recordNumber++)
+                    if (myDS.Tables[0].Rows.Count == 0)
                     {
-                        ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
+                        lblError.Text = "No annoucements!";
+                    }
+                    else
+                    {
+                        // Create a Custom User Control (ASCX) object for each record in the dataset
+                        for (int recordNumber = 0; recordNumber < count; recordNumber++)
+                        {
+                            ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
 
-                        // Set properties for the ProductDisplay object
-                        ctrl.CourseID = objDB.GetField("FK_CourseID", recordNumber).ToString();
-                        ctrl.User = Session["User"].ToString();
-                        ctrl.UserID = Session["StudentID"].ToString();
+                            // Set properties for the ProductDisplay object
+                            ctrl.CourseID = objDB.GetField("FK_CourseID", recordNumber).ToString();
+                            ctrl.User = Session["User"].ToString();
+                            ctrl.UserID = Session["StudentID"].ToString();
 
 
-                        // Register the ASCX control with the page and typecast it to the appropriate class ProductDisplay
+                            // Register the ASCX control with the page and typecast it to the appropriate class ProductDisplay
 
-                        ctrl.DataBind();
 
-                        // Add the control object to the WebForm's Controls collection
-                        Form.Controls.Add(ctrl);
+                            ctrl.DataBind();
+
+                            // Add the control object to the WebForm's Controls collection
+                            Form.Controls.Add(ctrl);
+                        }
                     }
                 }
                 if (Session["User"] != null && Session["User"].ToString() == "3")
@@ -83,9 +95,31 @@ namespace TermProject
             }
 
         }
+
+        protected string bindName()
+        {
+            DataSet courseName = addNameFromCourseID(Session["CourseID"].ToString());
+            string name = courseName.Tables[0].Rows[0]["Name"].ToString();
+            return name;
+        }
         protected void Click_Event(object sender, EventArgs e)
         {
             Response.Redirect("ManageStudents.aspx");
+        }
+
+        protected DataSet addNameFromCourseID(string courseID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_addNameFromCourseID";
+
+            objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+
+            return objDB.GetDataSetUsingCmdObj(objCommand);
         }
 
 

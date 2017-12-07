@@ -30,26 +30,36 @@ namespace TermProjectWebService
         }
 
         [WebMethod]
-        public int verifyLogin(string username, string password)
+        public string[] verifyLogin(string username, string password)
         {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+            string[] User = new string[2];
 
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_verifyUserForLogin";
-                objCommand.Parameters.AddWithValue("@Username", username);
-                objCommand.Parameters.AddWithValue("@Password", password);
-                SqlParameter returnValue = new SqlParameter("@Result", 0);
-                
-                returnValue.Direction = ParameterDirection.Output;
-                objCommand.Parameters.Add(returnValue);
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
 
-                objDB.GetDataSetUsingCmdObj(objCommand);
+            objCommand.Parameters.Clear();
 
-                int result = int.Parse(objCommand.Parameters["@Result"].Value.ToString());
+            objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_verifyUserForLogin";
+            objCommand.Parameters.AddWithValue("@username", username);
+            objCommand.Parameters.AddWithValue("@password", password);
+            SqlParameter returnValue = new SqlParameter("@Result", 0);
+            SqlParameter returnID = new SqlParameter("@ID", 0);
 
-                return result;
+            returnValue.Direction = ParameterDirection.Output;
+            returnID.Direction = ParameterDirection.Output;
+            objCommand.Parameters.Add(returnValue);
+            objCommand.Parameters.Add(returnID);
+
+            objDB.GetDataSetUsingCmdObj(objCommand);
+
+            int result = int.Parse(objCommand.Parameters["@Result"].Value.ToString());
+            int id = int.Parse(objCommand.Parameters["@ID"].Value.ToString());
+
+            User[0] = result.ToString();
+            User[1] = id.ToString();
+
+            return User;
         }
 
         [WebMethod]

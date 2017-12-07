@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Registration.aspx" />
+    <Content Include="StudentClasses.aspx" />
     <Content Include="StudentMain.aspx" />
     <None Include="Web References\BlackboardSvcPxy\BlackBoardService.disco" />
     <Content Include="ViewCourses.ascx" />
@@ -181,6 +182,13 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentClasses.aspx.cs">
+      <DependentUpon>StudentClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentClasses.aspx.designer.cs">
+      <DependentUpon>StudentClasses.aspx</DependentUpon>
     </Compile>
     <Compile Include="StudentMain.aspx.cs">
       <DependentUpon>StudentMain.aspx</DependentUpon>

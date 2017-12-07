@@ -31,18 +31,17 @@ namespace TermProject
             {
                 BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
 
-                int returnValue = pxy.verifyLogin(txtUsername.Text, txtPassword.Text);
+                string[] user = pxy.verifyLogin(txtUsername.Text, txtPassword.Text);
 
                 //int returnValue = pxy.verifyLogin(txtUsername.Text, txtPassword.Text);
 
-                if (returnValue == 1)
+                if (user[0] == "1")
                 {
-                    //lblLoginError.Visible = false;
                     //go to student page with session 
-                    //lblLoginError.Visible = true;
-                    lblLoginError.Text = returnValue.ToString();
-                    Session["StudentID"] = 1; // swithc to studentuser
-                    if(chkRememberMe.Checked == true)
+                    Session["User"] = user[0];
+                    Session["StudentID"] = user[1];
+                    // swithc to studentuser
+                    if (chkRememberMe.Checked == true)
                     {
                         HttpCookie myCookie = new HttpCookie("theCookie");
                         myCookie.Value = "Student";
@@ -50,15 +49,13 @@ namespace TermProject
                         myCookie.Values["Username"] = txtUsername.Text;
                         Response.Cookies.Add(myCookie);
                     }
-                    Response.Redirect("StudentMain.aspx");
+                    Response.Redirect("StudentClasses.aspx");
                 }
-                if (returnValue == 2)
+                else if (user[0] == "2")
                 {
-                    //lblLoginError.Visible = false;
+                    Session["User"] = user[0];
+                    Session["AdminID"] = user[1];
                     //go to Admin page with session
-                    //lblLoginError.Visible = true;
-                    //lblLoginError.Text = "admin";
-                    Session["AdminID"] = 1;
                     if (chkRememberMe.Checked == true)
                     {
                         HttpCookie myCookie = new HttpCookie("theCookie");
@@ -69,13 +66,11 @@ namespace TermProject
                     }
                     Response.Redirect("AdminMain.aspx");
                 }
-                if (returnValue == 3)
+                else if (user[0] == "3")
                 {
-                    //lblLoginError.Visible = false;
+                    Session["User"] = user[0];
+                    Session["cbID"] = user[1];
                     ////go to CourseBuilder page with session
-                    //lblLoginError.Visible = true;
-                    //lblLoginError.Text = "coursebuilder";
-                    Session["CBID"] = 1;
                     if (chkRememberMe.Checked == true)
                     {
                         HttpCookie myCookie = new HttpCookie("theCookie");
@@ -86,7 +81,7 @@ namespace TermProject
                     }
                     Response.Redirect("CBMain.aspx");
                 }
-                if (returnValue == 0)
+                if (user[0] == "0")
                 {
                     lblLoginError.Text = "Username/password is incorrect.";
                     lblLoginError.Visible = true;

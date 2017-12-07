@@ -15,7 +15,7 @@
     }
     .auto-style4 {
         height: 143px;
-        width: 50px;
+        width: 129px;
     }
     .auto-style6 {
         font-size: xx-large;
@@ -37,7 +37,7 @@
 <table id="Table1" border="0" cellpadding="5" cellspacing="0" align ="center" class="auto-style3">
     <tr>
         <td rowspan="4" valign="top" class="auto-style4">
-            <asp:Image ID="imgProduct" runat="server" Height="193px" Width="220px" ImageUrl="~/Img/467717-200.png" /></td>
+            <asp:Image ID="imgProduct" runat="server" ImageUrl="~/Img/467717-200.png" /></td>
         <td>
             <h1 class="auto-style12">
             <asp:Label ID="lblTitle" runat="server"
@@ -55,7 +55,8 @@
     </tr>
     <tr>
         <td class="auto-style2">
-            &nbsp;</td>
+            Announcement #<asp:Label ID="lblNumber" runat="server"></asp:Label>
+        </td>
     </tr>
 </table>
         <hr style="background-color: #800000" />&nbsp;</p>

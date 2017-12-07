@@ -50,12 +50,12 @@ namespace TermProject
         {
             //if (/*Session["User"].ToString()*/ User == "1")
             {
-                DataSet myDs = populateStudentClasses(CourseID); /*Session["StudentID"].ToString()*/
+                DataSet myDs = populateAnnouncments(CourseID); /*Session["StudentID"].ToString()*/
                 //imgProduct.ImageUrl
                 lblTitle.Text = myDs.Tables[0].Rows[0]["Title"].ToString();
                 lblDescription.Text = myDs.Tables[0].Rows[0]["Description"].ToString();
-                lblDate.Text = "Professor " + myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnouncementID"].ToString();
-            }
+                lblDate.Text = myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnoucementID"].ToString();
+            } 
             if (/*Session["User"].ToString()*/ User == "3")
             {
                 DataSet myDs = populateAnnouncments(courseId); /*Session["StudentID"].ToString()*/
