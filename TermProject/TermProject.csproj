@@ -72,6 +72,7 @@
     <Content Include="AdminMain.aspx" />
     <Content Include="AssignmentPage.aspx" />
     <Content Include="CBMain.aspx" />
+    <Content Include="CourseBuilderClasses.aspx" />
     <Content Include="css\Login.css" />
     <Content Include="E-Mail.aspx" />
     <Content Include="Img\467717-200.png" />
@@ -141,6 +142,13 @@
     </Compile>
     <Compile Include="CBMain.aspx.designer.cs">
       <DependentUpon>CBMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CourseBuilderClasses.aspx.cs">
+      <DependentUpon>CourseBuilderClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CourseBuilderClasses.aspx.designer.cs">
+      <DependentUpon>CourseBuilderClasses.aspx</DependentUpon>
     </Compile>
     <Compile Include="E-Mail.aspx.cs">
       <DependentUpon>E-Mail.aspx</DependentUpon>

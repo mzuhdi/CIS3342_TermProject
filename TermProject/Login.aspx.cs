@@ -79,7 +79,7 @@ namespace TermProject
                         myCookie.Values["Username"] = txtUsername.Text;
                         Response.Cookies.Add(myCookie);
                     }
-                    Response.Redirect("CBMain.aspx");
+                    Response.Redirect("CourseBuilderClasses.aspx");
                 }
                 if (user[0] == "0")
                 {
