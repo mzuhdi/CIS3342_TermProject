@@ -74,8 +74,10 @@
     <Content Include="CBMain.aspx" />
     <Content Include="css\Login.css" />
     <Content Include="E-Mail.aspx" />
+    <Content Include="Img\467717-200.png" />
     <Content Include="Img\checkmark.png" />
     <Content Include="Img\temple_diamond_pattern.jpg" />
+    <Content Include="Img\transparent-green-checkmark-hi.png" />
     <Content Include="Login.aspx" />
     <Content Include="ManageStudents.aspx" />
     <Content Include="MasterPage.Master" />

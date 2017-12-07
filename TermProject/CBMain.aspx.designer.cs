@@ -7,27 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TermProject {
-    
-    
-    public partial class CBMain {
-        
+namespace TermProject
+{
+
+
+    public partial class CBMain
+    {
+
         /// <summary>
-        /// lblSuccess control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuccess;
-        
+        protected global::System.Web.UI.WebControls.Label lblName;
+
         /// <summary>
-        /// gvCourses control.
+        /// viewCourseButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject.ViewCourses gvCourses;
+        protected global::TermProject.ViewCourses viewCourseButton;
     }
 }

@@ -22,6 +22,7 @@
         <h1 id="h1Add" runat="server">Add Annoucement</h1>
         <h1 id="h1Manage" runat="server" visible="false">Manage Annoucement</h1>
         <asp:Label ID="lblAnnoucementID" runat="server" Visible="false"></asp:Label>
+        <br />
         <asp:Label ID="lblTitle" runat="server" Text="Title: "></asp:Label>
         <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
         <br />
