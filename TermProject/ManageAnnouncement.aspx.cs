@@ -51,7 +51,7 @@ namespace TermProject
             annoucement.Title = txtTitle.Text;
             annoucement.Description = txtDescription.Text;
             annoucement.Date = DateTime.Now;
-            annoucement.FK_CourseID = 1; //Get Session[CourseID]
+            annoucement.FK_CourseID = (int)Session["cbID"]; //Get Session[CourseID]
 
 
             if (AddAnnoucementSvc(key, annoucement))
@@ -88,7 +88,7 @@ namespace TermProject
         {
             //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
             Annoucement annoucement = new Annoucement();
-            annoucement.FK_CourseID = 1; //Get Session[CourseID]
+            annoucement.FK_CourseID = 1; //(int)Session["cbID"]; //Get Session[CourseID]
 
             if (GetAnnoucement(key, annoucement) != null)
             {
@@ -111,8 +111,8 @@ namespace TermProject
 
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_UpdateAnnoucement";
-                objCommand.Parameters.AddWithValue("@ID", annoucement.ID );
-                objCommand.Parameters.AddWithValue("@Title", annoucement.Title );
+                objCommand.Parameters.AddWithValue("@ID", annoucement.ID);
+                objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
                 objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
                 objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
                 objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
@@ -205,7 +205,7 @@ namespace TermProject
             {
 
                 //BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
-                
+
                 if (DeleteAnnoucementSvc(key, (int)gvAnnoucement.DataKeys[rowIndex]["AnnoucementID"]))
 
                 {

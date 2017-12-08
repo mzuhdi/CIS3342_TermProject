@@ -156,15 +156,15 @@ namespace TermProject
                         strSQL = "TP_AddAssignment";
                         objCommand.CommandText = strSQL;
                         objCommand.CommandType = CommandType.StoredProcedure;
-                        objCommand.Parameters.AddWithValue("@Name", "test4");
-                        objCommand.Parameters.AddWithValue("@DueDate", "test4");
+                        objCommand.Parameters.AddWithValue("@Name", "test5");
+                        objCommand.Parameters.AddWithValue("@DueDate", "test5");
                         objCommand.Parameters.AddWithValue("@MaximumGrade", 100);
                         objCommand.Parameters.AddWithValue("@FK_CourseID", 103);
-                        objCommand.Parameters.AddWithValue("@Description", "test4");
-                        objCommand.Parameters.AddWithValue("@fileTitle", fileName);
-                        objCommand.Parameters.AddWithValue("@fileData", fileData);
-                        objCommand.Parameters.AddWithValue("@fileType", fileType);
-                        objCommand.Parameters.AddWithValue("@fileLength", fileData.Length);
+                        objCommand.Parameters.AddWithValue("@Description", "test5");
+                        //objCommand.Parameters.AddWithValue("@fileTitle", null);
+                        //objCommand.Parameters.AddWithValue("@fileData", null);
+                        //objCommand.Parameters.AddWithValue("@fileType", null);
+                        //objCommand.Parameters.AddWithValue("@fileLength", null);
                         result = objDB.DoUpdateUsingCmdObj(objCommand);
 
                         lblStatus.Text = "file was successully uploaded.";

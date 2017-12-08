@@ -28,6 +28,11 @@ namespace TermProjectWebService
         {
             return "Hello World";
         }
+        [WebMethod]
+        public void SendMail(Email theEmail)
+        {
+            theEmail.SendMail(theEmail.Recipient, theEmail.Sender, theEmail.Subject, theEmail.Message);
+        }
 
         [WebMethod]
         public string[] verifyLogin(string username, string password)

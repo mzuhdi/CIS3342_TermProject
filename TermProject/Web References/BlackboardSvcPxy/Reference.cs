@@ -33,6 +33,8 @@ namespace TermProject.BlackboardSvcPxy {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SendMailOperationCompleted;
+        
         private System.Threading.SendOrPostCallback verifyLoginOperationCompleted;
         
         private System.Threading.SendOrPostCallback addStudentOperationCompleted;
@@ -107,6 +109,9 @@ namespace TermProject.BlackboardSvcPxy {
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
+        public event SendMailCompletedEventHandler SendMailCompleted;
+        
+        /// <remarks/>
         public event verifyLoginCompletedEventHandler verifyLoginCompleted;
         
         /// <remarks/>
@@ -178,6 +183,34 @@ namespace TermProject.BlackboardSvcPxy {
             if ((this.HelloWorldCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendMail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void SendMail(Email theEmail) {
+            this.Invoke("SendMail", new object[] {
+                        theEmail});
+        }
+        
+        /// <remarks/>
+        public void SendMailAsync(Email theEmail) {
+            this.SendMailAsync(theEmail, null);
+        }
+        
+        /// <remarks/>
+        public void SendMailAsync(Email theEmail, object userState) {
+            if ((this.SendMailOperationCompleted == null)) {
+                this.SendMailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendMailOperationCompleted);
+            }
+            this.InvokeAsync("SendMail", new object[] {
+                        theEmail}, this.SendMailOperationCompleted, userState);
+        }
+        
+        private void OnSendMailOperationCompleted(object arg) {
+            if ((this.SendMailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendMailCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -689,67 +722,131 @@ namespace TermProject.BlackboardSvcPxy {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class Student {
+    public partial class Email {
         
-        private string firstNameField;
+        private string recipientField;
         
-        private string lastNameField;
+        private string senderField;
         
-        private string majorField;
+        private string cCAddressField;
         
-        private string usernameField;
+        private string bCCAddressField;
         
-        private string passwordField;
+        private string subjectField;
+        
+        private string messageField;
+        
+        private bool hTMLBodyField;
+        
+        private MailPriority priorityField;
+        
+        private string mailHostField;
         
         /// <remarks/>
-        public string FirstName {
+        public string Recipient {
             get {
-                return this.firstNameField;
+                return this.recipientField;
             }
             set {
-                this.firstNameField = value;
+                this.recipientField = value;
             }
         }
         
         /// <remarks/>
-        public string LastName {
+        public string Sender {
             get {
-                return this.lastNameField;
+                return this.senderField;
             }
             set {
-                this.lastNameField = value;
+                this.senderField = value;
             }
         }
         
         /// <remarks/>
-        public string Major {
+        public string CCAddress {
             get {
-                return this.majorField;
+                return this.cCAddressField;
             }
             set {
-                this.majorField = value;
+                this.cCAddressField = value;
             }
         }
         
         /// <remarks/>
-        public string Username {
+        public string BCCAddress {
             get {
-                return this.usernameField;
+                return this.bCCAddressField;
             }
             set {
-                this.usernameField = value;
+                this.bCCAddressField = value;
             }
         }
         
         /// <remarks/>
-        public string Password {
+        public string Subject {
             get {
-                return this.passwordField;
+                return this.subjectField;
             }
             set {
-                this.passwordField = value;
+                this.subjectField = value;
             }
         }
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool HTMLBody {
+            get {
+                return this.hTMLBodyField;
+            }
+            set {
+                this.hTMLBodyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MailPriority Priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MailHost {
+            get {
+                return this.mailHostField;
+            }
+            set {
+                this.mailHostField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public enum MailPriority {
+        
+        /// <remarks/>
+        Normal,
+        
+        /// <remarks/>
+        Low,
+        
+        /// <remarks/>
+        High,
     }
     
     /// <remarks/>
@@ -948,6 +1045,75 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Student {
+        
+        private string firstNameField;
+        
+        private string lastNameField;
+        
+        private string majorField;
+        
+        private string usernameField;
+        
+        private string passwordField;
+        
+        /// <remarks/>
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Major {
+            get {
+                return this.majorField;
+            }
+            set {
+                this.majorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
@@ -972,6 +1138,10 @@ namespace TermProject.BlackboardSvcPxy {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void SendMailCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]

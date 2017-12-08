@@ -12,6 +12,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SendMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="theEmail" type="tns:Email" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Email">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Recipient" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BCCAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HTMLBody" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="tns:MailPriority" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailHost" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MailPriority">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Low" />
+          <s:enumeration value="High" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SendMailResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="verifyLogin">
         <s:complexType>
           <s:sequence>
@@ -330,6 +360,12 @@
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
+  <wsdl:message name="SendMailSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMail" />
+  </wsdl:message>
+  <wsdl:message name="SendMailSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMailResponse" />
+  </wsdl:message>
   <wsdl:message name="verifyLoginSoapIn">
     <wsdl:part name="parameters" element="tns:verifyLogin" />
   </wsdl:message>
@@ -431,6 +467,10 @@
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <wsdl:input message="tns:SendMailSoapIn" />
+      <wsdl:output message="tns:SendMailSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="verifyLogin">
       <wsdl:input message="tns:verifyLoginSoapIn" />
       <wsdl:output message="tns:verifyLoginSoapOut" />
@@ -500,6 +540,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap:operation soapAction="http://tempuri.org/SendMail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -656,6 +705,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap12:operation soapAction="http://tempuri.org/SendMail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

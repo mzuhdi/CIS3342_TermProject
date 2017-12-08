@@ -13,6 +13,7 @@ namespace TermProject
 {
     public partial class E_Mail : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,15 +44,15 @@ namespace TermProject
 
         protected void btnSendMail_Click(object sender, EventArgs e)
         {
-            Email objEmail = new Email();
-            String strTO = txtEmailTO.Text;
-            String strFROM = txtEmailFROM.Text;
-            String strSubject = txtSubject.Text;
-            String strMessage = txtMessage.Text;
+            BlackboardSvcPxy.Email email = new BlackboardSvcPxy.Email();
+            email.Recipient = txtEmailTO.Text;
+            email.Sender = txtEmailFROM.Text;
+            email.Subject = txtSubject.Text;
+            email.Message = txtMessage.Text;
 
             try
             {
-                objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+                pxy.SendMail(email);
                 lblDisplay.Text = "The email was sent.";
             }
             catch (Exception ex)
