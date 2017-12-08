@@ -10,18 +10,18 @@ namespace TermProjectClassLibrary
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
         public int MaximumGrade { get; set; }
         public int FK_CourseID { get; set; }
         public string Description { get; set; }
         public string FileTitle { get; set; }
         public string FileType { get; set; }
-        public string FileData { get; set; }
+        public byte[] FileData { get; set; }
         public long FileLength { get; set; }
 
         public Assignment() { }
-        public Assignment(int id, string name, DateTime duedate, int maximumgrade, int fk_courseid, string description,
-                            string fileTitle, string fileType, string fileData, long fileLength)
+        public Assignment(int id, string name, string duedate, int maximumgrade, int fk_courseid, string description,
+                            string fileTitle, string fileType, byte[] fileData, long fileLength)
         {
             this.ID = id;
             this.Name = name;
