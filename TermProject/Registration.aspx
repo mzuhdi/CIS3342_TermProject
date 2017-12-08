@@ -48,4 +48,7 @@
         <asp:Button ID="btnAdminSubmit" runat="server" Text="Register" OnClick="btnAdminSubmit_Click" />
     </div>
     <asp:Label ID="lblSuccess" runat="server" Text=""></asp:Label>
+    <br />
+    <br />
+    <asp:Button ID="btnReturn" runat="server" Text="Return to Login" OnClick="btnReturn_Click" />
 </asp:Content>

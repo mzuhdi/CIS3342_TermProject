@@ -6,6 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TermProjectClassLibrary;
 
+using System.Data;
+using System.Data.SqlClient;
+using Utilities;
+
 
 namespace TermProject
 {
@@ -17,30 +21,68 @@ namespace TermProject
         {
             if (!IsPostBack)
             {
-                //getTerm();
+                getTerm();
+                GetCourseBuilder();
             }
         }
-        //public void getTerm()
-        //{
-        //    //if (pxy.GetUserType(key) != null)
-        //    {
-        //        ddlTerm.DataSource = pxy.GetTerm(key);
-        //        ddlTerm.DataValueField = "TermID";
-        //        ddlTerm.DataTextField = "TermName";
-        //        ddlTerm.DataBind();
-        //    }
-        //    else
-        //    {
-        //        lblInvalidKey.Text = "Please provide correct API Key";
-        //        lblInvalidKey.Visible = true;
-        //    }
-        //}
+        public void getTerm()
+        {
+            if (pxy.GetUserType(key) != null)
+            {
+                ddlTerm.DataSource = pxy.GetTerm(key);
+                ddlTerm.DataValueField = "TermID";
+                ddlTerm.DataTextField = "TermName";
+                ddlTerm.DataBind();
+            }
+            else
+            {
+                lblInvalidKey.Text = "Please provide correct API Key";
+                lblInvalidKey.Visible = true;
+            }
+        }
         public void GetCourseByTerm()
         {
             if (pxy.GetCourseByTerm(ddlTerm.SelectedValue.ToString(), key) != null)
             {
                 gvCourses.DataSource = pxy.GetCourseByTerm(ddlTerm.SelectedValue.ToString(), key);
                 gvCourses.DataBind();
+            }
+            else
+            {
+                lblInvalidKey.Text = "Please provide correct API Key";
+                lblInvalidKey.Visible = true;
+            }
+        }
+
+        //WebMehod
+        public DataSet WebGetCourseBuilder(string key)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetCourseBuilder";
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void GetCourseBuilder()
+        {
+            if (WebGetCourseBuilder(key) != null) //if (pxy.GetCourseBuilder(key) != null)
+            {
+                ddlCB.DataSource = WebGetCourseBuilder(key);
+                ddlCB.DataValueField = "CBID";
+                ddlCB.DataTextField = "Username";
+                ddlCB.DataBind();
             }
             else
             {
@@ -56,7 +98,7 @@ namespace TermProject
             course.CourseCode = txtCCode.Text;
             course.Name = txtName.Text;
             course.FK_TermID = ddlTerm.SelectedValue.ToString();
-            course.FK_CBID = 1; // will get CBID using session
+            course.FK_CBID = int.Parse(ddlCB.SelectedValue.ToString()); 
 
 
             if (pxy.addCourse(course, key))

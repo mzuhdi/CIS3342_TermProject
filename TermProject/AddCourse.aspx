@@ -14,7 +14,8 @@
         <asp:TextBox ID="txtCCode" runat="server"></asp:TextBox>
         <asp:Label ID="lblName" runat="server" Text="Course Name: "></asp:Label>
         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-        <asp:Label ID="lblCBID" runat="server" Visible="false"></asp:Label>
+        <asp:Label ID="lblCBID" runat="server" Text="Course Builder: "></asp:Label>
+        <asp:DropDownList ID="ddlCB" runat="server" AutoPostBack="true"></asp:DropDownList>
         <asp:Button ID="btnAddCourse" runat="server" Text="Add Course" OnClick="btnAddCourse_Click" />
     </div>
     <div id="ManageCourseDiv" runat="server" visible="false">

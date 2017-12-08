@@ -262,6 +262,26 @@ namespace TermProjectWebService
                 return null;
             }
         }
+        [WebMethod]
+        public DataSet GetUserType(string key)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetUserType";
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         [WebMethod]
         public DataSet GetCourseByTerm(string fk_termid, string key)

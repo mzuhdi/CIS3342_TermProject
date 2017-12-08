@@ -204,6 +204,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUserType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserTypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetCourseByTerm">
         <s:complexType>
           <s:sequence>
@@ -369,6 +390,12 @@
   <wsdl:message name="GetTermSoapOut">
     <wsdl:part name="parameters" element="tns:GetTermResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUserTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserType" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserTypeResponse" />
+  </wsdl:message>
   <wsdl:message name="GetCourseByTermSoapIn">
     <wsdl:part name="parameters" element="tns:GetCourseByTerm" />
   </wsdl:message>
@@ -443,6 +470,10 @@
     <wsdl:operation name="GetTerm">
       <wsdl:input message="tns:GetTermSoapIn" />
       <wsdl:output message="tns:GetTermSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserType">
+      <wsdl:input message="tns:GetUserTypeSoapIn" />
+      <wsdl:output message="tns:GetUserTypeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetCourseByTerm">
       <wsdl:input message="tns:GetCourseByTermSoapIn" />
@@ -559,6 +590,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTerm">
       <soap:operation soapAction="http://tempuri.org/GetTerm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserType">
+      <soap:operation soapAction="http://tempuri.org/GetUserType" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -706,6 +746,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTerm">
       <soap12:operation soapAction="http://tempuri.org/GetTerm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserType">
+      <soap12:operation soapAction="http://tempuri.org/GetUserType" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

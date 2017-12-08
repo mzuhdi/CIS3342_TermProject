@@ -15,7 +15,7 @@ namespace TermProject
         {
             if (!IsPostBack)
             {
-                //getUserType();
+                getUserType();
                 getDepartment();
                 generateStudentUsername();
             }
@@ -90,21 +90,21 @@ namespace TermProject
                 lblSuccess.Text = "Username not available, please choose a different one.";
             }
         }
-        //public void getUserType()
-        //{
-        //    if (pxy.GetUserType(key) != null)
-        //    {
-        //        ddlUserType.DataSource = pxy.GetUserType(key);
-        //        ddlUserType.DataValueField = "UserTypeID";
-        //        ddlUserType.DataTextField = "Name";
-        //        ddlUserType.DataBind();
-        //    }
-        //    else
-        //    {
-        //        lblInvalidKey.Text = "Please provide correct API Key";
-        //        lblInvalidKey.Visible = true;
-        //    }
-        //}
+        public void getUserType()
+        {
+            if (pxy.GetUserType(key) != null)
+            {
+                ddlUserType.DataSource = pxy.GetUserType(key);
+                ddlUserType.DataValueField = "UserTypeID";
+                ddlUserType.DataTextField = "Name";
+                ddlUserType.DataBind();
+            }
+            else
+            {
+                lblInvalidKey.Text = "Please provide correct API Key";
+                lblInvalidKey.Visible = true;
+            }
+        }
         public void getDepartment()
         {
             if (pxy.GetDepartment(key) != null)
@@ -182,6 +182,11 @@ namespace TermProject
             {
                 lblSuccess.Text = "Please fill in all values.";
             }
+        }
+
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
         }
     }
 }
