@@ -8,6 +8,7 @@
     .auto-style2 {
         width: 191px;
         text-align: left;
+        background-color: #CCCCCC;
     }
     .auto-style3 {
         width: 1034px;
@@ -16,6 +17,7 @@
     .auto-style4 {
         height: 143px;
         width: 129px;
+        background-color: #CCCCCC;
     }
     .auto-style6 {
         font-size: xx-large;
@@ -25,9 +27,11 @@
     }
     .auto-style11 {
         text-align: right;
+        background-color: #CCCCCC;
     }
     .auto-style12 {
         text-align: left;
+        background-color: #C0C0C0;
     }
     .auto-style13 {
         font-size: x-large;

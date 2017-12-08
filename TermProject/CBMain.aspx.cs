@@ -27,8 +27,6 @@ namespace TermProject
 
                 if (Session["User"] != null && Session["User"].ToString() == "1")
                 {
-                    
-
                     DBConnect objDB = new DBConnect();
                     int count = 0;
 

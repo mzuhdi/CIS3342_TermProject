@@ -48,7 +48,7 @@ namespace TermProject
 
         public override void DataBind()
         {
-            //if (/*Session["User"].ToString()*/ User == "1")
+          if (User == "1")
             {
                 DataSet myDs = populateAnnouncments(CourseID); /*Session["StudentID"].ToString()*/
                 //imgProduct.ImageUrl
@@ -56,14 +56,12 @@ namespace TermProject
                 lblDescription.Text = myDs.Tables[0].Rows[0]["Description"].ToString();
                 lblDate.Text = myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnoucementID"].ToString();
             } 
-            if (/*Session["User"].ToString()*/ User == "3")
+           else if (User == "3")
             {
                 DataSet myDs = populateAnnouncments(courseId); /*Session["StudentID"].ToString()*/
-                //btnView.Text = "Manage Course";
-                lblTitle.Text = myDs.Tables[0].Rows[0]["Name"].ToString();
-                lblDescription.Text = myDs.Tables[0].Rows[0]["CourseCode"].ToString();
-                lblDate.Text = "Professor: " + myDs.Tables[0].Rows[0]["FirstName"].ToString() + " " + myDs.Tables[0].Rows[0]["LastName"].ToString();
-                //lblCourseID.Text = myDs.Tables[0].Rows[0]["CourseID"].ToString();
+                lblTitle.Text = myDs.Tables[0].Rows[0]["Title"].ToString();
+                lblDescription.Text = myDs.Tables[0].Rows[0]["Description"].ToString();
+                lblDate.Text = myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnoucementID"].ToString();
             }
         }
 
