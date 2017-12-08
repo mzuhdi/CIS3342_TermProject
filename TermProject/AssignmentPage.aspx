@@ -21,9 +21,9 @@
         <asp:Label ID="lblUpload" runat="server" />
         <asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Visible="false" />
     </div>
-    <div id="gvAssignmentDiv" runat="server">
+    <div id="gvAssignmentCBDiv" runat="server">
         <h2>Assignments</h2>
-        <asp:GridView ID="gvAssignment" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID" OnRowCommand="gvAssignment_RowCommand"
+        <asp:GridView ID="gvAssignmentCB" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID" OnRowCommand="gvAssignment_RowCommand"
              OnRowDeleting="gvAssignment_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="AssignmentID" Visible="false" />
@@ -37,5 +37,20 @@
         </asp:GridView>
         <asp:Label ID="lblAssgnID" runat="server" Visible="false"></asp:Label>
         <asp:Button ID="btnDownload" runat="server" Text="download" OnClick="btnDownload_Click" />
+    </div>
+    <div="gvAssignmentStudentDiv" runat="server">
+        <asp:GridView ID="gvAssignmentStudent" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID" OnRowCommand="gvAssignmentStudent_RowCommand">
+            <Columns>
+                <asp:BoundField DataField="AssignmentID" Visible="false" />
+                <asp:BoundField DataField="Name" HeaderText="Name" />
+                <asp:BoundField DataField="DueDate" HeaderText="Due Date"/>
+                <asp:BoundField DataField="MaximumGrade" HeaderText="Maximum" />
+                <asp:BoundField DataField="Description" HeaderText="Description"/>
+                <asp:BoundField DataField="FileTitle" HeaderText="Attached File"/>
+                <asp:ButtonField runat="server" Text="Download" HeaderText="Attached File" CommandName="Download" ButtonType="Button" />
+                <asp:ButtonField runat="server" Text="View" HeaderText="Submit Assignment" CommandName="View" ButtonType="Button" />
+            </Columns>
+        </asp:GridView>
+        <asp:Label ID="Label1" runat="server" Visible="false"></asp:Label>
     </div>
 </asp:Content>

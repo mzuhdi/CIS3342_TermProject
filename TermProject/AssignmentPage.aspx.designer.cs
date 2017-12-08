@@ -148,22 +148,22 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Button btnUpload;
         
         /// <summary>
-        /// gvAssignmentDiv control.
+        /// gvAssignmentCBDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gvAssignmentDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gvAssignmentCBDiv;
         
         /// <summary>
-        /// gvAssignment control.
+        /// gvAssignmentCB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAssignment;
+        protected global::System.Web.UI.WebControls.GridView gvAssignmentCB;
         
         /// <summary>
         /// lblAssgnID control.
@@ -182,5 +182,23 @@ namespace TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDownload;
+        
+        /// <summary>
+        /// gvAssignmentStudent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAssignmentStudent;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

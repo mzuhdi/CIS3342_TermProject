@@ -127,7 +127,7 @@ namespace TermProject
                 return null;
             }
         }
-        private void download(DataTable dt)
+        private void download(DataTable dt) //need to get DataTable Based on ID
         {
             Byte[] bytes = (Byte[])dt.Rows[0]["FileData"];
             Response.Buffer = true;
@@ -271,7 +271,7 @@ namespace TermProject
             int rowIndex = int.Parse(e.CommandArgument.ToString());
             if (e.CommandName == "Delete")
             {
-                lblAssgnID.Text = gvAssignment.DataKeys[rowIndex]["AssignmentID"].ToString();
+                lblAssgnID.Text = gvAssignmentCB.DataKeys[rowIndex]["AssignmentID"].ToString();
                 DeleteAssigmentFunc();
                 GetAssignmentFunc();
             }
@@ -280,6 +280,17 @@ namespace TermProject
         protected void gvAssignment_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
+        }
+
+        protected void gvAssignmentStudent_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            if (e.CommandName == "Download")
+            {
+                lblAssgnID.Text = gvAssignmentStudent.DataKeys[rowIndex]["AssignmentID"].ToString();
+                download(,row);
+                GetAssignmentFunc();
+            }
         }
     }
 }
