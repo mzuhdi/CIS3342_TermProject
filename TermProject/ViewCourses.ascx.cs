@@ -59,9 +59,18 @@ namespace TermProject
            else if (User == "3")
             {
                 DataSet myDs = populateAnnouncments(courseId); /*Session["StudentID"].ToString()*/
-                lblTitle.Text = myDs.Tables[0].Rows[0]["Title"].ToString();
-                lblDescription.Text = myDs.Tables[0].Rows[0]["Description"].ToString();
-                lblDate.Text = myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnoucementID"].ToString();
+                if (myDs.Tables[0].Rows.Count == 0)
+                {
+                    lblTitle.Text = "No records!";
+                }
+                else
+                {
+                    lblTitle.Text = myDs.Tables[0].Rows[0]["Title"].ToString();
+                    lblDescription.Text = myDs.Tables[0].Rows[0]["Description"].ToString();
+                    lblDate.Text = myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnoucementID"].ToString();
+                }
+                    
+                
             }
         }
 
