@@ -61,6 +61,7 @@ namespace TermProject
                 }
                 if (Session["User"] != null && Session["User"].ToString() == "3")
                 {
+                    btnAddAnnoucment.Visible = true;    
                     DBConnect objDB = new DBConnect();
                     int count = 0;
 
@@ -120,6 +121,13 @@ namespace TermProject
             return objDB.GetDataSetUsingCmdObj(objCommand);
         }
 
-
+        protected void lblAddAnnoucment_Click(object sender, EventArgs e)
+        {
+            string user = Session["User"] as string;
+            string courseID = Session["CourseID"] as string;
+            string cbID = Session["cbID"] as string;
+            Session["CourseName"] = lblName.Text;
+            Response.Redirect("NewAnnouncement.aspx");
+        }
     }
 }

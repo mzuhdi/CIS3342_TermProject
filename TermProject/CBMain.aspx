@@ -30,7 +30,6 @@
     &nbsp;&nbsp;&nbsp;
     <asp:Button ID="btnAssignments" runat="server" Text="Assignments" Width="150px" />
     &nbsp;&nbsp;&nbsp;
-    <asp:Button ID="Button3" runat="server" Text="Button" Width="150px" />
     &nbsp;&nbsp;&nbsp;
     <asp:Button ID="Button4" runat="server" Text="Button" Width="150px" />
     <br />
@@ -40,6 +39,14 @@
     <br />
     <%--<uc1:ViewCourses ID="gvCourses" runat="server"> </uc1:ViewCourses>--%>
     <uc1:ViewCourses runat="server" ID="viewCourseButton" />
+
+    <br />
+    <br />
+    <asp:Button ID="btnSignOut" runat="server" Text="Sign Out" />
+&nbsp;
+    <asp:Button ID="btnMyClasses" runat="server" Text="My Classes" Width="150px" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="btnAddAnnoucment" runat="server" OnClick="lblAddAnnoucment_Click" Text="New Announcement" Visible="False" />
 
     <br />
     <h1 class="text-center">

@@ -93,7 +93,7 @@ namespace TermProject
                 string user = Session["User"] as string;
                 string cbID = Session["cbID"] as string;
                 Session["CourseID"] = courseID;
-                Session["CourseName"] = courseID;
+                Session["CourseName"] = courseName;
                 Response.Redirect("CBMain.aspx");
 
                 //Data.Contacts.RemoveAt(e.Item.ItemIndex);
