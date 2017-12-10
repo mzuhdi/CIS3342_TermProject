@@ -150,8 +150,8 @@ namespace TermProject
 
             if (GetAssignmentSvc(key, assignment) != null)
             {
-                gvAssignment.DataSource = GetAssignmentSvc(key, assignment);
-                gvAssignment.DataBind();
+                //gvAssignment.DataSource = GetAssignmentSvc(key, assignment);
+                //gvAssignment.DataBind();
             }
             else
             {
@@ -288,9 +288,14 @@ namespace TermProject
             if (e.CommandName == "Download")
             {
                 lblAssgnID.Text = gvAssignmentStudent.DataKeys[rowIndex]["AssignmentID"].ToString();
-                download(,row);
+                //download(,row);
                 GetAssignmentFunc();
             }
+        }
+
+        protected void gvAssignmentStudent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

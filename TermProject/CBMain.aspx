@@ -5,11 +5,6 @@
 
 
     <style type="text/css">
-        .auto-style2 {
-            color: #FFFFFF;
-            background-color: #990000;
-        }
-
         .auto-style14 {
             text-align: center;
             background-color: #990000;
@@ -26,28 +21,30 @@
     <h1 class="auto-style14">
         <asp:Label ID="lblName" runat="server" CssClass="auto-style15"></asp:Label>
     </h1>
-    <asp:Button ID="btnAnnoucements" runat="server" Enabled="False" Text="Annoucements" Width="150px" />
-    &nbsp;&nbsp;&nbsp;
+    <div style="text-align: center">
+        <asp:Button ID="btnAnnoucements" runat="server" Enabled="False" Text="Annoucements" Width="150px" />
+        &nbsp;&nbsp;&nbsp;
     <asp:Button ID="btnAssignments" runat="server" Text="Assignments" Width="150px" />
-    &nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;
-    <asp:Button ID="Button4" runat="server" Text="Button" Width="150px" />
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        <asp:DropDownList ID="ddlContentPages" runat="server" OnSelectedIndexChanged="ddlContentPages_SelectedIndexChanged" DataTextField="Title" DataValueField="Id" AutoPostBack="True">
+        </asp:DropDownList>
+    </div>
     <br />
     <h2 class="text-center">Annoucements</h2>
-    <br />
-    <br />
-    <br />
     <%--<uc1:ViewCourses ID="gvCourses" runat="server"> </uc1:ViewCourses>--%>
-    <uc1:ViewCourses runat="server" ID="viewCourseButton" />
-
+    <div>
+        <uc1:ViewCourses runat="server" ID="viewCourseButton" />
+    </div>
     <br />
     <br />
-    <asp:Button ID="btnSignOut" runat="server" Text="Sign Out" />
-&nbsp;
+    <div style="text-align: center">
+        <br />
+        <asp:Button ID="btnSignOut" runat="server" Text="Sign Out" />
+        &nbsp;
     <asp:Button ID="btnMyClasses" runat="server" Text="My Classes" Width="150px" />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnAddAnnoucment" runat="server" OnClick="lblAddAnnoucment_Click" Text="New Announcement" Visible="False" />
-
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Button ID="btnManageContentPage" runat="server" OnClick="Button5_Click" Text="Manage/Add Content Page" Visible="False" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAddAnnoucment" runat="server" OnClick="lblAddAnnoucment_Click" Text="New Announcement" Visible="False" />
+    </div>
     <br />
     <h1 class="text-center">
         <asp:Label ID="lblError" runat="server" ForeColor="#999999"></asp:Label>

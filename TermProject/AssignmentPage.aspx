@@ -38,8 +38,8 @@
         <asp:Label ID="lblAssgnID" runat="server" Visible="false"></asp:Label>
         <asp:Button ID="btnDownload" runat="server" Text="download" OnClick="btnDownload_Click" />
     </div>
-    <div="gvAssignmentStudentDiv" runat="server">
-        <asp:GridView ID="gvAssignmentStudent" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID" OnRowCommand="gvAssignmentStudent_RowCommand">
+    <div = "gvAssignmentStudentDiv" runat="server">
+        <asp:GridView ID="gvAssignmentStudent" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID" OnRowCommand="gvAssignmentStudent_RowCommand" OnSelectedIndexChanged="gvAssignmentStudent_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField DataField="AssignmentID" Visible="false" />
                 <asp:BoundField DataField="Name" HeaderText="Name" />

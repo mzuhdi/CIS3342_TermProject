@@ -19,77 +19,45 @@ namespace TermProject
         string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
-            viewCourseButton.Click += new EventHandler(Click_Event);
-
             if (!IsPostBack)
             {
                 lblName.Text = bindName();
+                getContentPages();
 
                 if (Session["User"] != null && Session["User"].ToString() == "1")
                 {
-                    DBConnect objDB = new DBConnect();
-                    int count = 0;
+                    ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
 
-                    DataSet myDS = objDB.GetDataSet("SELECT AnnoucementID, FK_CourseID FROM TP_Announcement WHERE FK_CourseID = " + Session["CourseID"].ToString(), out count);
+                    btnAddAnnoucment.Visible = false;
+                    btnManageContentPage.Visible = false;
 
-                    if (myDS.Tables[0].Rows.Count == 0)
-                    {
-                        lblError.Text = "No annoucements!";
-                    }
-                    else
-                    {
-                        // Create a Custom User Control (ASCX) object for each record in the dataset
-                        for (int recordNumber = 0; recordNumber < count; recordNumber++)
-                        {
-                            ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
+                    // Set properties for the ProductDisplay object
+                    ctrl.CourseID = Session["CourseID"].ToString();
+                    ctrl.User = Session["User"].ToString();
+                    ctrl.UserID = Session["StudentID"].ToString();
 
-                            // Set properties for the ProductDisplay object
-                            ctrl.CourseID = objDB.GetField("FK_CourseID", recordNumber).ToString();
-                            ctrl.User = Session["User"].ToString();
-                            ctrl.UserID = Session["StudentID"].ToString();
-
-
-                            // Register the ASCX control with the page and typecast it to the appropriate class ProductDisplay
-
-
-                            ctrl.DataBind();
-
-                            // Add the control object to the WebForm's Controls collection
-                            Form.Controls.Add(ctrl);
-                        }
-                    }
+                    ctrl.DataBind();
+                    Form.Controls.Add(ctrl);
                 }
                 if (Session["User"] != null && Session["User"].ToString() == "3")
                 {
-                    btnAddAnnoucment.Visible = true;    
-                    DBConnect objDB = new DBConnect();
-                    int count = 0;
+                    btnAddAnnoucment.Visible = true;
+                    btnManageContentPage.Visible = true;
 
-                    objDB.GetDataSet("SELECT DISTINCT CourseID FROM TP_Course WHERE FK_CBID = " + Session["cbID"].ToString() + "", out count);
+                    ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
 
-                    // Create a Custom User Control (ASCX) object for each record in the dataset
-                    for (int recordNumber = 0; recordNumber < count; recordNumber++)
-                    {
-                        ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
+                    // Set properties for the ProductDisplay object
+                    ctrl.CourseID = Session["CourseID"].ToString();
+                    ctrl.User = Session["User"].ToString();
+                    ctrl.UserID = Session["cbID"].ToString();
 
-                        // Set properties for the ProductDisplay object
-                        ctrl.CourseID = objDB.GetField("CourseID", recordNumber).ToString();
-                        ctrl.User = Session["User"].ToString();
-                        ctrl.UserID = Session["cbID"].ToString();
-
-
-                        // Register the ASCX control with the page and typecast it to the appropriate class ProductDisplay
-
-                        ctrl.DataBind();
-
-                        // Add the control object to the WebForm's Controls collection
-                        Form.Controls.Add(ctrl);
-                    }
+                    ctrl.DataBind();
+                    Form.Controls.Add(ctrl);
                 }
                 else
                 {
-                    //lblSuccess.Visible = true;
-                    //lblSuccess.Text = "Access Denied";
+                    lblError.Visible = true;
+                    lblError.Text = "Access Denied";
                 }
             }
 
@@ -101,6 +69,8 @@ namespace TermProject
             string name = courseName.Tables[0].Rows[0]["Name"].ToString();
             return name;
         }
+
+
         protected void Click_Event(object sender, EventArgs e)
         {
             Response.Redirect("ManageStudents.aspx");
@@ -128,6 +98,75 @@ namespace TermProject
             string cbID = Session["cbID"] as string;
             Session["CourseName"] = lblName.Text;
             Response.Redirect("NewAnnouncement.aspx");
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            sessionPass();
+            Response.Redirect("ManageContentPages.aspx");
+        }
+
+        public void sessionPass()
+        {
+            string user = Session["User"] as string;
+            string courseID = Session["CourseID"] as string;
+            string cbID = Session["cbID"] as string;
+            Session["CourseName"] = lblName.Text;
+        }
+
+        public void getContentPages()
+        {
+            //if (pxy.GetUserType(key) != null)
+            {
+                ddlContentPages.DataSource = GetContentPages(Session["CourseID"].ToString());
+                ddlContentPages.DataValueField = "ContentPageID";
+                ddlContentPages.DataTextField = "Title";
+                ddlContentPages.DataBind();
+                ListItem li = new ListItem();
+                li.Text = "--Content Pages--";
+                li.Value = "-1";
+                ddlContentPages.Items.Insert(0, li);
+                ddlContentPages.SelectedIndex = 0;
+            }
+        }
+
+        public DataSet GetContentPages(string courseID)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "GetContentPages";
+
+                objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(courseID));
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        protected void ddlContentPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlContentPages.SelectedIndex != 0)
+            {
+                string pageId = ddlContentPages.SelectedValue;
+                string pageName = ddlContentPages.SelectedItem.Text;
+                sessionPass();
+                Session["PageId"] = pageId;
+                Session["PageName"] = pageName;
+                Response.Redirect("ContentPage.aspx");
+            }
+            else
+            {
+                //return false;
+            }
         }
     }
 }

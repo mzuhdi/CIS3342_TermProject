@@ -45,6 +45,8 @@
         </p>
         <p>
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
+        &nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblID" runat="server"></asp:Label>
         </p>
         <p>
             &nbsp;</p>

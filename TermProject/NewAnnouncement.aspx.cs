@@ -21,7 +21,7 @@ namespace TermProject
             if (!IsPostBack)
             {
                 lblName.Text = Session["CourseName"].ToString();
-                lblMessage.Text = Session["CourseID"].ToString();
+                lblID.Text = Session["CourseID"].ToString();
             }
         }
 
@@ -31,9 +31,10 @@ namespace TermProject
             Annoucement newAnnoucement = new Annoucement();
             newAnnoucement.Title = txtTitle.Text;
             newAnnoucement.Description = txtDescription.Text;
-            newAnnoucement.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
+            newAnnoucement.Date = DateTime.Now;
+            newAnnoucement.FK_CourseID = Convert.ToInt32(lblID.Text);
 
-           bool message = AddAnnoucement(newAnnoucement, "zuhdi");
+           bool message = AddAnnoucementSvc("zuhdi", newAnnoucement);
 
             if(message == true)
             {
@@ -45,6 +46,27 @@ namespace TermProject
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = "ERROR: Announcement not created!";
             }
+        }
+
+        public bool AddAnnoucementSvc(string key, Annoucement annoucement)
+        {
+            if (annoucement != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddAnnoucement";
+                objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
+                objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
+                objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
+                objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            return false;
         }
 
         public bool AddAnnoucement(Annoucement newAnnoucement, string key)

@@ -10,7 +10,16 @@
 namespace TermProject {
     
     
-    public partial class CBMain {
+    public partial class ContentPage {
+        
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// lblName control.
@@ -40,58 +49,40 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Button btnAssignments;
         
         /// <summary>
-        /// ddlContentPages control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlContentPages;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
-        /// viewCourseButton control.
+        /// lblPageName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject.ViewCourses viewCourseButton;
+        protected global::System.Web.UI.WebControls.Label lblPageName;
         
         /// <summary>
-        /// btnSignOut control.
+        /// rptContentPage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignOut;
+        protected global::System.Web.UI.WebControls.Repeater rptContentPage;
         
         /// <summary>
-        /// btnMyClasses control.
+        /// txtBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMyClasses;
-        
-        /// <summary>
-        /// btnManageContentPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManageContentPage;
-        
-        /// <summary>
-        /// btnAddAnnoucment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddAnnoucment;
+        protected global::System.Web.UI.WebControls.Button txtBack;
         
         /// <summary>
         /// lblError control.

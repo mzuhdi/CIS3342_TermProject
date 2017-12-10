@@ -22,7 +22,10 @@ namespace TermProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+             
+            }
         }
 
         [Category("Misc")]
@@ -50,27 +53,30 @@ namespace TermProject
         {
           if (User == "1")
             {
-                DataSet myDs = populateAnnouncments(CourseID); /*Session["StudentID"].ToString()*/
-                //imgProduct.ImageUrl
-                lblTitle.Text = myDs.Tables[0].Rows[0]["Title"].ToString();
-                lblDescription.Text = myDs.Tables[0].Rows[0]["Description"].ToString();
-                lblDate.Text = myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnoucementID"].ToString();
-            } 
-           else if (User == "3")
-            {
-                DataSet myDs = populateAnnouncments(courseId); /*Session["StudentID"].ToString()*/
+                DataSet myDs = populateAnnouncments(CourseID);
+
                 if (myDs.Tables[0].Rows.Count == 0)
                 {
-                    lblTitle.Text = "No records!";
+                    lblError.Visible = true;
+                    lblError.Text = "No Announcments!";
                 }
                 else
                 {
-                    lblTitle.Text = myDs.Tables[0].Rows[0]["Title"].ToString();
-                    lblDescription.Text = myDs.Tables[0].Rows[0]["Description"].ToString();
-                    lblDate.Text = myDs.Tables[0].Rows[0]["Date"].ToString() + " " + myDs.Tables[0].Rows[0]["AnnoucementID"].ToString();
+                    rptAnnouncements.DataSource = myDs;
+                    rptAnnouncements.DataBind();
                 }
-                    
-                
+            } 
+           else if (User == "3")
+            {
+                DataSet myDs = populateAnnouncments(CourseID);
+
+                if (myDs.Tables[0].Rows.Count == 0)
+                {
+                    lblError.Visible = true;
+                    lblError.Text = "No Announcments! Click below to add one.";
+                }
+                rptAnnouncements.DataSource = myDs;
+                    rptAnnouncements.DataBind();
             }
         }
 
@@ -93,12 +99,8 @@ namespace TermProject
 
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "TP_GetAnnoucementByCourseID";
-            //SqlParameter inputParameter = new SqlParameter("@StudentID", Convert.ToInt32(studentID));
-            //inputParameter.Direction = ParameterDirection.Input;
-            //inputParameter.SqlDbType = SqlDbType.Int;
             objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(cID));
 
-            //objCommand.Parameters.Add(inputParameter);
 
             return objDB.GetDataSetUsingCmdObj(objCommand);
         }
@@ -110,6 +112,11 @@ namespace TermProject
             {
                 Click(sender, e);
             }
+        }
+
+        protected void rptAnnouncements_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
         }
     }
 }

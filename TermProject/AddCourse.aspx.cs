@@ -204,5 +204,10 @@ namespace TermProject
         {
 
         }
+
+        protected void ddlCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
