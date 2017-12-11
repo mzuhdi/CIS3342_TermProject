@@ -1284,7 +1284,6 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-<<<<<<< HEAD
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void addBBAdmin2CompletedEventHandler(object sender, addBBAdmin2CompletedEventArgs e);
     
@@ -1312,9 +1311,6 @@ namespace TermProject.BlackboardSvcPxy {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-=======
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
->>>>>>> f44b1a0b13cdbac944cdfec7b06553d27e5a05cc
     public delegate void addCourseCompletedEventHandler(object sender, addCourseCompletedEventArgs e);
     
     /// <remarks/>
