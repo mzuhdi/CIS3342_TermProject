@@ -17,7 +17,8 @@ namespace TermProject
     public partial class ContentPage : System.Web.UI.Page
     {
 
-
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
+        string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -66,7 +67,7 @@ namespace TermProject
         }
         public void getContentPageDetails()
         {
-            DataSet myDs = GetContentPageDetails(Session["PageId"].ToString());
+            DataSet myDs = pxy.GetContentPageDetails(Session["PageId"].ToString());
 
             if (myDs.Tables[0].Rows.Count == 0)
             {
@@ -80,20 +81,20 @@ namespace TermProject
             }
         }
 
-        public DataSet GetContentPageDetails(string pageID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //public DataSet GetContentPageDetails(string pageID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_RetrieveContentPageDetails";
+        //    objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_RetrieveContentPageDetails";
 
-            objCommand.Parameters.AddWithValue("@ContentPageID", Convert.ToInt32(pageID));
+        //    objCommand.Parameters.AddWithValue("@ContentPageID", Convert.ToInt32(pageID));
 
-            DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-            objCommand.Parameters.Clear();
-            return myDataSet;
-        }
+        //    DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //    objCommand.Parameters.Clear();
+        //    return myDataSet;
+        //}
 
         protected void txtBack_Click(object sender, EventArgs e)
         {

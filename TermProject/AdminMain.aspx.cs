@@ -49,54 +49,54 @@ namespace TermProject
             }
         }
 
-        public DataTable GetAdminByIDSvc(string key, BBAdmin admin)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataTable GetAdminByIDSvc(string key, BBAdmin admin)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetAdminByID";
-                objCommand.Parameters.AddWithValue("@ID", admin.ID);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_GetAdminByID";
+        //        objCommand.Parameters.AddWithValue("@ID", admin.ID);
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                DataTable dt = myDataSet.Tables[0];
-                objCommand.Parameters.Clear();
-                return dt;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        DataTable dt = myDataSet.Tables[0];
+        //        objCommand.Parameters.Clear();
+        //        return dt;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         //WebMehod
-        public DataSet WebGetCourseBuilder(string key)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataSet WebGetCourseBuilder(string key)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetCourseBuilder";
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_GetCourseBuilder";
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return myDataSet;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return myDataSet;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         public void GetCourseBuilder()
         {
-            if (WebGetCourseBuilder(key) != null) //if (pxy.GetCourseBuilder(key) != null)
+            if (pxy.WebGetCourseBuilder(key) != null) 
             {
-                ddlCB.DataSource = WebGetCourseBuilder(key);
+                ddlCB.DataSource = pxy.WebGetCourseBuilder(key);
                 ddlCB.DataValueField = "CBID";
                 ddlCB.DataTextField = "Username";
                 ddlCB.DataBind();

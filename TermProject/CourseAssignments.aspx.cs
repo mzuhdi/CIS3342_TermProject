@@ -14,6 +14,7 @@ namespace TermProject
 {
     public partial class CourseAssignments : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
         string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,27 +24,27 @@ namespace TermProject
             }
         }
 
-        public DataTable GetAssignmentByIDSvc(string key, Assignment assignment)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataTable GetAssignmentByIDSvc(string key, Assignment assignment)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetAssignmentByID";
-                objCommand.Parameters.AddWithValue("@ID", assignment.ID);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_GetAssignmentByID";
+        //        objCommand.Parameters.AddWithValue("@ID", assignment.ID);
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                DataTable dt = myDataSet.Tables[0];
-                objCommand.Parameters.Clear();
-                return dt;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        DataTable dt = myDataSet.Tables[0];
+        //        objCommand.Parameters.Clear();
+        //        return dt;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         protected void gvAssignmentStudent_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -51,9 +52,9 @@ namespace TermProject
             if (e.CommandName == "Download")
             {
                 lblStudentAssgnID.Text = gvAssignmentStudent.DataKeys[rowIndex]["AssignmentID"].ToString();
-                Assignment assignment = new Assignment();
+                BlackboardSvcPxy.Assignment assignment = new BlackboardSvcPxy.Assignment();
                 assignment.ID = int.Parse(lblStudentAssgnID.Text);
-                download(GetAssignmentByIDSvc(key, assignment));
+                download(pxy.GetAssignmentByIDSvc(key, assignment));
                 GetAssignmentFunc();
             }
             if (e.CommandName == "Submit")
@@ -168,13 +169,13 @@ namespace TermProject
 
         public void GetAssignmentFunc()
         {
-            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
-            Assignment assignment = new Assignment();
+            BlackboardSvcPxy.Assignment assignment = new BlackboardSvcPxy.Assignment();
+            //Assignment assignment = new Assignment();
             assignment.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
 
-            if (GetAssignmentSvc(key, assignment) != null)
+            if (pxy.GetAssignmentSvc(key, assignment) != null)
             {
-                gvAssignmentStudent.DataSource = GetAssignmentSvc(key, assignment);
+                gvAssignmentStudent.DataSource = pxy.GetAssignmentSvc(key, assignment);
                 gvAssignmentStudent.DataBind();
             }
             else
@@ -184,27 +185,27 @@ namespace TermProject
             }
         }
 
-        public DataTable GetAssignmentSvc(string key, Assignment assignment)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataTable GetAssignmentSvc(string key, Assignment assignment)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetAssignmentByCourseID";
-                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_GetAssignmentByCourseID";
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                DataTable dt = myDataSet.Tables[0];
-                objCommand.Parameters.Clear();
-                return dt;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        DataTable dt = myDataSet.Tables[0];
+        //        objCommand.Parameters.Clear();
+        //        return dt;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
         public void sessionPass()
         {
             string user = Session["User"] as string;

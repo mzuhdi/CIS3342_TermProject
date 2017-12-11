@@ -14,6 +14,7 @@ namespace TermProject
 {
     public partial class AddAnnouncement : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
         string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,67 +24,67 @@ namespace TermProject
             }
         }
 
-        public bool AddAnnoucementSvc(string key, Annoucement annoucement)
-        {
-            if (annoucement != null && key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public bool AddAnnoucementSvc(string key, Annoucement annoucement)
+        //{
+        //    if (annoucement != null && key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_AddAnnoucement";
-                objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
-                objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
-                objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
-                objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_AddAnnoucement";
+        //        objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
+        //        objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
+        //        objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return true;
-            }
-            return false;
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return true;
+        //    }
+        //    return false;
+        //}
         public void AddAnnoucementFunc()
         {
-            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
-            Annoucement annoucement = new Annoucement();
+            BlackboardSvcPxy.Annoucement annoucement = new BlackboardSvcPxy.Annoucement();
+            //Annoucement annoucement = new Annoucement();
 
             annoucement.Title = txtTitle.Text;
             annoucement.Description = txtDescription.Text;
             annoucement.Date = DateTime.Now;
             annoucement.FK_CourseID = (int)Session["CourseID"];
 
-            AddAnnoucementSvc(key, annoucement);
+            pxy.AddAnnoucementSvc(key, annoucement);
         }
-        public DataSet GetAnnoucement(string key, Annoucement annoucement)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataSet GetAnnoucement(string key, Annoucement annoucement)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetAnnoucementByCourseID";
-                objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_GetAnnoucementByCourseID";
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return myDataSet;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return myDataSet;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
         public void GetAnnoucementFunc()
         {
-            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
-            Annoucement annoucement = new Annoucement();
+            BlackboardSvcPxy.Annoucement annoucement = new BlackboardSvcPxy.Annoucement();
+            //Annoucement annoucement = new Annoucement();
             annoucement.FK_CourseID = Convert.ToInt32(Session["CourseID"]); //Get Session[CourseID]
 
-            if (GetAnnoucement(key, annoucement) != null)
+            if (pxy.GetAnnoucement(key, annoucement) != null)
             {
-                gvAnnoucement.DataSource = GetAnnoucement(key, annoucement);
+                gvAnnoucement.DataSource = pxy.GetAnnoucement(key, annoucement);
                 gvAnnoucement.DataBind();
             }
             else
@@ -93,31 +94,31 @@ namespace TermProject
             }
         }
 
-        public bool UpdateAnnoucementSvc(string key, Annoucement annoucement)
-        {
-            if (annoucement != null && key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public bool UpdateAnnoucementSvc(string key, Annoucement annoucement)
+        //{
+        //    if (annoucement != null && key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_UpdateAnnoucement";
-                objCommand.Parameters.AddWithValue("@ID", annoucement.ID);
-                objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
-                objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
-                objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
-                objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_UpdateAnnoucement";
+        //        objCommand.Parameters.AddWithValue("@ID", annoucement.ID);
+        //        objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
+        //        objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
+        //        objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
 
-                objDB.DoUpdateUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return true;
-            }
-            return false;
-        }
+        //        objDB.DoUpdateUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return true;
+        //    }
+        //    return false;
+        //}
         public void UpdateAnnoucementFunc()
         {
-            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
-            Annoucement annoucement = new Annoucement();
+            BlackboardSvcPxy.Annoucement annoucement = new BlackboardSvcPxy.Annoucement();
+            //Annoucement annoucement = new Annoucement();
 
             annoucement.ID = int.Parse(lblAnnoucementID.Text);
             annoucement.Title = txtTitle.Text;
@@ -125,7 +126,7 @@ namespace TermProject
             annoucement.Date = DateTime.Now;
             annoucement.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
 
-            UpdateAnnoucementSvc(key, annoucement);
+            pxy.UpdateAnnoucementSvc(key, annoucement);
         }
         public bool DeleteAnnoucementSvc(string key, int id)
         {
