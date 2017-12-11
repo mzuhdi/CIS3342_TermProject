@@ -45,6 +45,7 @@
     <Compile Include="Assignment.cs" />
     <Compile Include="BBAdmin.cs" />
     <Compile Include="CourseBuilder.cs" />
+    <Compile Include="Grade.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
