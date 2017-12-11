@@ -199,5 +199,10 @@ namespace TermProject
             GetGradeByAssgnIDFunc();
 
         }
+
+        protected void gvAssignmentCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

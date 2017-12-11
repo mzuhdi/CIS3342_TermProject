@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="forCourseBuilder" runat="server" visible ="false">
+    <div id="forCourseBuilder" runat="server" visible ="true">
         <div id="CreateAssignmentDiv" runat="server" visible="true">
             <h1>Create Assignment</h1>
             <asp:Label ID="lblName" runat="server" Text="Name: "></asp:Label>
@@ -39,7 +39,7 @@
             <asp:Button ID="btnDownload" runat="server" Text="download" OnClick="btnDownload_Click" />
         </div>
     </div>
-    <div id="forStudent" runat="server" visible="true">
+    <div id="forStudent" runat="server" visible="false">
         <h1>Assignment</h1>
         <div id="gvAssignmentStudentDiv" runat="server">
             <asp:GridView ID="gvAssignmentStudent" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID" OnRowCommand="gvAssignmentStudent_RowCommand" OnSelectedIndexChanged="gvAssignmentStudent_SelectedIndexChanged">

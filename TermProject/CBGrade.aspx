@@ -5,7 +5,7 @@
     <h1>Gradebook</h1>
     <div id="gvAssignmentCBDiv" runat="server">
             <h2>Assignment</h2>
-            <asp:GridView ID="gvAssignmentCB" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID">
+            <asp:GridView ID="gvAssignmentCB" runat="server" AutoGenerateColumns="false" DataKeyNames="AssignmentID" OnSelectedIndexChanged="gvAssignmentCB_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="AssignmentID" Visible="false" />
                     <asp:BoundField DataField="Name" HeaderText="Name" />

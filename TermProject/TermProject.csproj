@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="CBGrade.aspx" />
     <Content Include="ContentPage.aspx" />
+    <Content Include="CourseBuilderTools.aspx" />
     <Content Include="Img\Assignment-512.png" />
     <Content Include="Img\thumbtack-pushpin-2-hi.png" />
     <Content Include="ManageAnnouncement.aspx" />
@@ -84,6 +85,7 @@
     <Content Include="Img\temple_diamond_pattern.jpg" />
     <Content Include="Img\transparent-green-checkmark-hi.png" />
     <Content Include="Login.aspx" />
+    <Content Include="ManageAssignments.aspx" />
     <Content Include="ManageContentPages.aspx" />
     <Content Include="ManageStudents.aspx" />
     <Content Include="MasterPage.Master" />
@@ -128,6 +130,13 @@
     </Compile>
     <Compile Include="ContentPage.aspx.designer.cs">
       <DependentUpon>ContentPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CourseBuilderTools.aspx.cs">
+      <DependentUpon>CourseBuilderTools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CourseBuilderTools.aspx.designer.cs">
+      <DependentUpon>CourseBuilderTools.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageAnnouncement.aspx.cs">
       <DependentUpon>ManageAnnouncement.aspx</DependentUpon>
@@ -184,6 +193,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAssignments.aspx.cs">
+      <DependentUpon>ManageAssignments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAssignments.aspx.designer.cs">
+      <DependentUpon>ManageAssignments.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageContentPages.aspx.cs">
       <DependentUpon>ManageContentPages.aspx</DependentUpon>

@@ -51,18 +51,9 @@ namespace TermProject
             annoucement.Title = txtTitle.Text;
             annoucement.Description = txtDescription.Text;
             annoucement.Date = DateTime.Now;
-            annoucement.FK_CourseID = (int)Session["cbID"]; //Get Session[CourseID]
+            annoucement.FK_CourseID = (int)Session["CourseID"];
 
-
-            if (AddAnnoucementSvc(key, annoucement))
-            {
-                lblSuccess.Text = "The student is created.";
-
-            }
-            else
-            {
-                lblSuccess.Text = "A problem occured. Data is not recorded";
-            }
+            AddAnnoucementSvc(key, annoucement);
         }
         public DataSet GetAnnoucement(string key, Annoucement annoucement)
         {
@@ -88,7 +79,7 @@ namespace TermProject
         {
             //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
             Annoucement annoucement = new Annoucement();
-            annoucement.FK_CourseID = 1; //(int)Session["cbID"]; //Get Session[CourseID]
+            annoucement.FK_CourseID = Convert.ToInt32(Session["CourseID"]); //Get Session[CourseID]
 
             if (GetAnnoucement(key, annoucement) != null)
             {
@@ -132,18 +123,9 @@ namespace TermProject
             annoucement.Title = txtTitle.Text;
             annoucement.Description = txtDescription.Text;
             annoucement.Date = DateTime.Now;
-            annoucement.FK_CourseID = 1; //Get Session[CourseID]
+            annoucement.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
 
-
-            if (UpdateAnnoucementSvc(key, annoucement))
-            {
-                lblSuccess.Text = "The annoucement is updated.";
-
-            }
-            else
-            {
-                lblSuccess.Text = "A problem occured. Data is not recorded";
-            }
+            UpdateAnnoucementSvc(key, annoucement);
         }
         public bool DeleteAnnoucementSvc(string key, int id)
         {
@@ -193,10 +175,8 @@ namespace TermProject
             int rowIndex = int.Parse(e.CommandArgument.ToString());
             if (e.CommandName == "Update")
             {
-                h1Add.Visible = false;
-                h1Manage.Visible = true;
-                btnSubmit.Visible = false;
-                btnUpdate.Visible = true;
+                gvAnnoucement.Enabled = false;
+                Panel1.Visible = true;
                 lblAnnoucementID.Text = gvAnnoucement.DataKeys[rowIndex]["AnnoucementID"].ToString();
                 txtTitle.Text = gvAnnoucement.Rows[rowIndex].Cells[2].Text;
                 txtDescription.Text = gvAnnoucement.Rows[rowIndex].Cells[3].Text;
@@ -206,19 +186,8 @@ namespace TermProject
 
                 //BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
 
-                if (DeleteAnnoucementSvc(key, (int)gvAnnoucement.DataKeys[rowIndex]["AnnoucementID"]))
-
-                {
-                    lblSuccess.Text = "The course is deleted.";
-                }
-                else
-                {
-                    lblSuccess.Text = "A problem occured. Data is not recorded";
-                }
-
-                GetAnnoucementFunc();
-
-
+               DeleteAnnoucementSvc(key, (int)gvAnnoucement.DataKeys[rowIndex]["AnnoucementID"]);
+               GetAnnoucementFunc();
             }
         }
 
@@ -236,6 +205,33 @@ namespace TermProject
         {
             UpdateAnnoucementFunc();
             GetAnnoucementFunc();
+            Panel1.Visible = false;
+            gvAnnoucement.Enabled = true;
+        }
+
+        protected void gvAnnoucement_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Panel1.Visible = false;
+            gvAnnoucement.Enabled = true;
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            sessionPass();
+            Response.Redirect("CourseBuilderTools.aspx");
+        }
+
+        public void sessionPass()
+        {
+            string user = Session["User"] as string;
+            string courseID = Session["CourseID"] as string;
+            string cbID = Session["cbID"] as string;
+            string courseName = Session["CourseName"] as string;
         }
     }
 }

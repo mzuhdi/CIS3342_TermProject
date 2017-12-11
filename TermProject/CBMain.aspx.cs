@@ -29,7 +29,7 @@ namespace TermProject
                     ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
 
                     btnAddAnnoucment.Visible = false;
-                    btnManageContentPage.Visible = false;
+                    btnCourseBuilderTools.Visible = false;
 
                     // Set properties for the ProductDisplay object
                     ctrl.CourseID = Session["CourseID"].ToString();
@@ -42,7 +42,7 @@ namespace TermProject
                 if (Session["User"] != null && Session["User"].ToString() == "3")
                 {
                     btnAddAnnoucment.Visible = true;
-                    btnManageContentPage.Visible = true;
+                    btnCourseBuilderTools.Visible = true;
 
                     ViewCourses ctrl = (ViewCourses)LoadControl("ViewCourses.ascx");
 
@@ -103,7 +103,7 @@ namespace TermProject
         protected void Button5_Click(object sender, EventArgs e)
         {
             sessionPass();
-            Response.Redirect("ManageContentPages.aspx");
+            Response.Redirect("CourseBuilderTools.aspx");
         }
 
         public void sessionPass()

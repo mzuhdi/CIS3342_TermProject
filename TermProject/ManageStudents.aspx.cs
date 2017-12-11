@@ -61,10 +61,36 @@ namespace TermProject
                 Session["StudentEmail"] = email;
                 Response.Redirect("E-Mail.aspx");
             }
+            if (e.CommandName == "Remove")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvStudents.Rows[index];
+                string StudentID = gvSearch.DataKeys[rowIndex]["StudentID"].ToString();
+                removeStudentFromCourse(Session["CourseID"].ToString(), StudentID);
+                studentsInClass();
+
+            }
         }
         protected void gvStudents_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
+        }
+
+
+        public void removeStudentFromCourse(string courseID, string studentID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_RemoveStudentFromCourse";
+
+            objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
+            objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+            objCommand.Parameters.Clear();
         }
 
         public ArrayList packageStudents()
@@ -133,11 +159,13 @@ namespace TermProject
         {
             BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
             addStudentsToCourse(packageStudents(), Session["CourseID"].ToString());
+            studentsInClass();
         }
 
         protected void btnAddStudents_Click(object sender, EventArgs e)
         {
             btnAddStudents.Enabled = false;
+            gvStudents.Enabled = false;
             PanelAddStudents.Visible = true;
         }
 
@@ -180,8 +208,16 @@ namespace TermProject
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Session.Clear();
-            Response.Redirect("AddCourse.aspx");
+            sessionPass();
+            Response.Redirect("CourseBuilderTools.aspx");
+        }
+
+        public void sessionPass()
+        {
+            string user = Session["User"] as string;
+            string courseID = Session["CourseID"] as string;
+            string cbID = Session["cbID"] as string;
+            string courseName = Session["CourseName"] as string;
         }
     }
 }

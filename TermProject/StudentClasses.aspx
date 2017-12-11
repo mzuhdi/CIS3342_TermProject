@@ -22,7 +22,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="text-align: left">
             <h1 class="auto-style3">
                 <asp:Label ID="lblName" runat="server" CssClass="auto-style1"></asp:Label>
             </h1>

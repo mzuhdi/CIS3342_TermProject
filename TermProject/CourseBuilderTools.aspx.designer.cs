@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class NewAnnouncement {
+    public partial class CourseBuiderTools {
         
         /// <summary>
         /// form1 control.
@@ -31,57 +31,48 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// txtTitle control.
+        /// btnManageAssignments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.Button btnManageAssignments;
         
         /// <summary>
-        /// txtDescription control.
+        /// btnManageContentPages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.WebControls.Button btnManageContentPages;
         
         /// <summary>
-        /// btnCreate control.
+        /// btnManageAnnouncements control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
+        protected global::System.Web.UI.WebControls.Button btnManageAnnouncements;
         
         /// <summary>
-        /// btnBack control.
+        /// btnManageStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
+        protected global::System.Web.UI.WebControls.Button btnManageStudents;
         
         /// <summary>
-        /// lblMessage control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
-        
-        /// <summary>
-        /// lblID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblID;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }
