@@ -7,57 +7,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+   
     <style type="text/css">
-        * {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        *, :after, :before {
-            color: #000 !important;
-            text-shadow: none !important;
-            background: 0 0 !important;
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-        }
-
-        hr {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border: 0;
-            border-top: 1px solid #eee;
-        }
-
-        hr {
-            height: 0;
-            -webkit-box-sizing: content-box;
-            -moz-box-sizing: content-box;
-            box-sizing: content-box;
-        }
-
-        table {
-            background-color: transparent;
-        }
-
-        table {
-            border-spacing: 0;
-            border-collapse: collapse;
-        }
-
-        td, th {
-            padding: 0;
-        }
-
-        #form1 {
+        .auto-style1 {
             text-align: center;
+            background-color: #990000;
+        }
+        .auto-style2 {
+            color: #FFFFFF;
         }
     </style>
+   
 </head>
 <body>
     <form id="form1" runat="server">
-        <h1>
-            <asp:Label ID="lblName" runat="server"></asp:Label>
+        <h1 class="auto-style1">
+            <asp:Label ID="lblName" runat="server" CssClass="auto-style2"></asp:Label>
         </h1>
         <br />
         <asp:Repeater ID="rptGrades" runat="server" OnItemCommand="rptContentPage_ItemCommand">
@@ -101,6 +66,18 @@
                             </separatortemplate>
             </ItemTemplate>
         </asp:Repeater>
+        <br />
+        <asp:GridView ID="gvGrades" runat="server" Width="786px" OnSelectedIndexChanged="gvGrades_SelectedIndexChanged">
+            <Columns>
+                        <asp:BoundField DataField="GradeID" Visible="false" />
+                        <asp:BoundField DataField="Grade" HeaderText="Grade" />
+                        <asp:BoundField DataField="Name" HeaderText="Assignment Name" />
+                        <asp:BoundField DataField="DueDate" HeaderText="Due Date" />
+                        <asp:BoundField DataField="MaximumGrade" HeaderText="MaximumGrade" />
+                        <asp:BoundField DataField="Description" HeaderText="Description" />
+                       <%-- <asp:ButtonField runat="server" ButtonType="Button" CommandName="Delete" HeaderText="Delete Assignment" Text="Delete Assignment" />--%>
+                    </Columns>
+        </asp:GridView>
         <br />
         <div>
             <asp:Label ID="lblError" runat="server" Font-Size="40pt" ForeColor="#CC3300" Visible="False"></asp:Label>

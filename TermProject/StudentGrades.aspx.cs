@@ -43,6 +43,9 @@ namespace TermProject
             {
                 rptGrades.DataSource = myDs;
                 rptGrades.DataBind();
+                gvGrades.DataSource = myDs;
+                gvGrades.DataBind();
+
             }
         }
 
@@ -67,6 +70,11 @@ namespace TermProject
             string user = Session["User"] as string;
             string studentID = Session["StudentID"] as string;
             Response.Redirect("StudentClasses.aspx");
+        }
+
+        protected void gvGrades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -358,7 +358,7 @@ namespace TermProject
             //if (e.CommandName == "Delete")
             //{
             //    lblAssgnID.Text = gvAssignmentCB.DataKeys[rowIndex]["AssignmentID"].ToString();
-                DeleteAssigmentFunc();
+                //DeleteAssigmentFunc();
             //    GetAssignmentFunc();
             //}
         }
