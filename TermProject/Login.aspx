@@ -6,6 +6,43 @@
 <head runat="server">
     <title>Login</title>
 
+       <script type="text/javascript">
+        var xmlhttp;
+ 
+        try {
+            // Code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        catch (try_older_microsoft) {
+            try {
+                // Code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (other) {
+                xmlhttp = false;
+                alert("Your browser doesn't support AJAX!");
+            }
+        }
+ 
+        function getQuote() {
+            // Open a new asynchronous request, set the callback function, and send the request.
+            xmlhttp.open("POST", "AJAX_Quotes.aspx", true);
+            xmlhttp.onreadystatechange = onComplete;
+            xmlhttp.send();
+        }
+ 
+        // Callback function used to update the page when the server completes a response
+        // to an asynchronous request.
+        function onComplete() {
+            //Response is READY and Status is OK
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("content_area").innerHTML = xmlhttp.responseText;
+            }
+ 
+        }
+ 
+    </script>
+
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,6 +67,15 @@
 </head>
 <body class="login-background parent">
     <form class="" id="form1" runat="server">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div id="MessageForm">
+                    <div class="card card-container">
+                        <asp:Label ID="Message" CssClass="label label-info" runat="server" Text=""><i class="fa fa-exclamation-circle" aria-hidden="true"></i> </asp:Label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div id="login-form">

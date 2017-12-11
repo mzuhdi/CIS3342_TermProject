@@ -56,8 +56,8 @@ namespace TermProject
                 }
                 else
                 {
-                    lblError.Visible = true;
-                    lblError.Text = "Access Denied";
+                    //lblError.Visible = true;
+                    //lblError.Text = "Access Denied";
                 }
             }
 
@@ -167,6 +167,33 @@ namespace TermProject
             {
                 //return false;
             }
+        }
+
+        protected void btnSignOut_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void btnMyClasses_Click(object sender, EventArgs e)
+        {
+            if(Session["User"].ToString() == "1")
+            {
+                sessionPass();
+                Response.Redirect("StudentClasses.aspx");
+            }
+            else if(Session["User"].ToString() == "3")
+            {
+                sessionPass();
+                Response.Redirect("CourseBuilderClasses.aspx");
+            }
+        }
+
+        protected void btnAssignments_Click(object sender, EventArgs e)
+        {
+            sessionPass();
+            string id = Session["StudentID"] as string;
+            Response.Redirect("CourseAssignments.aspx");
         }
     }
 }

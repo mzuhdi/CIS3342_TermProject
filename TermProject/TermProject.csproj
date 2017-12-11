@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="CBGrade.aspx" />
     <Content Include="ContentPage.aspx" />
+    <Content Include="CourseAssignments.aspx" />
     <Content Include="CourseBuilderTools.aspx" />
     <Content Include="Img\Assignment-512.png" />
     <Content Include="Img\thumbtack-pushpin-2-hi.png" />
@@ -130,6 +131,13 @@
     </Compile>
     <Compile Include="ContentPage.aspx.designer.cs">
       <DependentUpon>ContentPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CourseAssignments.aspx.cs">
+      <DependentUpon>CourseAssignments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CourseAssignments.aspx.designer.cs">
+      <DependentUpon>CourseAssignments.aspx</DependentUpon>
     </Compile>
     <Compile Include="CourseBuilderTools.aspx.cs">
       <DependentUpon>CourseBuilderTools.aspx</DependentUpon>

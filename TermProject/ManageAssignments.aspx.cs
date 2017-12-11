@@ -18,7 +18,12 @@ namespace TermProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                GetAssignmentFunc();
+                //GetGradeByAssgnIDFunc();
+                ddlBind();
+            }
         }
 
         public bool AddAssignmentSvc(string key, Assignment assignment)
@@ -72,8 +77,8 @@ namespace TermProject
             assignment.Name = txtName.Text;
             assignment.Description = txtDescription.Text;
             assignment.DueDate = calendarDueDate.SelectedDate.ToShortDateString();
-            assignment.FK_CourseID = 1; //Get Session[CourseID]
-            assignment.MaximumGrade = int.Parse(txtMaxGrade.Text);
+            assignment.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
+            assignment.MaximumGrade = int.Parse(txtGrade.Text);
 
 
             if (FileUpload1.HasFile)
@@ -110,7 +115,7 @@ namespace TermProject
                 lblSuccess.Text = "A problem occured. Data is not recorded";
             }
         }
-        public DataTable GetAssignmentSvc(string key, Assignment assignment)
+        public DataTable GetAssignmentByCourseIDSvc(string key, Assignment assignment)
         {
             if (key == "zuhdi")
             {
@@ -150,11 +155,11 @@ namespace TermProject
         {
             //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
             Assignment assignment = new Assignment();
-            assignment.FK_CourseID = 1; //Get Session[CourseID]
+            assignment.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
 
-            if (GetAssignmentSvc(key, assignment) != null)
+            if (GetAssignmentByCourseIDSvc(key, assignment) != null)
             {
-                gvAssignmentCB.DataSource = GetAssignmentSvc(key, assignment);
+                gvAssignmentCB.DataSource = GetAssignmentByCourseIDSvc(key, assignment);
                 gvAssignmentCB.DataBind();
             }
             else
@@ -171,7 +176,201 @@ namespace TermProject
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             AddAssignmentFunc();
-            //GetAssignmentFunc();
+            GetAssignmentFunc();
+        }
+        public DataTable GetAssignmentSvc(string key, Assignment assignment)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAssignmentByID";
+                objCommand.Parameters.AddWithValue("@ID", assignment.ID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public DataTable GetGradeByAssgnIDSvc(string key, Grade grade)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetGradeByAssgnID";
+                objCommand.Parameters.AddWithValue("@FK_AssignmentID", grade.FK_AssignmentID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public void GetGradeByAssgnIDFunc(string ID)
+        {
+            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
+            Grade grade = new Grade();
+            grade.FK_AssignmentID = Convert.ToInt32(ID);
+
+            if (GetGradeByAssgnIDSvc(key, grade) != null)
+            {
+                gvCBGrade.DataSource = GetGradeByAssgnIDSvc(key, grade);
+                gvCBGrade.DataBind();
+            }
+            else
+            {
+                //lblInvalidKey.Text = "Please provide correct API Key";
+                //lblInvalidKey.Visible = true;
+            }
+        }
+
+        public DataTable GetGradeByIDSvc(string key, Grade grade)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetGradeByID";
+                objCommand.Parameters.AddWithValue("@ID", grade.ID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void submitGradeFunc()
+        {
+            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
+            Grade grade = new Grade();
+
+            grade.ID = int.Parse(lblGradeID.Text);
+            grade.theGrade = int.Parse(txtGrade.Text);
+
+
+            if (submitGradeSvc(key, grade))
+            {
+                lblSuccess.Text = "The grade is stored.";
+
+            }
+            else
+            {
+                lblSuccess.Text = "A problem occured. Data is not recorded";
+            }
+        }
+
+        public bool submitGradeSvc(string key, Grade grade)
+        {
+            if (grade != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_UpdateGrade";
+                objCommand.Parameters.AddWithValue("@ID", grade.ID);
+                objCommand.Parameters.AddWithValue("@Grade", grade.theGrade);
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        protected void gvCBGrade_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            if (e.CommandName == "Download")
+            {
+                lblGradeID.Text = gvCBGrade.DataKeys[rowIndex]["GradeID"].ToString();
+                Grade grade = new Grade();
+                grade.ID = int.Parse(lblGradeID.Text);
+                download(GetGradeByIDSvc(key, grade));
+                GetAssignmentFunc();
+            }
+            if (e.CommandName == "Grade")
+            {
+                lblGradeID.Text = gvCBGrade.DataKeys[rowIndex]["GradeID"].ToString();
+                GradeForm.Visible = true;
+            }
+        }
+
+
+        protected void gvAssignmentCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (DropDownList1.SelectedIndex != 0)
+            {
+                GetGradeByAssgnIDFunc(DropDownList1.SelectedValue);
+            }
+        }
+
+        public void ddlBind()
+        {
+            Assignment assignment = new Assignment();
+            assignment.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
+            DropDownList1.DataSource = GetAssignmentByCourseIDSvc(key, assignment);
+            DropDownList1.DataValueField = "AssignmentID";
+            DropDownList1.DataTextField = "Name";
+            DropDownList1.DataBind();
+            ListItem li = new ListItem();
+            li.Text = "--Assignments--";
+            li.Value = "-1";
+            DropDownList1.Items.Insert(0, li);
+            DropDownList1.SelectedIndex = 0;
+
+        }
+
+        protected void gvAssignment_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //int rowIndex = int.Parse(e.CommandArgument.ToString());
+            //if (e.CommandName == "Delete")
+            //{
+            //    lblAssgnID.Text = gvAssignmentCB.DataKeys[rowIndex]["AssignmentID"].ToString();
+            //    DeleteAssigmentFunc();
+            //    GetAssignmentFunc();
+            //}
+        }
+
+        protected void gvAssignment_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void btnSubmit0_Click1(object sender, EventArgs e)
+        {
+            submitGradeFunc();
+            GetGradeByAssgnIDFunc(DropDownList1.SelectedValue);
         }
     }
 }

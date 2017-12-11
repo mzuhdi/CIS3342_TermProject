@@ -20,17 +20,28 @@
         .auto-style16 {
             text-align: center;
         }
+        .auto-style17 {
+            text-align: center;
+            background-color: #FFFFFF;
+            height: 38px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        <h1 class="auto-style17">
+            <asp:Button ID="btnSignOut" runat="server" Text="Sign Out" OnClick="btnSignOut_Click" />
+            <asp:Button ID="btnMyClasses" runat="server" Text="My Classes" Width="150px" OnClick="btnMyClasses_Click" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnCourseBuilderTools" runat="server" OnClick="Button5_Click" Text="Coursebuilder Tools" Visible="False" />
+        </h1>
         <h1 class="auto-style14">
             <asp:Label ID="lblName" runat="server" CssClass="auto-style15"></asp:Label>
         </h1>
         <div style="text-align: center">
             <asp:Button ID="btnAnnoucements" runat="server" Enabled="False" Text="Annoucements" Width="150px" />
             &nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnAssignments" runat="server" Text="Assignments" Width="150px" />
+    <asp:Button ID="btnAssignments" runat="server" Text="Assignments" Width="150px" OnClick="btnAssignments_Click" />
             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
         <asp:DropDownList ID="ddlContentPages" runat="server" OnSelectedIndexChanged="ddlContentPages_SelectedIndexChanged" DataTextField="Title" DataValueField="Id" AutoPostBack="True">
         </asp:DropDownList>
@@ -38,17 +49,14 @@
         <br />
         <h2 class="auto-style16">Annoucements</h2>
         <%--<uc1:ViewCourses ID="gvCourses" runat="server"> </uc1:ViewCourses>--%>
-        <div>
+        <div class="auto-style16">
             <uc1:ViewCourses runat="server" ID="viewCourseButton" EnableTheming="False" ViewStateMode="Enabled" />
             <br />
-            <asp:Button ID="btnSignOut" runat="server" Text="Sign Out" />
-&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnMyClasses" runat="server" Text="My Classes" Width="150px" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnAddAnnoucment" runat="server" OnClick="lblAddAnnoucment_Click" Text="New Announcement" Visible="False" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnCourseBuilderTools" runat="server" OnClick="Button5_Click" Text="Coursebuilder Tools" Visible="False" />
-        </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
         <br />
         <h1 class="text-center">
             <asp:Label ID="lblError" runat="server" ForeColor="#999999"></asp:Label>

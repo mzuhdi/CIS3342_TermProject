@@ -72,7 +72,7 @@ namespace TermProject
             assignment.Name = txtName.Text;
             assignment.Description = txtDescription.Text;
             assignment.DueDate = calendarDueDate.SelectedDate.ToShortDateString();
-            assignment.FK_CourseID = 1; //Get Session[CourseID]
+            assignment.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
             assignment.MaximumGrade = int.Parse(txtMaxGrade.Text);
 
 
@@ -151,7 +151,7 @@ namespace TermProject
         {
             //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
             Assignment assignment = new Assignment();
-            assignment.FK_CourseID = 1; //Get Session[CourseID]
+            assignment.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
 
             if (GetAssignmentSvc(key, assignment) != null)
             {
@@ -233,7 +233,7 @@ namespace TermProject
         protected void btnDownload_Click(object sender, EventArgs e)
         {
             Assignment assignment = new Assignment();
-            assignment.FK_CourseID = 104; //Get Session[CourseID]
+            assignment.FK_CourseID = Convert.ToInt32(Session["CourseID"]);
             download(GetAssignmentSvc(key, assignment));
         }
 
@@ -347,7 +347,7 @@ namespace TermProject
             //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
             Grade grade = new Grade();
 
-            grade.FK_StudentID = 1; // Get Session[StudentID]
+            //grade.FK_StudentID = gvAssignmentStudent 1; //Convert.ToInt32(Session["StudentID"]);
             grade.FK_AssignmentID = int.Parse(lblStudentAssgnID.Text); //Get Session[CourseID]
 
 
