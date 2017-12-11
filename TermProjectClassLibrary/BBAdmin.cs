@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TermProjectClassLibrary
 {
+    [Serializable]
     public class BBAdmin
     {
+        public int ID 
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }

@@ -43,6 +43,8 @@ namespace TermProject.BlackboardSvcPxy {
         
         private System.Threading.SendOrPostCallback addBBAdminOperationCompleted;
         
+        private System.Threading.SendOrPostCallback addBBAdmin2OperationCompleted;
+        
         private System.Threading.SendOrPostCallback addCourseOperationCompleted;
         
         private System.Threading.SendOrPostCallback DeleteCourseOperationCompleted;
@@ -122,6 +124,9 @@ namespace TermProject.BlackboardSvcPxy {
         
         /// <remarks/>
         public event addBBAdminCompletedEventHandler addBBAdminCompleted;
+        
+        /// <remarks/>
+        public event addBBAdmin2CompletedEventHandler addBBAdmin2Completed;
         
         /// <remarks/>
         public event addCourseCompletedEventHandler addCourseCompleted;
@@ -335,6 +340,37 @@ namespace TermProject.BlackboardSvcPxy {
             if ((this.addBBAdminCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.addBBAdminCompleted(this, new addBBAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addBBAdmin2", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addBBAdmin2([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] array, string key) {
+            object[] results = this.Invoke("addBBAdmin2", new object[] {
+                        array,
+                        key});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void addBBAdmin2Async(byte[] array, string key) {
+            this.addBBAdmin2Async(array, key, null);
+        }
+        
+        /// <remarks/>
+        public void addBBAdmin2Async(byte[] array, string key, object userState) {
+            if ((this.addBBAdmin2OperationCompleted == null)) {
+                this.addBBAdmin2OperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddBBAdmin2OperationCompleted);
+            }
+            this.InvokeAsync("addBBAdmin2", new object[] {
+                        array,
+                        key}, this.addBBAdmin2OperationCompleted, userState);
+        }
+        
+        private void OnaddBBAdmin2OperationCompleted(object arg) {
+            if ((this.addBBAdmin2Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addBBAdmin2Completed(this, new addBBAdmin2CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1234,6 +1270,32 @@ namespace TermProject.BlackboardSvcPxy {
         private object[] results;
         
         internal addBBAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void addBBAdmin2CompletedEventHandler(object sender, addBBAdmin2CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class addBBAdmin2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal addBBAdmin2CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

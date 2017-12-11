@@ -48,6 +48,29 @@ namespace TermProject
                 lblInvalidKey.Visible = true;
             }
         }
+
+        public DataTable GetAdminByIDSvc(string key, BBAdmin admin)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAdminByID";
+                objCommand.Parameters.AddWithValue("@ID", admin.ID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         //WebMehod
         public DataSet WebGetCourseBuilder(string key)
         {

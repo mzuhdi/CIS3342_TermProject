@@ -173,6 +173,46 @@ namespace TermProjectWebService
                 return false;
             }
         }
+        [WebMethod]
+        public bool addBBAdmin2(byte[] array, string key)
+        {
+            if (array != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.Parameters.Clear();
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddBBAdmin2";
+                objCommand.Parameters.AddWithValue("@theAdmin", array);
+                SqlParameter returnValue = new SqlParameter("@Result", 0);
+                //    DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                //    objCommand.Parameters.Clear();
+                //    return true;
+                //}
+                //return false;
+                returnValue.Direction = ParameterDirection.Output;
+                objCommand.Parameters.Add(returnValue);
+
+                objDB.GetDataSetUsingCmdObj(objCommand);
+
+                int result = int.Parse(objCommand.Parameters["@Result"].Value.ToString());
+
+                //return result;
+                if (result == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         [WebMethod]
         public bool addCourse(Course course, string key)

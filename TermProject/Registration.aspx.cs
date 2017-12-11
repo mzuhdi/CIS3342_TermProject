@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Runtime.Serialization.Formatters.Binary;      
+using System.IO;
+
 namespace TermProject
 {
     public partial class Registration : System.Web.UI.Page
@@ -79,8 +82,34 @@ namespace TermProject
             admin.Username = txtAUserName.Text;
             admin.Password = txtAPassword.Text;
 
-
             if (pxy.addBBAdmin(admin, key))
+            {
+                lblSuccess.Text = "The administrator is created successfully.";
+
+            }
+            else
+            {
+                lblSuccess.Text = "Username not available, please choose a different one.";
+            }
+        }
+
+        public void AddBBAdmin2()
+        {
+            BlackboardSvcPxy.BBAdmin admin = new BlackboardSvcPxy.BBAdmin();
+
+            admin.FirstName = txtAFirstName.Text;
+            admin.LastName = txtALastName.Text;
+            admin.Username = txtAUserName.Text;
+            admin.Password = txtAPassword.Text;
+
+            BinaryFormatter serializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream();
+            Byte[] byteArray;
+            serializer.Serialize(memStream, admin);
+            byteArray = memStream.ToArray();
+
+
+            if (pxy.addBBAdmin2(byteArray, key))
             {
                 lblSuccess.Text = "The administrator is created successfully.";
 
@@ -177,6 +206,7 @@ namespace TermProject
             if (txtAFirstName.Text != "" && txtALastName.Text != "" && txtAUserName.Text != "" && txtAPassword.Text != "")
             {
                 AddBBAdmin();
+                AddBBAdmin2();
             }
             else
             {

@@ -7,6 +7,7 @@
     <asp:Label ID="lblInvalidKey" runat="server"></asp:Label>
     <div id="Admin" runat="server" visible="false">
         <h1>Blackboard Administrator</h1>
+        <asp:Label ID="lblLoggedIn" runat="server"></asp:Label> <br />
         <asp:Label ID="lblTerm" runat="server" Text="Select Term: "></asp:Label>
         <asp:DropDownList ID="ddlTerm" runat="server" AutoPostBack="true"></asp:DropDownList>
         <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />

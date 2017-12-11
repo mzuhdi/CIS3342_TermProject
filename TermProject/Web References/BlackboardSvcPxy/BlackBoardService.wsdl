@@ -133,6 +133,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="addBBAdmin2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="array" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addBBAdmin2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="addBBAdmin2Result" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="addCourse">
         <s:complexType>
           <s:sequence>
@@ -390,6 +405,12 @@
   <wsdl:message name="addBBAdminSoapOut">
     <wsdl:part name="parameters" element="tns:addBBAdminResponse" />
   </wsdl:message>
+  <wsdl:message name="addBBAdmin2SoapIn">
+    <wsdl:part name="parameters" element="tns:addBBAdmin2" />
+  </wsdl:message>
+  <wsdl:message name="addBBAdmin2SoapOut">
+    <wsdl:part name="parameters" element="tns:addBBAdmin2Response" />
+  </wsdl:message>
   <wsdl:message name="addCourseSoapIn">
     <wsdl:part name="parameters" element="tns:addCourse" />
   </wsdl:message>
@@ -486,6 +507,10 @@
     <wsdl:operation name="addBBAdmin">
       <wsdl:input message="tns:addBBAdminSoapIn" />
       <wsdl:output message="tns:addBBAdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addBBAdmin2">
+      <wsdl:input message="tns:addBBAdmin2SoapIn" />
+      <wsdl:output message="tns:addBBAdmin2SoapOut" />
     </wsdl:operation>
     <wsdl:operation name="addCourse">
       <wsdl:input message="tns:addCourseSoapIn" />
@@ -585,6 +610,15 @@
     </wsdl:operation>
     <wsdl:operation name="addBBAdmin">
       <soap:operation soapAction="http://tempuri.org/addBBAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addBBAdmin2">
+      <soap:operation soapAction="http://tempuri.org/addBBAdmin2" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -750,6 +784,15 @@
     </wsdl:operation>
     <wsdl:operation name="addBBAdmin">
       <soap12:operation soapAction="http://tempuri.org/addBBAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addBBAdmin2">
+      <soap12:operation soapAction="http://tempuri.org/addBBAdmin2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
