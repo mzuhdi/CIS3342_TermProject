@@ -172,6 +172,7 @@ namespace TermProject
         protected void btnClose_Click(object sender, EventArgs e)
         {
             btnAddStudents.Enabled = true;
+            gvStudents.Enabled = true;
             PanelAddStudents.Visible = false;
         }
 

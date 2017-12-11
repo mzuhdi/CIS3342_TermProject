@@ -7,7 +7,7 @@
 
     </style>
 <body style="text-align: center">
-    <asp:Label ID="lblError" runat="server" ForeColor="#CC3300" style="font-size: xx-large"></asp:Label>
+    <asp:Label ID="lblError" runat="server" ForeColor="#CC3300" style="font-size: xx-large" Visible="False"></asp:Label>
     <asp:Repeater ID="rptAnnouncements" runat="server" OnItemCommand="rptAnnouncements_ItemCommand">
         <ItemTemplate>
             <separatortemplate>

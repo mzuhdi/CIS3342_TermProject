@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="forCourseBuilder" runat="server" visible ="true">
+    <div id="forCourseBuilder" runat="server" visible ="false">
         <div id="CreateAssignmentDiv" runat="server" visible="true">
             <h1>Create Assignment</h1>
             <asp:Label ID="lblName" runat="server" Text="Name: "></asp:Label>
@@ -17,7 +17,7 @@
             <asp:Button ID="btnSubmit" runat="server" Text="Create Assignment" OnClick="btnSubmit_Click" />
             <asp:Label ID="lblSuccess" runat="server"></asp:Label>
         </div>
-        <div id="upload" runat="server" visible="true">
+        <div id="upload" runat="server" visible="false">
             <asp:FileUpload ID="FileUpload1" runat="server" />
             <asp:Label ID="lblUpload" runat="server" />
         </div>

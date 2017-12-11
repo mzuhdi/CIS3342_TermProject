@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class CBMain {
+    public partial class CourseAssignments {
         
         /// <summary>
         /// form1 control.
@@ -22,93 +22,57 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnSignOut control.
+        /// gvAssignmentStudent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignOut;
+        protected global::System.Web.UI.WebControls.GridView gvAssignmentStudent;
         
         /// <summary>
-        /// btnMyClasses control.
+        /// lblStudentAssgnID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMyClasses;
+        protected global::System.Web.UI.WebControls.Label lblStudentAssgnID;
         
         /// <summary>
-        /// btnCourseBuilderTools control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCourseBuilderTools;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// lblName control.
+        /// FileUpload2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload2;
         
         /// <summary>
-        /// btnAnnoucements control.
+        /// lblUpload2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAnnoucements;
+        protected global::System.Web.UI.WebControls.Label lblUpload2;
         
         /// <summary>
-        /// btnAssignments control.
+        /// btnSubmitAssgn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAssignments;
-        
-        /// <summary>
-        /// ddlContentPages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlContentPages;
-        
-        /// <summary>
-        /// viewCourseButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::TermProject.ViewCourses viewCourseButton;
-        
-        /// <summary>
-        /// btnAddAnnoucment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddAnnoucment;
-        
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Button btnSubmitAssgn;
     }
 }
