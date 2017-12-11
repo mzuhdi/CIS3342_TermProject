@@ -156,5 +156,13 @@ namespace TermProject
         {
             Response.Redirect("Login.aspx");
         }
+
+        public void deserializer(DataSet dataset)
+        {
+            Byte[] byteArray = (Byte[])objDB.GetField("CreditCard", 0);
+            BinaryFormatter deSerializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream(byteArray);
+            CreditCard objCreditCard = (CreditCard)deSerializer.Deserialize(memStream);
+        }
     }
 }

@@ -154,8 +154,8 @@ namespace TermProject
 
             if (GetAssignmentSvc(key, assignment) != null)
             {
-                gvAssignmentCB.DataSource = GetAssignmentSvc(key, assignment);
-                gvAssignmentCB.DataBind();
+                //gvAssignmentCB.DataSource = GetAssignmentSvc(key, assignment);
+                //gvAssignmentCB.DataBind();
             }
             else
             {
