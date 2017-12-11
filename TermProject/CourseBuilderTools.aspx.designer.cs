@@ -10,7 +10,16 @@
 namespace TermProject {
     
     
-    public partial class CBMain {
+    public partial class CourseBuiderTools {
+        
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// lblName control.
@@ -22,84 +31,48 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// btnAnnoucements control.
+        /// btnManageAssignments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAnnoucements;
+        protected global::System.Web.UI.WebControls.Button btnManageAssignments;
         
         /// <summary>
-        /// btnAssignments control.
+        /// btnManageContentPages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAssignments;
+        protected global::System.Web.UI.WebControls.Button btnManageContentPages;
         
         /// <summary>
-        /// ddlContentPages control.
+        /// btnManageAnnouncements control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlContentPages;
+        protected global::System.Web.UI.WebControls.Button btnManageAnnouncements;
         
         /// <summary>
-        /// viewCourseButton control.
+        /// btnManageStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject.ViewCourses viewCourseButton;
+        protected global::System.Web.UI.WebControls.Button btnManageStudents;
         
         /// <summary>
-        /// btnSignOut control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignOut;
-        
-        /// <summary>
-        /// btnMyClasses control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMyClasses;
-        
-        /// <summary>
-        /// btnAddAnnoucment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddAnnoucment;
-        
-        /// <summary>
-        /// btnCourseBuilderTools control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCourseBuilderTools;
-        
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

@@ -13,6 +13,15 @@ namespace TermProject {
     public partial class AddAnnouncement {
         
         /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
         /// gvAnnoucementDiv control.
         /// </summary>
         /// <remarks>
@@ -31,31 +40,22 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.GridView gvAnnoucement;
         
         /// <summary>
-        /// AddAnnoucement control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddAnnoucement;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// h1Add control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h1Add;
-        
-        /// <summary>
-        /// h1Manage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h1Manage;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
         /// lblAnnoucementID control.
@@ -103,24 +103,6 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// cbEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbEmail;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
         /// btnUpdate control.
         /// </summary>
         /// <remarks>
@@ -130,12 +112,12 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// lblSuccess control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuccess;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

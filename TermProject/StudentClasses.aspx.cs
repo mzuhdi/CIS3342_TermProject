@@ -105,7 +105,7 @@ namespace TermProject
                 Label myLabel = (Label)rptClasses.Items[rowIndex].FindControl("lblCourseID");
                 Label myLabel2 = (Label)rptClasses.Items[rowIndex].FindControl("lblCourse");
                 String courseID = myLabel.Text;
-                String courseName = myLabel.Text;
+                String courseName = myLabel2.Text;
 
                 string user = Session["User"] as string;
                 string studentID = Session["StudentID"] as string;
