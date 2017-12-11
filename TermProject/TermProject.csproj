@@ -67,6 +67,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CBGrade.aspx" />
     <Content Include="ContentPage.aspx" />
     <Content Include="Img\Assignment-512.png" />
     <Content Include="Img\thumbtack-pushpin-2-hi.png" />
@@ -114,6 +115,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CBGrade.aspx.cs">
+      <DependentUpon>CBGrade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CBGrade.aspx.designer.cs">
+      <DependentUpon>CBGrade.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ContentPage.aspx.cs">
       <DependentUpon>ContentPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
