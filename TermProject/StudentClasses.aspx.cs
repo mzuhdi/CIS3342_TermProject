@@ -94,8 +94,24 @@ namespace TermProject
                 string user = Session["User"] as string;
                 string studentID = Session["StudentID"] as string;
                 Session["CourseID"] = courseID;
-                Session["CourseName"] = courseID;
+                Session["CourseName"] = courseName;
                 Response.Redirect("CBMain.aspx");
+
+                //Data.Contacts.RemoveAt(e.Item.ItemIndex);
+            }
+            if (e.CommandName == "grades")
+            {
+                int rowIndex = e.Item.ItemIndex;
+                Label myLabel = (Label)rptClasses.Items[rowIndex].FindControl("lblCourseID");
+                Label myLabel2 = (Label)rptClasses.Items[rowIndex].FindControl("lblCourse");
+                String courseID = myLabel.Text;
+                String courseName = myLabel.Text;
+
+                string user = Session["User"] as string;
+                string studentID = Session["StudentID"] as string;
+                Session["CourseID"] = courseID;
+                Session["CourseName"] = courseName;
+                Response.Redirect("StudentGrades.aspx");
 
                 //Data.Contacts.RemoveAt(e.Item.ItemIndex);
             }

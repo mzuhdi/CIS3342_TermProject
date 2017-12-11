@@ -57,6 +57,7 @@
                             </td>
                             <td style="width: 300px">
                                 <asp:Button ID="btnView" Text="View Course" runat="server" CommandName="view" />
+                                <asp:Button ID="btnGrades" Text="View Grades" runat="server" CommandName="grades" />
                             </td>
                         </tr>
                     </table>

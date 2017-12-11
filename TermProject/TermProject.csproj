@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ContentPage.aspx" />
-    <Content Include="GradePage.aspx" />
+    <Content Include="Img\Assignment-512.png" />
     <Content Include="Img\thumbtack-pushpin-2-hi.png" />
     <Content Include="ManageAnnouncement.aspx" />
     <Content Include="AddCourse.aspx" />
@@ -107,6 +107,7 @@
     <Content Include="NewAnnouncement.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="StudentClasses.aspx" />
+    <Content Include="StudentGrades.aspx" />
     <Content Include="StudentMain.aspx" />
     <None Include="Web References\BlackboardSvcPxy\BlackBoardService.disco" />
     <Content Include="ViewCourses.ascx" />
@@ -119,13 +120,6 @@
     </Compile>
     <Compile Include="ContentPage.aspx.designer.cs">
       <DependentUpon>ContentPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GradePage.aspx.cs">
-      <DependentUpon>GradePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GradePage.aspx.designer.cs">
-      <DependentUpon>GradePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageAnnouncement.aspx.cs">
       <DependentUpon>ManageAnnouncement.aspx</DependentUpon>
@@ -230,6 +224,13 @@
     </Compile>
     <Compile Include="StudentClasses.aspx.designer.cs">
       <DependentUpon>StudentClasses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentGrades.aspx.cs">
+      <DependentUpon>StudentGrades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentGrades.aspx.designer.cs">
+      <DependentUpon>StudentGrades.aspx</DependentUpon>
     </Compile>
     <Compile Include="StudentMain.aspx.cs">
       <DependentUpon>StudentMain.aspx</DependentUpon>
