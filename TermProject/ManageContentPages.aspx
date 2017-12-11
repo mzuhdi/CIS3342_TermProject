@@ -10,6 +10,7 @@
             text-align: center;
             color: #FFFFFF;
             background-color: #800000;
+            font-size: 35pt;
         }
 
         .auto-style2 {
@@ -24,17 +25,19 @@
             <h1 class="auto-style1">Manage Content Pages</h1>
 
         </div>
-        <h2>
-            <asp:Label ID="lblName" runat="server"></asp:Label>
+        <h2 style="text-align: center">
+            <asp:Label ID="lblName" runat="server" Style="text-align: center"></asp:Label>
         </h2>
         <p class="auto-style2">
-            <asp:Button ID="Button3" runat="server" Text="Create Content Page" />
+            <asp:Button ID="btnManage" runat="server" Text="Manage Content Page" Enabled="False" OnClick="btnManage_Click" />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button4" runat="server" Text="Edit Content Page" />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button5" runat="server" Text="Delete Content Page" />
+            <asp:Button ID="Button3" runat="server" Text="Create Content Page" OnClick="Button3_Click" />
+            &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnDelete" runat="server" Text="Delete Content Page" />
         </p>
-        <asp:Panel ID="Panel1" runat="server">
+        <asp:Panel ID="Panel1" runat="server" Visible="False">
             <h2>New Content Page</h2>
             <p>
                 Content Page Name:
@@ -63,42 +66,47 @@
                 <asp:Label ID="lblMessage" runat="server"></asp:Label>
             </p>
         </asp:Panel>
-        <asp:Panel ID="Panel2" runat="server">
+        &nbsp;<asp:Panel ID="Panel2" runat="server">
             <h2>Manage Content Page Details</h2>
             <br />
             Select Page:
-            <asp:DropDownList ID="ddlContentPages" runat="server" OnSelectedIndexChanged="ddlContentPages_SelectedIndexChanged" DataTextField="Title" DataValueField="Id" AutoPostBack="True" >
+            <asp:DropDownList ID="ddlContentPages" runat="server" OnSelectedIndexChanged="ddlContentPages_SelectedIndexChanged" DataTextField="Title" DataValueField="Id" AutoPostBack="True">
             </asp:DropDownList>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnAddPost" runat="server" Enabled="False" OnClick="btnAddPost_Click" Text="Add Post" />
             <br />
             <br />
-            <asp:GridView ID="gvContentPages" runat="server" OnRowCommand="gvContentPages_RowCommand" OnRowDeleting="gvContentPages_RowDeleting" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="gvContentPages_SelectedIndexChanged"
-                          DataKeyNames="Id">
-                <AlternatingRowStyle BackColor="White" />
-                <Columns>
-                    <asp:BoundField DataField="Id" Visible="false" />
-                    <asp:BoundField DataField="Title" HeaderText="Title"/>
-                    <asp:BoundField DataField="Description" HeaderText="Description"/>
-                    <asp:BoundField DataField="FileTitle" HeaderText="File Name"/>
-                    <asp:ButtonField runat="server" Text="Edit" CommandName="Change" ButtonType="Button" />
-                </Columns>
-                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                <SortedDescendingHeaderStyle BackColor="#820000" />
-            </asp:GridView>
+            <div class = "center">
+                <asp:GridView ID="gvContentPages" runat="server" OnRowCommand="gvContentPages_RowCommand" OnRowDeleting="gvContentPages_RowDeleting" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="gvContentPages_SelectedIndexChanged"
+                    DataKeyNames="Id" Width="749px" Style="text-align: center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="Id" Visible="false" />
+                        <asp:BoundField DataField="Title" HeaderText="Title" />
+                        <asp:BoundField DataField="Description" HeaderText="Description" />
+                        <asp:BoundField DataField="FileTitle" HeaderText="File Name" />
+                        <asp:ButtonField runat="server" Text="Edit" CommandName="Change" ButtonType="Button" />
+                        <asp:ButtonField CommandName="Remove" ShowHeader="True" Text="Delete" />
+                    </Columns>
+                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                    <SortedDescendingHeaderStyle BackColor="#820000" />
+                </asp:GridView>
+            </div>
         </asp:Panel>
-        <asp:Panel ID="Panel3" runat="server">
+        <asp:Panel ID="Panel3" runat="server" Visible="False">
             <h2>Edit Content Page Details</h2>
             <p>
                 Title:
                 <asp:TextBox ID="txtEditTitle" runat="server"></asp:TextBox>
                 &nbsp;&nbsp;
-                <asp:Label ID="lblId" runat="server"></asp:Label>
+                <asp:Label ID="lblId" runat="server" Visible="False"></asp:Label>
             </p>
             <p>
                 Description:
@@ -113,14 +121,72 @@
             <p>
                 <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="OK" />
                 &nbsp;
-                <asp:Button ID="btnEditCancel" runat="server" Text="Cancel" />
+                <asp:Button ID="btnEditCancel" runat="server" Text="Cancel" OnClick="btnEditCancel_Click" />
             </p>
             <p>
                 <asp:Label ID="lblEditMessage" runat="server"></asp:Label>
             </p>
             <p>
-                &nbsp;</p>
+                &nbsp;
+            </p>
         </asp:Panel>
+        <asp:Panel ID="Panel4" runat="server" Visible="False">
+            <h2>Add Content Page Post</h2>
+            <p>
+                Title:
+                <asp:TextBox ID="txtAddTitle" runat="server"></asp:TextBox>
+                &nbsp;&nbsp;
+                <asp:Label ID="lblAddID" runat="server"></asp:Label>
+            </p>
+            <p>
+                Description:
+                <asp:TextBox ID="txtAddDescription" runat="server" Height="111px" TextMode="MultiLine" Width="298px"></asp:TextBox>
+            </p>
+            <p>
+                File:&nbsp;
+                <asp:FileUpload ID="FileUpload3" runat="server" />
+                &nbsp;&nbsp;
+                <asp:Label ID="lblAddFileName" runat="server"></asp:Label>
+            </p>
+            <p>
+                <asp:Button ID="btnAddOK" runat="server" OnClick="btnAddOK_Click" Text="OK" />
+                &nbsp;
+                <asp:Button ID="btnAddCanel" runat="server" OnClick="btnAddCanel_Click" Text="Cancel" />
+            </p>
+            <p>
+                <asp:Label ID="lblEditMessage0" runat="server"></asp:Label>
+            </p>
+            <p>
+                &nbsp;
+            </p>
+        </asp:Panel>
+        &nbsp;&nbsp;<asp:Panel ID="Panel5" runat="server" Visible="False">
+            <h2>Delete Content Page</h2>
+            <p>
+                <asp:GridView ID="gvContent" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames= "ContentPageID" ForeColor="#333333" GridLines="None" OnRowCommand="gvContent_RowCommand" OnRowDeleting="gvContentPages_RowDeleting" OnSelectedIndexChanged="gvContentPages_SelectedIndexChanged" Style="text-align: center" Width="749px">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="ContentPageID" Visible="false" />
+                        <asp:BoundField DataField="Title" HeaderText="Title" />
+                        <asp:ButtonField CommandName="Remove" ShowHeader="True" Text="Delete" />
+                    </Columns>
+                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                    <SortedDescendingHeaderStyle BackColor="#820000" />
+                </asp:GridView>
+&nbsp;
+            </p>
+        </asp:Panel>
+        &nbsp;
+        <div style="text-align: center; margin-left: 120px">
+            <asp:Button ID="Back" runat="server" OnClick="Back_Click" Text="Back" />
+        </div>
     </form>
 </body>
 </html>

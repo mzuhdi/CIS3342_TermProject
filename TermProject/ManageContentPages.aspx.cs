@@ -21,6 +21,7 @@ namespace TermProject
             {
                 lblName.Text = Session["CourseName"].ToString();
                 getContentPages();
+                getAllContentPages();
             }
         }
 
@@ -121,6 +122,7 @@ namespace TermProject
 
                 gvContentPages.Visible = true;
                 getContentPageDetails(ddlContentPages.SelectedValue);
+                btnAddPost.Enabled = true;
             }
         }
 
@@ -140,6 +142,13 @@ namespace TermProject
             }
         }
 
+        public void getAllContentPages()
+        {
+            DataSet myDs = GetContentPages(Session["CourseID"].ToString());
+            gvContent.DataSource = myDs;
+            gvContent.DataBind();
+        }
+
         public void getContentPages(string Id)
         {
 
@@ -153,7 +162,7 @@ namespace TermProject
                 SqlCommand objCommand = new SqlCommand();
 
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "GetContentPages";
+                objCommand.CommandText = "TP_GetContentPages";
 
                 objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(courseID));
 
@@ -167,7 +176,7 @@ namespace TermProject
             }
         }
 
-        public DataSet GetContentPageDetails(string pageID)
+        public DataSet GetContentPageDetails(string courseID)
         {
             if (key == "zuhdi")
             {
@@ -177,7 +186,7 @@ namespace TermProject
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_RetrieveContentPageDetails";
 
-                objCommand.Parameters.AddWithValue("@ContentPageID", Convert.ToInt32(pageID));
+                objCommand.Parameters.AddWithValue("@ContentPageID", Convert.ToInt32(courseID));
 
                 DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                 objCommand.Parameters.Clear();
@@ -193,17 +202,28 @@ namespace TermProject
         {
 
         }
+        protected void gvContent_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
 
         protected void gvContentPages_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int rowIndex = int.Parse(e.CommandArgument.ToString());
             if (e.CommandName == "Change")
             {
+                Panel3.Visible = true;
                 Panel2.Enabled = false;
                 lblId.Text = gvContentPages.DataKeys[rowIndex]["Id"].ToString();
                 txtEditTitle.Text = gvContentPages.Rows[rowIndex].Cells[1].Text;
                 txtEditDescription.Text = gvContentPages.Rows[rowIndex].Cells[2].Text;
                 lblEditFileName.Text = gvContentPages.Rows[rowIndex].Cells[3].Text;
+            }
+            if (e.CommandName == "Remove")
+            {
+                string id = gvContentPages.DataKeys[rowIndex]["Id"].ToString();
+                removePost(id);
+                getContentPageDetails(ddlContentPages.SelectedValue);
             }
         }
 
@@ -211,12 +231,69 @@ namespace TermProject
         {
 
         }
+        protected void gvContent_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            
+            if (e.CommandName == "Remove")
+            {
+                string id = gvContent.DataKeys[rowIndex]["ContentPageID"].ToString();
+                deleteContentPage(id);
+                getAllContentPages();
+            }
+        }
 
+        protected void deleteContentPage(string contentPageID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+
+            string strSQL = "TP_RemoveContentPage";
+            objCommand.CommandText = strSQL;
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.Parameters.AddWithValue("@contentPageID", Convert.ToInt32(contentPageID));
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+        }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             editPage(txtEditTitle.Text, txtEditDescription.Text, lblId.Text, FileUpload2);
             getContentPageDetails(ddlContentPages.SelectedValue);
+            Panel3.Visible = false;
+            Panel2.Enabled = true;
         }
+
+        public void removePost(string contentPageID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+
+            string strSQL = "TP_RemoveContentPostDetail";
+            objCommand.CommandText = strSQL;
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.Parameters.AddWithValue("@Id", Convert.ToInt32(contentPageID));
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        public DataSet ContentPagesFromCiD(string courseID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+
+
+            objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_ContentPagesFromCourseID";
+            objCommand.Parameters.AddWithValue("@Id", Convert.ToInt32(courseID));
+
+            return objDB.GetDataSetUsingCmdObj(objCommand);
+         }
 
         public void editPage(string Title, string Description, string contentPageID, FileUpload fileupload2)
         {
@@ -289,6 +366,135 @@ namespace TermProject
             //    lblEditMessage.ForeColor = System.Drawing.Color.Red;
             //    lblEditMessage.Text = "Error ocurred: [" + ex.Message + "] cmd=" + result;
             //}
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Button3.Enabled = false;
+            btnManage.Enabled = true;
+            btnDelete.Enabled = true;
+            Panel1.Visible = true;
+            Panel2.Visible = false;
+            Panel3.Visible = false;
+        }
+
+        protected void btnEditCancel_Click(object sender, EventArgs e)
+        {
+            getContentPageDetails(ddlContentPages.SelectedValue);
+            Panel3.Visible = false;
+            Panel2.Enabled = true;
+        }
+
+        protected void btnManage_Click(object sender, EventArgs e)
+        {
+            btnManage.Enabled = false;
+            Button3.Enabled = true;
+            btnDelete.Enabled = true;
+            Panel1.Visible = false;
+            Panel2.Visible = true;
+            Panel3.Visible = false;
+        }
+
+        protected void btnAddPost_Click(object sender, EventArgs e)
+        {
+            Panel3.Visible = false;
+            Panel4.Visible = true;
+            Panel2.Enabled = false;
+            lblAddID.Text = ddlContentPages.SelectedValue.ToString();
+
+        }
+
+        protected void btnAdOK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAdCancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAddOK_Click(object sender, EventArgs e)
+        {
+            createPost(txtAddTitle.Text, txtAddDescription.Text, System.DateTime.Now.ToString(), lblAddID.Text, FileUpload3);
+            getContentPageDetails(ddlContentPages.SelectedValue);
+            Panel4.Visible = false;
+            Panel2.Enabled = true;
+        }
+
+        public void createPost(string title, string description, string date, string pageID, FileUpload fileupload3)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            int result = 0, fileSize;
+            string fileExtension, fileType, fileName, fileTitle, strSQL;
+
+            try
+            {
+                // Use the FileUpload control to get the uploaded data
+                if (fileupload3.HasFile)
+                {
+                    fileSize = fileupload3.PostedFile.ContentLength;
+                    //fileSize = Convert.ToInt32(FileUpload1.PostedFile.InputStream.Length);
+                    byte[] fileData = new byte[fileSize];
+
+                    fileupload3.PostedFile.InputStream.Read(fileData, 0, fileSize);
+                    fileName = fileupload3.PostedFile.FileName;
+                    fileType = fileupload3.PostedFile.ContentType;
+
+
+
+                    fileExtension = fileName.Substring(fileName.LastIndexOf("."));
+                    fileExtension = fileExtension.ToLower();
+
+                    if (fileExtension == ".docx" || fileExtension == ".xlsx" || fileExtension == ".pptx" || fileExtension == ".pdf")
+                    {
+
+                        // INSERT an file (BLOB) into the database using a stored procedure 'storeProductfile'
+                        strSQL = "TP_AddContentPageDetail";
+                        objCommand.CommandText = strSQL;
+                        objCommand.CommandType = CommandType.StoredProcedure;
+                        objCommand.Parameters.AddWithValue("@Id", pageID);
+                        objCommand.Parameters.AddWithValue("@Title", title);
+                        objCommand.Parameters.AddWithValue("@Description", description);
+                        objCommand.Parameters.AddWithValue("@Date", date);
+                        objCommand.Parameters.AddWithValue("@FileTitle", fileName);
+                        objCommand.Parameters.AddWithValue("@FileData", fileData);
+                        objCommand.Parameters.AddWithValue("@FileType", fileType);
+                        objCommand.Parameters.AddWithValue("@FileLength", fileData.Length);
+                        result = objDB.DoUpdateUsingCmdObj(objCommand);
+
+                        lblEditMessage0.ForeColor = System.Drawing.Color.Green;
+                        lblEditMessage0.Text = "file was successully uploaded.";
+                    }
+                    else
+                    {
+                        lblEditMessage0.ForeColor = System.Drawing.Color.Red;
+                        lblEditMessage0.Text = "Only docx, xlsx, pptx and pdf file formats supported.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblEditMessage0.ForeColor = System.Drawing.Color.Red;
+                lblEditMessage0.Text = "Error ocurred: [" + ex.Message + "] cmd=" + result;
+            }
+        }
+
+        protected void btnAddCanel_Click(object sender, EventArgs e)
+        {
+            getContentPageDetails(ddlContentPages.SelectedValue);
+            Panel4.Visible = false;
+            Panel2.Enabled = true;
+        }
+
+        protected void Back_Click(object sender, EventArgs e)
+        {
+            string user = Session["User"] as string;
+            string CourseID = Session["CourseID"] as string;
+            string cbID = Session["cbID"] as string;
+            Session["CourseName"] = lblName.Text;
+            Response.Redirect("CBMain.aspx");
         }
     }
 }
