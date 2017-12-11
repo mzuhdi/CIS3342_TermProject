@@ -24,7 +24,7 @@ namespace TermProject.BlackboardSvcPxy {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="BlackBoardServiceSoap", Namespace="http://tempuri.org/")]
@@ -37,11 +37,15 @@ namespace TermProject.BlackboardSvcPxy {
         
         private System.Threading.SendOrPostCallback verifyLoginOperationCompleted;
         
+        private System.Threading.SendOrPostCallback addNameFromCourseIDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback addStudentOperationCompleted;
         
         private System.Threading.SendOrPostCallback addCourseBuilderOperationCompleted;
         
         private System.Threading.SendOrPostCallback addBBAdminOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddAnnoucementSvcOperationCompleted;
         
         private System.Threading.SendOrPostCallback addBBAdmin2OperationCompleted;
         
@@ -55,7 +59,25 @@ namespace TermProject.BlackboardSvcPxy {
         
         private System.Threading.SendOrPostCallback GetDepartmentOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetContentPagesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetTermOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAnnoucementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetContentPageDetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAssignmentByIDSvcOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAssignmentSvcOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAdminByIDSvcOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback findNameBycbIDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback populateClasesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback WebGetCourseBuilderOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetUserTypeOperationCompleted;
         
@@ -117,6 +139,9 @@ namespace TermProject.BlackboardSvcPxy {
         public event verifyLoginCompletedEventHandler verifyLoginCompleted;
         
         /// <remarks/>
+        public event addNameFromCourseIDCompletedEventHandler addNameFromCourseIDCompleted;
+        
+        /// <remarks/>
         public event addStudentCompletedEventHandler addStudentCompleted;
         
         /// <remarks/>
@@ -124,6 +149,9 @@ namespace TermProject.BlackboardSvcPxy {
         
         /// <remarks/>
         public event addBBAdminCompletedEventHandler addBBAdminCompleted;
+        
+        /// <remarks/>
+        public event AddAnnoucementSvcCompletedEventHandler AddAnnoucementSvcCompleted;
         
         /// <remarks/>
         public event addBBAdmin2CompletedEventHandler addBBAdmin2Completed;
@@ -144,7 +172,34 @@ namespace TermProject.BlackboardSvcPxy {
         public event GetDepartmentCompletedEventHandler GetDepartmentCompleted;
         
         /// <remarks/>
+        public event GetContentPagesCompletedEventHandler GetContentPagesCompleted;
+        
+        /// <remarks/>
         public event GetTermCompletedEventHandler GetTermCompleted;
+        
+        /// <remarks/>
+        public event GetAnnoucementCompletedEventHandler GetAnnoucementCompleted;
+        
+        /// <remarks/>
+        public event GetContentPageDetailsCompletedEventHandler GetContentPageDetailsCompleted;
+        
+        /// <remarks/>
+        public event GetAssignmentByIDSvcCompletedEventHandler GetAssignmentByIDSvcCompleted;
+        
+        /// <remarks/>
+        public event GetAssignmentSvcCompletedEventHandler GetAssignmentSvcCompleted;
+        
+        /// <remarks/>
+        public event GetAdminByIDSvcCompletedEventHandler GetAdminByIDSvcCompleted;
+        
+        /// <remarks/>
+        public event findNameBycbIDCompletedEventHandler findNameBycbIDCompleted;
+        
+        /// <remarks/>
+        public event populateClasesCompletedEventHandler populateClasesCompleted;
+        
+        /// <remarks/>
+        public event WebGetCourseBuilderCompletedEventHandler WebGetCourseBuilderCompleted;
         
         /// <remarks/>
         public event GetUserTypeCompletedEventHandler GetUserTypeCompleted;
@@ -251,6 +306,35 @@ namespace TermProject.BlackboardSvcPxy {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addNameFromCourseID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet addNameFromCourseID(string courseID) {
+            object[] results = this.Invoke("addNameFromCourseID", new object[] {
+                        courseID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void addNameFromCourseIDAsync(string courseID) {
+            this.addNameFromCourseIDAsync(courseID, null);
+        }
+        
+        /// <remarks/>
+        public void addNameFromCourseIDAsync(string courseID, object userState) {
+            if ((this.addNameFromCourseIDOperationCompleted == null)) {
+                this.addNameFromCourseIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddNameFromCourseIDOperationCompleted);
+            }
+            this.InvokeAsync("addNameFromCourseID", new object[] {
+                        courseID}, this.addNameFromCourseIDOperationCompleted, userState);
+        }
+        
+        private void OnaddNameFromCourseIDOperationCompleted(object arg) {
+            if ((this.addNameFromCourseIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addNameFromCourseIDCompleted(this, new addNameFromCourseIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addStudent", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public bool addStudent(Student student, string key) {
             object[] results = this.Invoke("addStudent", new object[] {
@@ -340,6 +424,37 @@ namespace TermProject.BlackboardSvcPxy {
             if ((this.addBBAdminCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.addBBAdminCompleted(this, new addBBAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddAnnoucementSvc", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddAnnoucementSvc(string key, Annoucement annoucement) {
+            object[] results = this.Invoke("AddAnnoucementSvc", new object[] {
+                        key,
+                        annoucement});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddAnnoucementSvcAsync(string key, Annoucement annoucement) {
+            this.AddAnnoucementSvcAsync(key, annoucement, null);
+        }
+        
+        /// <remarks/>
+        public void AddAnnoucementSvcAsync(string key, Annoucement annoucement, object userState) {
+            if ((this.AddAnnoucementSvcOperationCompleted == null)) {
+                this.AddAnnoucementSvcOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddAnnoucementSvcOperationCompleted);
+            }
+            this.InvokeAsync("AddAnnoucementSvc", new object[] {
+                        key,
+                        annoucement}, this.AddAnnoucementSvcOperationCompleted, userState);
+        }
+        
+        private void OnAddAnnoucementSvcOperationCompleted(object arg) {
+            if ((this.AddAnnoucementSvcCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddAnnoucementSvcCompleted(this, new AddAnnoucementSvcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -522,6 +637,37 @@ namespace TermProject.BlackboardSvcPxy {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetContentPages", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetContentPages(string courseID, string key) {
+            object[] results = this.Invoke("GetContentPages", new object[] {
+                        courseID,
+                        key});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetContentPagesAsync(string courseID, string key) {
+            this.GetContentPagesAsync(courseID, key, null);
+        }
+        
+        /// <remarks/>
+        public void GetContentPagesAsync(string courseID, string key, object userState) {
+            if ((this.GetContentPagesOperationCompleted == null)) {
+                this.GetContentPagesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetContentPagesOperationCompleted);
+            }
+            this.InvokeAsync("GetContentPages", new object[] {
+                        courseID,
+                        key}, this.GetContentPagesOperationCompleted, userState);
+        }
+        
+        private void OnGetContentPagesOperationCompleted(object arg) {
+            if ((this.GetContentPagesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetContentPagesCompleted(this, new GetContentPagesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTerm", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet GetTerm(string key) {
             object[] results = this.Invoke("GetTerm", new object[] {
@@ -547,6 +693,246 @@ namespace TermProject.BlackboardSvcPxy {
             if ((this.GetTermCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetTermCompleted(this, new GetTermCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAnnoucement", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetAnnoucement(string key, Annoucement annoucement) {
+            object[] results = this.Invoke("GetAnnoucement", new object[] {
+                        key,
+                        annoucement});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAnnoucementAsync(string key, Annoucement annoucement) {
+            this.GetAnnoucementAsync(key, annoucement, null);
+        }
+        
+        /// <remarks/>
+        public void GetAnnoucementAsync(string key, Annoucement annoucement, object userState) {
+            if ((this.GetAnnoucementOperationCompleted == null)) {
+                this.GetAnnoucementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAnnoucementOperationCompleted);
+            }
+            this.InvokeAsync("GetAnnoucement", new object[] {
+                        key,
+                        annoucement}, this.GetAnnoucementOperationCompleted, userState);
+        }
+        
+        private void OnGetAnnoucementOperationCompleted(object arg) {
+            if ((this.GetAnnoucementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAnnoucementCompleted(this, new GetAnnoucementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetContentPageDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetContentPageDetails(string pageID) {
+            object[] results = this.Invoke("GetContentPageDetails", new object[] {
+                        pageID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetContentPageDetailsAsync(string pageID) {
+            this.GetContentPageDetailsAsync(pageID, null);
+        }
+        
+        /// <remarks/>
+        public void GetContentPageDetailsAsync(string pageID, object userState) {
+            if ((this.GetContentPageDetailsOperationCompleted == null)) {
+                this.GetContentPageDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetContentPageDetailsOperationCompleted);
+            }
+            this.InvokeAsync("GetContentPageDetails", new object[] {
+                        pageID}, this.GetContentPageDetailsOperationCompleted, userState);
+        }
+        
+        private void OnGetContentPageDetailsOperationCompleted(object arg) {
+            if ((this.GetContentPageDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetContentPageDetailsCompleted(this, new GetContentPageDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAssignmentByIDSvc", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable GetAssignmentByIDSvc(string key, Assignment assignment) {
+            object[] results = this.Invoke("GetAssignmentByIDSvc", new object[] {
+                        key,
+                        assignment});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAssignmentByIDSvcAsync(string key, Assignment assignment) {
+            this.GetAssignmentByIDSvcAsync(key, assignment, null);
+        }
+        
+        /// <remarks/>
+        public void GetAssignmentByIDSvcAsync(string key, Assignment assignment, object userState) {
+            if ((this.GetAssignmentByIDSvcOperationCompleted == null)) {
+                this.GetAssignmentByIDSvcOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAssignmentByIDSvcOperationCompleted);
+            }
+            this.InvokeAsync("GetAssignmentByIDSvc", new object[] {
+                        key,
+                        assignment}, this.GetAssignmentByIDSvcOperationCompleted, userState);
+        }
+        
+        private void OnGetAssignmentByIDSvcOperationCompleted(object arg) {
+            if ((this.GetAssignmentByIDSvcCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAssignmentByIDSvcCompleted(this, new GetAssignmentByIDSvcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAssignmentSvc", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable GetAssignmentSvc(string key, Assignment assignment) {
+            object[] results = this.Invoke("GetAssignmentSvc", new object[] {
+                        key,
+                        assignment});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAssignmentSvcAsync(string key, Assignment assignment) {
+            this.GetAssignmentSvcAsync(key, assignment, null);
+        }
+        
+        /// <remarks/>
+        public void GetAssignmentSvcAsync(string key, Assignment assignment, object userState) {
+            if ((this.GetAssignmentSvcOperationCompleted == null)) {
+                this.GetAssignmentSvcOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAssignmentSvcOperationCompleted);
+            }
+            this.InvokeAsync("GetAssignmentSvc", new object[] {
+                        key,
+                        assignment}, this.GetAssignmentSvcOperationCompleted, userState);
+        }
+        
+        private void OnGetAssignmentSvcOperationCompleted(object arg) {
+            if ((this.GetAssignmentSvcCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAssignmentSvcCompleted(this, new GetAssignmentSvcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAdminByIDSvc", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable GetAdminByIDSvc(string key, BBAdmin admin) {
+            object[] results = this.Invoke("GetAdminByIDSvc", new object[] {
+                        key,
+                        admin});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAdminByIDSvcAsync(string key, BBAdmin admin) {
+            this.GetAdminByIDSvcAsync(key, admin, null);
+        }
+        
+        /// <remarks/>
+        public void GetAdminByIDSvcAsync(string key, BBAdmin admin, object userState) {
+            if ((this.GetAdminByIDSvcOperationCompleted == null)) {
+                this.GetAdminByIDSvcOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAdminByIDSvcOperationCompleted);
+            }
+            this.InvokeAsync("GetAdminByIDSvc", new object[] {
+                        key,
+                        admin}, this.GetAdminByIDSvcOperationCompleted, userState);
+        }
+        
+        private void OnGetAdminByIDSvcOperationCompleted(object arg) {
+            if ((this.GetAdminByIDSvcCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAdminByIDSvcCompleted(this, new GetAdminByIDSvcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/findNameBycbID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet findNameBycbID(string cbID) {
+            object[] results = this.Invoke("findNameBycbID", new object[] {
+                        cbID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void findNameBycbIDAsync(string cbID) {
+            this.findNameBycbIDAsync(cbID, null);
+        }
+        
+        /// <remarks/>
+        public void findNameBycbIDAsync(string cbID, object userState) {
+            if ((this.findNameBycbIDOperationCompleted == null)) {
+                this.findNameBycbIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindNameBycbIDOperationCompleted);
+            }
+            this.InvokeAsync("findNameBycbID", new object[] {
+                        cbID}, this.findNameBycbIDOperationCompleted, userState);
+        }
+        
+        private void OnfindNameBycbIDOperationCompleted(object arg) {
+            if ((this.findNameBycbIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.findNameBycbIDCompleted(this, new findNameBycbIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/populateClases", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet populateClases(string cbID) {
+            object[] results = this.Invoke("populateClases", new object[] {
+                        cbID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void populateClasesAsync(string cbID) {
+            this.populateClasesAsync(cbID, null);
+        }
+        
+        /// <remarks/>
+        public void populateClasesAsync(string cbID, object userState) {
+            if ((this.populateClasesOperationCompleted == null)) {
+                this.populateClasesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnpopulateClasesOperationCompleted);
+            }
+            this.InvokeAsync("populateClases", new object[] {
+                        cbID}, this.populateClasesOperationCompleted, userState);
+        }
+        
+        private void OnpopulateClasesOperationCompleted(object arg) {
+            if ((this.populateClasesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.populateClasesCompleted(this, new populateClasesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/WebGetCourseBuilder", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet WebGetCourseBuilder(string key) {
+            object[] results = this.Invoke("WebGetCourseBuilder", new object[] {
+                        key});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void WebGetCourseBuilderAsync(string key) {
+            this.WebGetCourseBuilderAsync(key, null);
+        }
+        
+        /// <remarks/>
+        public void WebGetCourseBuilderAsync(string key, object userState) {
+            if ((this.WebGetCourseBuilderOperationCompleted == null)) {
+                this.WebGetCourseBuilderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnWebGetCourseBuilderOperationCompleted);
+            }
+            this.InvokeAsync("WebGetCourseBuilder", new object[] {
+                        key}, this.WebGetCourseBuilderOperationCompleted, userState);
+        }
+        
+        private void OnWebGetCourseBuilderOperationCompleted(object arg) {
+            if ((this.WebGetCourseBuilderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.WebGetCourseBuilderCompleted(this, new WebGetCourseBuilderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -753,7 +1139,7 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -870,7 +1256,7 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public enum MailPriority {
@@ -886,7 +1272,137 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Assignment {
+        
+        private int idField;
+        
+        private string nameField;
+        
+        private string dueDateField;
+        
+        private int maximumGradeField;
+        
+        private int fK_CourseIDField;
+        
+        private string descriptionField;
+        
+        private string fileTitleField;
+        
+        private string fileTypeField;
+        
+        private byte[] fileDataField;
+        
+        private long fileLengthField;
+        
+        /// <remarks/>
+        public int ID {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DueDate {
+            get {
+                return this.dueDateField;
+            }
+            set {
+                this.dueDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int MaximumGrade {
+            get {
+                return this.maximumGradeField;
+            }
+            set {
+                this.maximumGradeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int FK_CourseID {
+            get {
+                return this.fK_CourseIDField;
+            }
+            set {
+                this.fK_CourseIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FileTitle {
+            get {
+                return this.fileTitleField;
+            }
+            set {
+                this.fileTitleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FileType {
+            get {
+                return this.fileTypeField;
+            }
+            set {
+                this.fileTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] FileData {
+            get {
+                return this.fileDataField;
+            }
+            set {
+                this.fileDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long FileLength {
+            get {
+                return this.fileLengthField;
+            }
+            set {
+                this.fileLengthField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -955,7 +1471,76 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Annoucement {
+        
+        private int idField;
+        
+        private string titleField;
+        
+        private string descriptionField;
+        
+        private System.DateTime dateField;
+        
+        private int fK_CourseIDField;
+        
+        /// <remarks/>
+        public int ID {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Date {
+            get {
+                return this.dateField;
+            }
+            set {
+                this.dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int FK_CourseID {
+            get {
+                return this.fK_CourseIDField;
+            }
+            set {
+                this.fK_CourseIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1024,7 +1609,7 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1093,7 +1678,7 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1162,11 +1747,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1188,15 +1773,15 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void SendMailCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void verifyLoginCompletedEventHandler(object sender, verifyLoginCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class verifyLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1218,11 +1803,37 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void addNameFromCourseIDCompletedEventHandler(object sender, addNameFromCourseIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class addNameFromCourseIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal addNameFromCourseIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void addStudentCompletedEventHandler(object sender, addStudentCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class addStudentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1244,11 +1855,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void addCourseBuilderCompletedEventHandler(object sender, addCourseBuilderCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class addCourseBuilderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1270,11 +1881,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void addBBAdminCompletedEventHandler(object sender, addBBAdminCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class addBBAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1296,11 +1907,37 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void AddAnnoucementSvcCompletedEventHandler(object sender, AddAnnoucementSvcCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddAnnoucementSvcCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddAnnoucementSvcCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void addBBAdmin2CompletedEventHandler(object sender, addBBAdmin2CompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class addBBAdmin2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1322,11 +1959,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void addCourseCompletedEventHandler(object sender, addCourseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class addCourseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1348,11 +1985,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void DeleteCourseCompletedEventHandler(object sender, DeleteCourseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DeleteCourseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1374,19 +2011,19 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void EnrollCourseCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void EmailCourseCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void GetDepartmentCompletedEventHandler(object sender, GetDepartmentCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDepartmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1408,11 +2045,37 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetContentPagesCompletedEventHandler(object sender, GetContentPagesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetContentPagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetContentPagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void GetTermCompletedEventHandler(object sender, GetTermCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTermCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1434,11 +2097,219 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetAnnoucementCompletedEventHandler(object sender, GetAnnoucementCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAnnoucementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAnnoucementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetContentPageDetailsCompletedEventHandler(object sender, GetContentPageDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetContentPageDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetContentPageDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetAssignmentByIDSvcCompletedEventHandler(object sender, GetAssignmentByIDSvcCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAssignmentByIDSvcCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAssignmentByIDSvcCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetAssignmentSvcCompletedEventHandler(object sender, GetAssignmentSvcCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAssignmentSvcCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAssignmentSvcCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void GetAdminByIDSvcCompletedEventHandler(object sender, GetAdminByIDSvcCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAdminByIDSvcCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAdminByIDSvcCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void findNameBycbIDCompletedEventHandler(object sender, findNameBycbIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class findNameBycbIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal findNameBycbIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void populateClasesCompletedEventHandler(object sender, populateClasesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class populateClasesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal populateClasesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void WebGetCourseBuilderCompletedEventHandler(object sender, WebGetCourseBuilderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class WebGetCourseBuilderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal WebGetCourseBuilderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void GetUserTypeCompletedEventHandler(object sender, GetUserTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUserTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1460,11 +2331,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void GetCourseByTermCompletedEventHandler(object sender, GetCourseByTermCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCourseByTermCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1486,11 +2357,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void GetCourseByCBIDCompletedEventHandler(object sender, GetCourseByCBIDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCourseByCBIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1512,11 +2383,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void UpdateCourseCompletedEventHandler(object sender, UpdateCourseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateCourseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1538,11 +2409,11 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void populateStudentsInCourseCompletedEventHandler(object sender, populateStudentsInCourseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class populateStudentsInCourseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1564,7 +2435,7 @@ namespace TermProject.BlackboardSvcPxy {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void addStudentsToCourseCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 

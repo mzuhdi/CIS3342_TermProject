@@ -14,6 +14,7 @@ namespace TermProject
 {
     public partial class ManageAssignments : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
         string key = "zuhdi";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,53 +27,53 @@ namespace TermProject
             }
         }
 
-        public bool AddAssignmentSvc(string key, Assignment assignment)
-        {
-            if (assignment != null && key == "zuhdi" && assignment.FileData != null) //Assignment with Files
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public bool AddAssignmentSvc(string key, Assignment assignment)
+        //{
+        //    if (assignment != null && key == "zuhdi" && assignment.FileData != null) //Assignment with Files
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_AddAssignment";
-                objCommand.Parameters.AddWithValue("@Name", assignment.Name);
-                objCommand.Parameters.AddWithValue("@DueDate", assignment.DueDate);
-                objCommand.Parameters.AddWithValue("@MaximumGrade", assignment.MaximumGrade);
-                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
-                objCommand.Parameters.AddWithValue("@Description", assignment.Description);
-                objCommand.Parameters.AddWithValue("@fileTitle", assignment.FileTitle);
-                objCommand.Parameters.AddWithValue("@fileData", assignment.FileData);
-                objCommand.Parameters.AddWithValue("@fileType", assignment.FileType);
-                objCommand.Parameters.AddWithValue("@fileLength", assignment.FileLength);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_AddAssignment";
+        //        objCommand.Parameters.AddWithValue("@Name", assignment.Name);
+        //        objCommand.Parameters.AddWithValue("@DueDate", assignment.DueDate);
+        //        objCommand.Parameters.AddWithValue("@MaximumGrade", assignment.MaximumGrade);
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+        //        objCommand.Parameters.AddWithValue("@Description", assignment.Description);
+        //        objCommand.Parameters.AddWithValue("@fileTitle", assignment.FileTitle);
+        //        objCommand.Parameters.AddWithValue("@fileData", assignment.FileData);
+        //        objCommand.Parameters.AddWithValue("@fileType", assignment.FileType);
+        //        objCommand.Parameters.AddWithValue("@fileLength", assignment.FileLength);
 
-                objDB.DoUpdateUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                lblUpload.Text = "file is uploaded";
-                return true;
-            }
-            else if (assignment != null && key == "zuhdi") //Assignment without files
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //        objDB.DoUpdateUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        lblUpload.Text = "file is uploaded";
+        //        return true;
+        //    }
+        //    else if (assignment != null && key == "zuhdi") //Assignment without files
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_AddAssignment";
-                objCommand.Parameters.AddWithValue("@Name", assignment.Name);
-                objCommand.Parameters.AddWithValue("@DueDate", assignment.DueDate);
-                objCommand.Parameters.AddWithValue("@MaximumGrade", assignment.MaximumGrade);
-                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
-                objCommand.Parameters.AddWithValue("@Description", assignment.Description);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_AddAssignment";
+        //        objCommand.Parameters.AddWithValue("@Name", assignment.Name);
+        //        objCommand.Parameters.AddWithValue("@DueDate", assignment.DueDate);
+        //        objCommand.Parameters.AddWithValue("@MaximumGrade", assignment.MaximumGrade);
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+        //        objCommand.Parameters.AddWithValue("@Description", assignment.Description);
 
-                objDB.DoUpdateUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return true;
-            }
-            return false;
-        }
+        //        objDB.DoUpdateUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return true;
+        //    }
+        //    return false;
+        //}
         public void AddAssignmentFunc()
         {
-            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
-            Assignment assignment = new Assignment();
+            BlackboardSvcPxy.Assignment assignment = new BlackboardSvcPxy.Assignment();
+            //Assignment assignment = new Assignment();
 
             assignment.Name = txtName.Text;
             assignment.Description = txtDescription.Text;
@@ -105,7 +106,7 @@ namespace TermProject
             }
 
 
-            if (AddAssignmentSvc(key, assignment))
+            if (pxy.AddAssignmentSvc(key, assignment))
             {
                 lblSuccess.Text = "The assignment is created.";
 

@@ -13,6 +13,8 @@ namespace TermProject
 {
     public partial class CourseBuilderClasses : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
+        string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,24 +24,24 @@ namespace TermProject
             }
         }
 
-        public DataSet findNameBycbID(string cbID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //public DataSet findNameBycbID(string cbID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.Parameters.Clear();
+        //    objCommand.Parameters.Clear();
 
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_findNameBycbID";
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_findNameBycbID";
 
-            objCommand.Parameters.AddWithValue("@cbID", Convert.ToInt32(cbID));
+        //    objCommand.Parameters.AddWithValue("@cbID", Convert.ToInt32(cbID));
 
-            return objDB.GetDataSetUsingCmdObj(objCommand);
-        }
+        //    return objDB.GetDataSetUsingCmdObj(objCommand);
+        //}
 
         public void BindName()
         {
-            DataSet myDs = findNameBycbID(Session["cbID"].ToString());
+            DataSet myDs = pxy.findNameBycbID(Session["cbID"].ToString());
             lblName.Text = myDs.Tables[0].Rows[0]["FirstName"].ToString() + " " + myDs.Tables[0].Rows[0]["LastName"].ToString();
         }
 
@@ -47,7 +49,7 @@ namespace TermProject
         {
             if (Session["User"].ToString() == "3")
             {
-                DataSet myDs = populateClases(Session["cbID"].ToString());
+                DataSet myDs = pxy.populateClases(Session["cbID"].ToString());
 
                 if (myDs.Tables[0].Rows.Count == 0)
                 {
@@ -64,21 +66,21 @@ namespace TermProject
         }
 
 
-        public DataSet populateClases(string cbID)
-        {
+        //public DataSet populateClases(string cbID)
+        //{
 
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.Parameters.Clear();
+        //    objCommand.Parameters.Clear();
 
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_RetrieveCBClasses";
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_RetrieveCBClasses";
 
-            objCommand.Parameters.AddWithValue("@cbID", Convert.ToInt32(cbID));
+        //    objCommand.Parameters.AddWithValue("@cbID", Convert.ToInt32(cbID));
 
-            return objDB.GetDataSetUsingCmdObj(objCommand);
-        }
+        //    return objDB.GetDataSetUsingCmdObj(objCommand);
+        //}
 
         protected void rptClasses_ItemCommand(object source, RepeaterCommandEventArgs e)
         {

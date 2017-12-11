@@ -65,7 +65,7 @@ namespace TermProject
 
         protected string bindName()
         {
-            DataSet courseName = addNameFromCourseID(Session["CourseID"].ToString());
+            DataSet courseName = pxy.addNameFromCourseID(Session["CourseID"].ToString());
             string name = courseName.Tables[0].Rows[0]["Name"].ToString();
             return name;
         }
@@ -76,20 +76,20 @@ namespace TermProject
             Response.Redirect("ManageStudents.aspx");
         }
 
-        protected DataSet addNameFromCourseID(string courseID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //protected DataSet addNameFromCourseID(string courseID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.Parameters.Clear();
+        //    objCommand.Parameters.Clear();
 
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_addNameFromCourseID";
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_addNameFromCourseID";
 
-            objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+        //    objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
 
-            return objDB.GetDataSetUsingCmdObj(objCommand);
-        }
+        //    return objDB.GetDataSetUsingCmdObj(objCommand);
+        //}
 
         protected void lblAddAnnoucment_Click(object sender, EventArgs e)
         {
@@ -118,7 +118,7 @@ namespace TermProject
         {
             //if (pxy.GetUserType(key) != null)
             {
-                ddlContentPages.DataSource = GetContentPages(Session["CourseID"].ToString());
+                ddlContentPages.DataSource = pxy.GetContentPages(Session["CourseID"].ToString(), key);
                 ddlContentPages.DataValueField = "ContentPageID";
                 ddlContentPages.DataTextField = "Title";
                 ddlContentPages.DataBind();
@@ -130,27 +130,27 @@ namespace TermProject
             }
         }
 
-        public DataSet GetContentPages(string courseID)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataSet GetContentPages(string courseID)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "GetContentPages";
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "GetContentPages";
 
-                objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(courseID));
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(courseID));
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return myDataSet;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return myDataSet;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         protected void ddlContentPages_SelectedIndexChanged(object sender, EventArgs e)
         {

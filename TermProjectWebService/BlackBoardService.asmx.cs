@@ -66,6 +66,65 @@ namespace TermProjectWebService
 
             return User;
         }
+        [WebMethod]
+        public DataSet addNameFromCourseID(string courseID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_addNameFromCourseID";
+
+            objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+
+            return objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+        [WebMethod]
+        public bool AddAssignmentSvc(string key, Assignment assignment)
+        {
+            if (assignment != null && key == "zuhdi" && assignment.FileData != null) //Assignment with Files
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddAssignment";
+                objCommand.Parameters.AddWithValue("@Name", assignment.Name);
+                objCommand.Parameters.AddWithValue("@DueDate", assignment.DueDate);
+                objCommand.Parameters.AddWithValue("@MaximumGrade", assignment.MaximumGrade);
+                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+                objCommand.Parameters.AddWithValue("@Description", assignment.Description);
+                objCommand.Parameters.AddWithValue("@fileTitle", assignment.FileTitle);
+                objCommand.Parameters.AddWithValue("@fileData", assignment.FileData);
+                objCommand.Parameters.AddWithValue("@fileType", assignment.FileType);
+                objCommand.Parameters.AddWithValue("@fileLength", assignment.FileLength);
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                //lblUpload.Text = "file is uploaded";
+                return true;
+            }
+            else if (assignment != null && key == "zuhdi") //Assignment without files
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddAssignment";
+                objCommand.Parameters.AddWithValue("@Name", assignment.Name);
+                objCommand.Parameters.AddWithValue("@DueDate", assignment.DueDate);
+                objCommand.Parameters.AddWithValue("@MaximumGrade", assignment.MaximumGrade);
+                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+                objCommand.Parameters.AddWithValue("@Description", assignment.Description);
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            return false;
+        }
 
         [WebMethod]
         public bool addStudent(Student student, string key)
@@ -173,6 +232,50 @@ namespace TermProjectWebService
                 return false;
             }
         }
+        [WebMethod]
+        public bool AddAnnoucementSvc(string key, Annoucement annoucement)
+        {
+            if (annoucement != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddAnnoucement";
+                objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
+                objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
+                objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
+                objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            return false;
+        }
+        [WebMethod]
+        public bool UpdateAnnoucementSvc(string key, Annoucement annoucement)
+        {
+            if (annoucement != null && key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_UpdateAnnoucement";
+                objCommand.Parameters.AddWithValue("@ID", annoucement.ID);
+                objCommand.Parameters.AddWithValue("@Title", annoucement.Title);
+                objCommand.Parameters.AddWithValue("@Description", annoucement.Description);
+                objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
+                objCommand.Parameters.AddWithValue("@Date", annoucement.Date);
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return true;
+            }
+            return false;
+        }
+
         [WebMethod]
         public bool addBBAdmin2(byte[] array, string key)
         {
@@ -287,6 +390,49 @@ namespace TermProjectWebService
                 return null;
             }
         }
+        public DataTable GetAssignmentByCourseIDSvc(string key, Assignment assignment)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAssignmentByCourseID";
+                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [WebMethod]
+        public DataSet GetContentPages(string courseID, string key)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "GetContentPages";
+
+                objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(courseID));
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
         [WebMethod]
         public DataSet GetTerm(string key)
         {
@@ -297,6 +443,164 @@ namespace TermProjectWebService
 
                 objCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_GetTerm";
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [WebMethod]
+        public DataSet GetAnnoucement(string key, Annoucement annoucement)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAnnoucementByCourseID";
+                objCommand.Parameters.AddWithValue("@FK_CourseID", annoucement.FK_CourseID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                objCommand.Parameters.Clear();
+                return myDataSet;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [WebMethod]
+        public DataSet GetContentPageDetails(string pageID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_RetrieveContentPageDetails";
+
+            objCommand.Parameters.AddWithValue("@ContentPageID", Convert.ToInt32(pageID));
+
+            DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+            objCommand.Parameters.Clear();
+            return myDataSet;
+        }
+
+        [WebMethod]
+        public DataTable GetAssignmentByIDSvc(string key, Assignment assignment)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAssignmentByID";
+                objCommand.Parameters.AddWithValue("@ID", assignment.ID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [WebMethod]
+        public DataTable GetAssignmentSvc(string key, Assignment assignment)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAssignmentByCourseID";
+                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [WebMethod]
+        public DataTable GetAdminByIDSvc(string key, BBAdmin admin)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAdminByID";
+                objCommand.Parameters.AddWithValue("@ID", admin.ID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [WebMethod]
+        public DataSet findNameBycbID(string cbID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_findNameBycbID";
+
+            objCommand.Parameters.AddWithValue("@cbID", Convert.ToInt32(cbID));
+
+            return objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+        [WebMethod]
+        public DataSet populateClases(string cbID)
+        {
+
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_RetrieveCBClasses";
+
+            objCommand.Parameters.AddWithValue("@cbID", Convert.ToInt32(cbID));
+
+            return objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+
+        [WebMethod]
+        public DataSet WebGetCourseBuilder(string key)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetCourseBuilder";
 
                 DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                 objCommand.Parameters.Clear();
