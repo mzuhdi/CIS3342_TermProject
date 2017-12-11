@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Utilities;
 using TermProjectClassLibrary;
+using System.IO;
 
 namespace TermProject
 {
@@ -159,6 +160,9 @@ namespace TermProject
 
         public void deserializer(DataSet dataset)
         {
+
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
             //Byte[] byteArray = (Byte[])objDB.GetField("CreditCard", 0);
             //BinaryFormatter deSerializer = new BinaryFormatter();
             //MemoryStream memStream = new MemoryStream(byteArray);

@@ -359,7 +359,7 @@ namespace TermProject
             //if (e.CommandName == "Delete")
             //{
             //    lblAssgnID.Text = gvAssignmentCB.DataKeys[rowIndex]["AssignmentID"].ToString();
-            //    DeleteAssigmentFunc();
+                DeleteAssigmentFunc();
             //    GetAssignmentFunc();
             //}
         }
@@ -373,6 +373,24 @@ namespace TermProject
         {
             submitGradeFunc();
             GetGradeByAssgnIDFunc(DropDownList1.SelectedValue);
+        }
+
+        protected void btnGradeAssignments_Click(object sender, EventArgs e)
+        {
+            btnGradeAssignments.Enabled = false;
+            newAssignment.Visible = false;
+            panManageAssignment.Visible = false;
+            paGradeAssignments.Visible = true;
+        }
+
+        protected void gvCBGrade_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            GradeForm.Visible = false;
         }
     }
 }
