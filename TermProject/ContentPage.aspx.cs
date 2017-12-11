@@ -67,7 +67,7 @@ namespace TermProject
         }
         public void getContentPageDetails()
         {
-            DataSet myDs = pxy.GetContentPageDetails(Session["PageId"].ToString());
+            DataSet myDs = pxy.GetContentPageDetails(Session["PageId"].ToString(),key);
 
             if (myDs.Tables[0].Rows.Count == 0)
             {

@@ -14,6 +14,8 @@ namespace TermProject
 {
     public partial class StudentClasses : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
+        string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,24 +25,24 @@ namespace TermProject
             }
         }
         
-        public DataSet findNameByStudentID(string studentID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //public DataSet findNameByStudentID(string studentID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.Parameters.Clear();
+        //    objCommand.Parameters.Clear();
 
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "findNameByStudentID";
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.CommandText = "findNameByStudentID";
 
-            objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
+        //    objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
 
-            return objDB.GetDataSetUsingCmdObj(objCommand);
-        }
+        //    return objDB.GetDataSetUsingCmdObj(objCommand);
+        //}
 
         public void BindName()
         {
-            DataSet myDs = findNameByStudentID(Session["StudentID"].ToString());
+            DataSet myDs = pxy.findNameByStudentID(Session["StudentID"].ToString());
             lblName.Text = myDs.Tables[0].Rows[0]["FirstName"].ToString() +" "+ myDs.Tables[0].Rows[0]["LastName"].ToString();
         }
 
@@ -48,7 +50,7 @@ namespace TermProject
         {
             if (Session["User"].ToString() == "1")
             {
-                DataSet myDs = populateStudent(Session["StudentID"].ToString());
+                DataSet myDs = pxy.populateStudent(Session["StudentID"].ToString());
 
                 if (myDs.Tables[0].Rows.Count == 0)
                 {
@@ -65,21 +67,21 @@ namespace TermProject
         }
 
 
-        public DataSet populateStudent(string studentID)
-        {
+        //public DataSet populateStudent(string studentID)
+        //{
 
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.Parameters.Clear();
+        //    objCommand.Parameters.Clear();
 
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_RetrieveStudentClasses";
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_RetrieveStudentClasses";
 
-            objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
+        //    objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
 
-            return objDB.GetDataSetUsingCmdObj(objCommand);
-        }
+        //    return objDB.GetDataSetUsingCmdObj(objCommand);
+        //}
 
         protected void rptClasses_ItemCommand(object source, RepeaterCommandEventArgs e)
         {

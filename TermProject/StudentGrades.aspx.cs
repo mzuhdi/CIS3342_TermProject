@@ -15,6 +15,8 @@ namespace TermProject
 {
     public partial class StudentGrades : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
+        string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,7 +33,7 @@ namespace TermProject
 
         public void getGrades()
         {
-            DataSet myDs = GetCourseGrades(Session["CourseID"].ToString(), Session["StudentID"].ToString());
+            DataSet myDs = pxy.GetCourseGrades(Session["CourseID"].ToString(), Session["StudentID"].ToString());
 
             if (myDs.Tables[0].Rows.Count == 0)
             {
@@ -46,21 +48,21 @@ namespace TermProject
             }
         }
 
-        public DataSet GetCourseGrades(string courseID, string studentID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //public DataSet GetCourseGrades(string courseID, string studentID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_GetStudentCourseGrades";
+        //    objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_GetStudentCourseGrades";
 
-            objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
-            objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+        //    objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
+        //    objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
 
-            DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-            objCommand.Parameters.Clear();
-            return myDataSet;
-        }
+        //    DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //    objCommand.Parameters.Clear();
+        //    return myDataSet;
+        //}
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {

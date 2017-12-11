@@ -14,6 +14,7 @@ namespace TermProject
 {
     public partial class StudentMain : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
         string key = "zuhdi";
         int num = 1;
         protected void Page_Load(object sender, EventArgs e)
@@ -32,31 +33,31 @@ namespace TermProject
             }
         }
 
-        public DataSet getAssignmentByCourseStudentID(string key, int fk_StudentID, int fk_CourseID)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataSet getAssignmentByCourseStudentID(string key, int fk_StudentID, int fk_CourseID)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetAssigmentByCourseStudentID";
-                objCommand.Parameters.AddWithValue("@FK_StudentID", fk_StudentID);
-                objCommand.Parameters.AddWithValue("@FK_CourseID", fk_CourseID);
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_GetAssigmentByCourseStudentID";
+        //        objCommand.Parameters.AddWithValue("@FK_StudentID", fk_StudentID);
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", fk_CourseID);
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return myDataSet;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return myDataSet;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         public void bindGV()
         {
-            gvGrades.DataSource = getAssignmentByCourseStudentID(key, 1, 1);
+            gvGrades.DataSource = pxy.getAssignmentByCourseStudentID(key, 1, 1);
             gvGrades.DataBind();
         }
 

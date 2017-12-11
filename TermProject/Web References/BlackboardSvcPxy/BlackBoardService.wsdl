@@ -83,6 +83,35 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="AddAssignmentSvc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="assignment" type="tns:Assignment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Assignment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DueDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumGrade" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FK_CourseID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileData" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileLength" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddAssignmentSvcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddAssignmentSvcResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="addStudent">
         <s:complexType>
           <s:sequence>
@@ -131,6 +160,93 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getAssignmentByCourseStudentID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_StudentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_CourseID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAssignmentByCourseStudentIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAssignmentByCourseStudentIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCourseGrades">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="courseID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCourseGradesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCourseGradesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="populateStudent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="populateStudentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="populateStudentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="findNameByStudentID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="findNameByStudentIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="findNameByStudentIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="addBBAdmin">
         <s:complexType>
           <s:sequence>
@@ -176,6 +292,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="AddAnnoucementSvcResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAnnoucementSvc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="annoucement" type="tns:Annoucement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAnnoucementSvcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateAnnoucementSvcResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -274,6 +405,163 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAssignmentSvc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="assignment" type="tns:Assignment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAssignmentSvcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAssignmentSvcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteContentPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contentPageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteContentPageResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="removePost">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contentPageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removePostResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetContentPageDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="courseID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentPageDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContentPageDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGradeByAssgnIDSvc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="grade" type="tns:Grade" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Grade">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FK_StudentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FK_AssignmentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="theGrade" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileData" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileLength" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGradeByAssgnIDSvcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGradeByAssgnIDSvcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGradeByIDSvc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="grade" type="tns:Grade" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGradeByIDSvcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGradeByIDSvcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="submitGradeSvc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="grade" type="tns:Grade" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="submitGradeSvcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="submitGradeSvcResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAssignmentByCourseIDSvc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="assignment" type="tns:Assignment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAssignmentByCourseIDSvcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAssignmentByCourseIDSvcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetContentPages">
         <s:complexType>
           <s:sequence>
@@ -339,27 +627,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetContentPageDetails">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="pageID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetContentPageDetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetContentPageDetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="GetAssignmentByIDSvc">
         <s:complexType>
           <s:sequence>
@@ -368,46 +635,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Assignment">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="DueDate" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="MaximumGrade" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="FK_CourseID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="FileTitle" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="FileType" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="FileData" type="s:base64Binary" />
-          <s:element minOccurs="1" maxOccurs="1" name="FileLength" type="s:long" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="GetAssignmentByIDSvcResponse">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetAssignmentByIDSvcResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetAssignmentSvc">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="assignment" type="tns:Assignment" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetAssignmentSvcResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAssignmentSvcResult">
               <s:complexType>
                 <s:sequence>
                   <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
@@ -481,6 +712,17 @@
             </s:element>
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="removeStudentFromCourse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="courseID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removeStudentFromCourseResponse">
+        <s:complexType />
       </s:element>
       <s:element name="WebGetCourseBuilder">
         <s:complexType>
@@ -647,6 +889,12 @@
   <wsdl:message name="addNameFromCourseIDSoapOut">
     <wsdl:part name="parameters" element="tns:addNameFromCourseIDResponse" />
   </wsdl:message>
+  <wsdl:message name="AddAssignmentSvcSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAssignmentSvc" />
+  </wsdl:message>
+  <wsdl:message name="AddAssignmentSvcSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAssignmentSvcResponse" />
+  </wsdl:message>
   <wsdl:message name="addStudentSoapIn">
     <wsdl:part name="parameters" element="tns:addStudent" />
   </wsdl:message>
@@ -659,6 +907,30 @@
   <wsdl:message name="addCourseBuilderSoapOut">
     <wsdl:part name="parameters" element="tns:addCourseBuilderResponse" />
   </wsdl:message>
+  <wsdl:message name="getAssignmentByCourseStudentIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getAssignmentByCourseStudentID" />
+  </wsdl:message>
+  <wsdl:message name="getAssignmentByCourseStudentIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getAssignmentByCourseStudentIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCourseGradesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCourseGrades" />
+  </wsdl:message>
+  <wsdl:message name="GetCourseGradesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCourseGradesResponse" />
+  </wsdl:message>
+  <wsdl:message name="populateStudentSoapIn">
+    <wsdl:part name="parameters" element="tns:populateStudent" />
+  </wsdl:message>
+  <wsdl:message name="populateStudentSoapOut">
+    <wsdl:part name="parameters" element="tns:populateStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="findNameByStudentIDSoapIn">
+    <wsdl:part name="parameters" element="tns:findNameByStudentID" />
+  </wsdl:message>
+  <wsdl:message name="findNameByStudentIDSoapOut">
+    <wsdl:part name="parameters" element="tns:findNameByStudentIDResponse" />
+  </wsdl:message>
   <wsdl:message name="addBBAdminSoapIn">
     <wsdl:part name="parameters" element="tns:addBBAdmin" />
   </wsdl:message>
@@ -670,6 +942,12 @@
   </wsdl:message>
   <wsdl:message name="AddAnnoucementSvcSoapOut">
     <wsdl:part name="parameters" element="tns:AddAnnoucementSvcResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnoucementSvcSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAnnoucementSvc" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnoucementSvcSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAnnoucementSvcResponse" />
   </wsdl:message>
   <wsdl:message name="addBBAdmin2SoapIn">
     <wsdl:part name="parameters" element="tns:addBBAdmin2" />
@@ -707,6 +985,54 @@
   <wsdl:message name="GetDepartmentSoapOut">
     <wsdl:part name="parameters" element="tns:GetDepartmentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAssignmentSvcSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAssignmentSvc" />
+  </wsdl:message>
+  <wsdl:message name="GetAssignmentSvcSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAssignmentSvcResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteContentPageSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteContentPage" />
+  </wsdl:message>
+  <wsdl:message name="deleteContentPageSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteContentPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="removePostSoapIn">
+    <wsdl:part name="parameters" element="tns:removePost" />
+  </wsdl:message>
+  <wsdl:message name="removePostSoapOut">
+    <wsdl:part name="parameters" element="tns:removePostResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContentPageDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContentPageDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetContentPageDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContentPageDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeByAssgnIDSvcSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGradeByAssgnIDSvc" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeByAssgnIDSvcSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGradeByAssgnIDSvcResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeByIDSvcSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGradeByIDSvc" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeByIDSvcSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGradeByIDSvcResponse" />
+  </wsdl:message>
+  <wsdl:message name="submitGradeSvcSoapIn">
+    <wsdl:part name="parameters" element="tns:submitGradeSvc" />
+  </wsdl:message>
+  <wsdl:message name="submitGradeSvcSoapOut">
+    <wsdl:part name="parameters" element="tns:submitGradeSvcResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAssignmentByCourseIDSvcSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAssignmentByCourseIDSvc" />
+  </wsdl:message>
+  <wsdl:message name="GetAssignmentByCourseIDSvcSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAssignmentByCourseIDSvcResponse" />
+  </wsdl:message>
   <wsdl:message name="GetContentPagesSoapIn">
     <wsdl:part name="parameters" element="tns:GetContentPages" />
   </wsdl:message>
@@ -725,23 +1051,11 @@
   <wsdl:message name="GetAnnoucementSoapOut">
     <wsdl:part name="parameters" element="tns:GetAnnoucementResponse" />
   </wsdl:message>
-  <wsdl:message name="GetContentPageDetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:GetContentPageDetails" />
-  </wsdl:message>
-  <wsdl:message name="GetContentPageDetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:GetContentPageDetailsResponse" />
-  </wsdl:message>
   <wsdl:message name="GetAssignmentByIDSvcSoapIn">
     <wsdl:part name="parameters" element="tns:GetAssignmentByIDSvc" />
   </wsdl:message>
   <wsdl:message name="GetAssignmentByIDSvcSoapOut">
     <wsdl:part name="parameters" element="tns:GetAssignmentByIDSvcResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetAssignmentSvcSoapIn">
-    <wsdl:part name="parameters" element="tns:GetAssignmentSvc" />
-  </wsdl:message>
-  <wsdl:message name="GetAssignmentSvcSoapOut">
-    <wsdl:part name="parameters" element="tns:GetAssignmentSvcResponse" />
   </wsdl:message>
   <wsdl:message name="GetAdminByIDSvcSoapIn">
     <wsdl:part name="parameters" element="tns:GetAdminByIDSvc" />
@@ -760,6 +1074,12 @@
   </wsdl:message>
   <wsdl:message name="populateClasesSoapOut">
     <wsdl:part name="parameters" element="tns:populateClasesResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeStudentFromCourseSoapIn">
+    <wsdl:part name="parameters" element="tns:removeStudentFromCourse" />
+  </wsdl:message>
+  <wsdl:message name="removeStudentFromCourseSoapOut">
+    <wsdl:part name="parameters" element="tns:removeStudentFromCourseResponse" />
   </wsdl:message>
   <wsdl:message name="WebGetCourseBuilderSoapIn">
     <wsdl:part name="parameters" element="tns:WebGetCourseBuilder" />
@@ -820,6 +1140,10 @@
       <wsdl:input message="tns:addNameFromCourseIDSoapIn" />
       <wsdl:output message="tns:addNameFromCourseIDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="AddAssignmentSvc">
+      <wsdl:input message="tns:AddAssignmentSvcSoapIn" />
+      <wsdl:output message="tns:AddAssignmentSvcSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="addStudent">
       <wsdl:input message="tns:addStudentSoapIn" />
       <wsdl:output message="tns:addStudentSoapOut" />
@@ -828,6 +1152,22 @@
       <wsdl:input message="tns:addCourseBuilderSoapIn" />
       <wsdl:output message="tns:addCourseBuilderSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="getAssignmentByCourseStudentID">
+      <wsdl:input message="tns:getAssignmentByCourseStudentIDSoapIn" />
+      <wsdl:output message="tns:getAssignmentByCourseStudentIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseGrades">
+      <wsdl:input message="tns:GetCourseGradesSoapIn" />
+      <wsdl:output message="tns:GetCourseGradesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="populateStudent">
+      <wsdl:input message="tns:populateStudentSoapIn" />
+      <wsdl:output message="tns:populateStudentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="findNameByStudentID">
+      <wsdl:input message="tns:findNameByStudentIDSoapIn" />
+      <wsdl:output message="tns:findNameByStudentIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="addBBAdmin">
       <wsdl:input message="tns:addBBAdminSoapIn" />
       <wsdl:output message="tns:addBBAdminSoapOut" />
@@ -835,6 +1175,10 @@
     <wsdl:operation name="AddAnnoucementSvc">
       <wsdl:input message="tns:AddAnnoucementSvcSoapIn" />
       <wsdl:output message="tns:AddAnnoucementSvcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnoucementSvc">
+      <wsdl:input message="tns:UpdateAnnoucementSvcSoapIn" />
+      <wsdl:output message="tns:UpdateAnnoucementSvcSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="addBBAdmin2">
       <wsdl:input message="tns:addBBAdmin2SoapIn" />
@@ -860,6 +1204,38 @@
       <wsdl:input message="tns:GetDepartmentSoapIn" />
       <wsdl:output message="tns:GetDepartmentSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetAssignmentSvc">
+      <wsdl:input message="tns:GetAssignmentSvcSoapIn" />
+      <wsdl:output message="tns:GetAssignmentSvcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteContentPage">
+      <wsdl:input message="tns:deleteContentPageSoapIn" />
+      <wsdl:output message="tns:deleteContentPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="removePost">
+      <wsdl:input message="tns:removePostSoapIn" />
+      <wsdl:output message="tns:removePostSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentPageDetails">
+      <wsdl:input message="tns:GetContentPageDetailsSoapIn" />
+      <wsdl:output message="tns:GetContentPageDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGradeByAssgnIDSvc">
+      <wsdl:input message="tns:GetGradeByAssgnIDSvcSoapIn" />
+      <wsdl:output message="tns:GetGradeByAssgnIDSvcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGradeByIDSvc">
+      <wsdl:input message="tns:GetGradeByIDSvcSoapIn" />
+      <wsdl:output message="tns:GetGradeByIDSvcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="submitGradeSvc">
+      <wsdl:input message="tns:submitGradeSvcSoapIn" />
+      <wsdl:output message="tns:submitGradeSvcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignmentByCourseIDSvc">
+      <wsdl:input message="tns:GetAssignmentByCourseIDSvcSoapIn" />
+      <wsdl:output message="tns:GetAssignmentByCourseIDSvcSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetContentPages">
       <wsdl:input message="tns:GetContentPagesSoapIn" />
       <wsdl:output message="tns:GetContentPagesSoapOut" />
@@ -872,17 +1248,9 @@
       <wsdl:input message="tns:GetAnnoucementSoapIn" />
       <wsdl:output message="tns:GetAnnoucementSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetContentPageDetails">
-      <wsdl:input message="tns:GetContentPageDetailsSoapIn" />
-      <wsdl:output message="tns:GetContentPageDetailsSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetAssignmentByIDSvc">
       <wsdl:input message="tns:GetAssignmentByIDSvcSoapIn" />
       <wsdl:output message="tns:GetAssignmentByIDSvcSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAssignmentSvc">
-      <wsdl:input message="tns:GetAssignmentSvcSoapIn" />
-      <wsdl:output message="tns:GetAssignmentSvcSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAdminByIDSvc">
       <wsdl:input message="tns:GetAdminByIDSvcSoapIn" />
@@ -895,6 +1263,10 @@
     <wsdl:operation name="populateClases">
       <wsdl:input message="tns:populateClasesSoapIn" />
       <wsdl:output message="tns:populateClasesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="removeStudentFromCourse">
+      <wsdl:input message="tns:removeStudentFromCourseSoapIn" />
+      <wsdl:output message="tns:removeStudentFromCourseSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="WebGetCourseBuilder">
       <wsdl:input message="tns:WebGetCourseBuilderSoapIn" />
@@ -963,6 +1335,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddAssignmentSvc">
+      <soap:operation soapAction="http://tempuri.org/AddAssignmentSvc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addStudent">
       <soap:operation soapAction="http://tempuri.org/addStudent" style="document" />
       <wsdl:input>
@@ -981,6 +1362,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getAssignmentByCourseStudentID">
+      <soap:operation soapAction="http://tempuri.org/getAssignmentByCourseStudentID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseGrades">
+      <soap:operation soapAction="http://tempuri.org/GetCourseGrades" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="populateStudent">
+      <soap:operation soapAction="http://tempuri.org/populateStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findNameByStudentID">
+      <soap:operation soapAction="http://tempuri.org/findNameByStudentID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addBBAdmin">
       <soap:operation soapAction="http://tempuri.org/addBBAdmin" style="document" />
       <wsdl:input>
@@ -992,6 +1409,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddAnnoucementSvc">
       <soap:operation soapAction="http://tempuri.org/AddAnnoucementSvc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnoucementSvc">
+      <soap:operation soapAction="http://tempuri.org/UpdateAnnoucementSvc" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1053,6 +1479,78 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAssignmentSvc">
+      <soap:operation soapAction="http://tempuri.org/GetAssignmentSvc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteContentPage">
+      <soap:operation soapAction="http://tempuri.org/deleteContentPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removePost">
+      <soap:operation soapAction="http://tempuri.org/removePost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentPageDetails">
+      <soap:operation soapAction="http://tempuri.org/GetContentPageDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGradeByAssgnIDSvc">
+      <soap:operation soapAction="http://tempuri.org/GetGradeByAssgnIDSvc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGradeByIDSvc">
+      <soap:operation soapAction="http://tempuri.org/GetGradeByIDSvc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitGradeSvc">
+      <soap:operation soapAction="http://tempuri.org/submitGradeSvc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignmentByCourseIDSvc">
+      <soap:operation soapAction="http://tempuri.org/GetAssignmentByCourseIDSvc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetContentPages">
       <soap:operation soapAction="http://tempuri.org/GetContentPages" style="document" />
       <wsdl:input>
@@ -1080,26 +1578,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetContentPageDetails">
-      <soap:operation soapAction="http://tempuri.org/GetContentPageDetails" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAssignmentByIDSvc">
       <soap:operation soapAction="http://tempuri.org/GetAssignmentByIDSvc" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAssignmentSvc">
-      <soap:operation soapAction="http://tempuri.org/GetAssignmentSvc" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1127,6 +1607,15 @@
     </wsdl:operation>
     <wsdl:operation name="populateClases">
       <soap:operation soapAction="http://tempuri.org/populateClases" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeStudentFromCourse">
+      <soap:operation soapAction="http://tempuri.org/removeStudentFromCourse" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1236,6 +1725,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddAssignmentSvc">
+      <soap12:operation soapAction="http://tempuri.org/AddAssignmentSvc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addStudent">
       <soap12:operation soapAction="http://tempuri.org/addStudent" style="document" />
       <wsdl:input>
@@ -1254,6 +1752,42 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getAssignmentByCourseStudentID">
+      <soap12:operation soapAction="http://tempuri.org/getAssignmentByCourseStudentID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseGrades">
+      <soap12:operation soapAction="http://tempuri.org/GetCourseGrades" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="populateStudent">
+      <soap12:operation soapAction="http://tempuri.org/populateStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findNameByStudentID">
+      <soap12:operation soapAction="http://tempuri.org/findNameByStudentID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addBBAdmin">
       <soap12:operation soapAction="http://tempuri.org/addBBAdmin" style="document" />
       <wsdl:input>
@@ -1265,6 +1799,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddAnnoucementSvc">
       <soap12:operation soapAction="http://tempuri.org/AddAnnoucementSvc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnoucementSvc">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAnnoucementSvc" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1326,6 +1869,78 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAssignmentSvc">
+      <soap12:operation soapAction="http://tempuri.org/GetAssignmentSvc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteContentPage">
+      <soap12:operation soapAction="http://tempuri.org/deleteContentPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removePost">
+      <soap12:operation soapAction="http://tempuri.org/removePost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentPageDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetContentPageDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGradeByAssgnIDSvc">
+      <soap12:operation soapAction="http://tempuri.org/GetGradeByAssgnIDSvc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGradeByIDSvc">
+      <soap12:operation soapAction="http://tempuri.org/GetGradeByIDSvc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitGradeSvc">
+      <soap12:operation soapAction="http://tempuri.org/submitGradeSvc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignmentByCourseIDSvc">
+      <soap12:operation soapAction="http://tempuri.org/GetAssignmentByCourseIDSvc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetContentPages">
       <soap12:operation soapAction="http://tempuri.org/GetContentPages" style="document" />
       <wsdl:input>
@@ -1353,26 +1968,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetContentPageDetails">
-      <soap12:operation soapAction="http://tempuri.org/GetContentPageDetails" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAssignmentByIDSvc">
       <soap12:operation soapAction="http://tempuri.org/GetAssignmentByIDSvc" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAssignmentSvc">
-      <soap12:operation soapAction="http://tempuri.org/GetAssignmentSvc" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1400,6 +1997,15 @@
     </wsdl:operation>
     <wsdl:operation name="populateClases">
       <soap12:operation soapAction="http://tempuri.org/populateClases" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeStudentFromCourse">
+      <soap12:operation soapAction="http://tempuri.org/removeStudentFromCourse" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
