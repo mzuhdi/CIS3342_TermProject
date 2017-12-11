@@ -16,7 +16,7 @@
                         style="width: 677px" align="center">
                         <tr>
                             <td rowspan="4" style="width: 123px; height: 140px;" valign="top">
-                                <asp:Image ID="imgProduct" runat="server" Height="100px" Width="120px" ImageUrl="~/Img/thumbtack-pushpin-2-hi.png" /></td>
+                                <asp:Image ID="imgProduct" runat="server" Height="150px" Width="150px" ImageUrl="~/Img/thumbtack-pushpin-2-hi.png" /></td>
                             <td colspan="2">
                                 <asp:Label ID="lblTitle" runat="server"
                                     Style="font-weight: 700; font-size: x-large"  Text='<%# DataBinder.Eval(Container.DataItem, "Title") %>' Font-Bold="True" Font-Size="XX-Large"></asp:Label></td>
@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <td class="style1">
-                                <asp:Label ID="lblAnnoucementID" runat="server" visible ="true" Text='<%# DataBinder.Eval(Container.DataItem, "AnnoucementID") %>'></asp:Label>
+                                <asp:Label ID="lblAnnoucementID" runat="server" visible ="false" Text='<%# DataBinder.Eval(Container.DataItem, "AnnoucementID") %>'></asp:Label>
                             </td>
                         </tr>
                     </table>

@@ -77,6 +77,20 @@ namespace TermProject
                         lblMessage.Text = "Only docx, xlsx, pptx and pdf file formats supported.";
                     }
                 }
+                else
+                {
+                    objCommand.Parameters.Clear();
+
+                    strSQL = "TP_CreateContentPage";
+                    objCommand.CommandText = strSQL;
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.Parameters.AddWithValue("@ContentPageTitle", contentpagetitle);
+                    objCommand.Parameters.AddWithValue("@Title", title);
+                    objCommand.Parameters.AddWithValue("@Description", description);
+                    objCommand.Parameters.AddWithValue("@DateCreated", date);
+                    objCommand.Parameters.AddWithValue("@FK_CourseID", courseID);
+                    objDB.DoUpdateUsingCmdObj(objCommand);
+                }
             }
             catch (Exception ex)
             {
@@ -353,10 +367,6 @@ namespace TermProject
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.Parameters.AddWithValue("@Title", Title);
                 objCommand.Parameters.AddWithValue("@Description", Description);
-                objCommand.Parameters.AddWithValue("@FileTitle", "0");
-                objCommand.Parameters.AddWithValue("@FileData", "0");
-                objCommand.Parameters.AddWithValue("@FileType", "");
-                objCommand.Parameters.AddWithValue("@FileLength", "0");
                 objCommand.Parameters.AddWithValue("@ContentPageDetailID", Convert.ToInt32(contentPageID));
                 objDB.DoUpdateUsingCmdObj(objCommand);
             }

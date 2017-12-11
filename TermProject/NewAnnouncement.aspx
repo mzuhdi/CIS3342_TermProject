@@ -16,6 +16,9 @@
         #txtDescription {
             height: 109px;
         }
+        .auto-style2 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -25,28 +28,28 @@
         <h1 class="auto-style1" style="text-align: center; background-color: #990000">New Annoucement</h1>
     
     </div>
-        <h2>
+        <h2 class="auto-style2">
             <asp:Label ID="lblName" runat="server" style="font-weight: 700"></asp:Label>
         </h2>
-        <p>
+        <p class="auto-style2">
             Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtTitle" runat="server" Width="214px"></asp:TextBox>
         </p>
-        <p>
+        <p class="auto-style2">
             Description:
-            <asp:TextBox ID="txtDescription" runat="server" Height="86px" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="txtDescription" runat="server" Height="143px" TextMode="MultiLine"></asp:TextBox>
         </p>
-        <p>
+        <p class="auto-style2">
             &nbsp;</p>
-        <p>
+        <p class="auto-style2">
             <asp:Button ID="btnCreate" runat="server" OnClick="btnCreate_Click" Text="Create" />
 &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" />
+            <asp:Button ID="btnBack" runat="server" OnClick="btnCancel_Click" Text="Back" />
         </p>
-        <p>
+        <p class="auto-style2">
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
         &nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblID" runat="server"></asp:Label>
+            <asp:Label ID="lblID" runat="server" Visible="False"></asp:Label>
         </p>
         <p>
             &nbsp;</p>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentGrades.aspx.cs" Inherits="TermProject.StudentGrades" %>
 
-<%@ Register Src="ViewCourses.ascx" TagName="ViewCourses" TagPrefix="uc1" %>
+
 
 <!DOCTYPE html>
 
