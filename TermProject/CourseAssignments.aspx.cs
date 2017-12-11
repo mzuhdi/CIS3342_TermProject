@@ -20,6 +20,7 @@ namespace TermProject
             if (!IsPostBack)
             {
                 GetAssignmentFunc();
+                lblName.Text = Session["CourseName"].ToString();
             }
         }
 
@@ -211,8 +212,13 @@ namespace TermProject
             string courseID = Session["CourseID"] as string;
             string cbID = Session["cbID"] as string;
             string courseName = Session["CourseName"] as string;
+            string StudentID = Session["StudentID"] as string;
         }
 
-
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            sessionPass();
+            Response.Redirect("CBMain.aspx");
+        }
     }
 }
