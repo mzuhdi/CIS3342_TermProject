@@ -66,7 +66,7 @@ namespace TermProject
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvStudents.Rows[index];
                 string StudentID = gvSearch.DataKeys[rowIndex]["StudentID"].ToString();
-                removeStudentFromCourse(Session["CourseID"].ToString(), StudentID);
+                pxy.removeStudentFromCourse(Session["CourseID"].ToString(), StudentID);
                 studentsInClass();
 
             }
@@ -77,21 +77,21 @@ namespace TermProject
         }
 
 
-        public void removeStudentFromCourse(string courseID, string studentID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //public void removeStudentFromCourse(string courseID, string studentID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
 
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_RemoveStudentFromCourse";
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_RemoveStudentFromCourse";
 
-            objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
-            objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
+        //    objCommand.Parameters.AddWithValue("@StudentID", Convert.ToInt32(studentID));
+        //    objCommand.Parameters.AddWithValue("@CourseID", Convert.ToInt32(courseID));
 
-            objDB.DoUpdateUsingCmdObj(objCommand);
-            objCommand.Parameters.Clear();
-        }
+        //    objDB.DoUpdateUsingCmdObj(objCommand);
+        //    objCommand.Parameters.Clear();
+        //}
 
         public ArrayList packageStudents()
         {

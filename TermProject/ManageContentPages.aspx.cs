@@ -14,6 +14,7 @@ namespace TermProject
 {
     public partial class ManageContentPages : System.Web.UI.Page
     {
+        BlackboardSvcPxy.BlackBoardService pxy = new BlackboardSvcPxy.BlackBoardService();
         string key = "zuhdi";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -117,7 +118,7 @@ namespace TermProject
         {
             //if (pxy.GetUserType(key) != null)
             {
-                ddlContentPages.DataSource = GetContentPages(Session["CourseID"].ToString());
+                ddlContentPages.DataSource = pxy.GetContentPages(Session["CourseID"].ToString(),key);
                 ddlContentPages.DataValueField = "ContentPageID";
                 ddlContentPages.DataTextField = "Title";
                 ddlContentPages.DataBind();
@@ -142,7 +143,7 @@ namespace TermProject
 
         public void getContentPageDetails(string Id)
         {
-            DataSet myDs = GetContentPageDetails(Id);//Session["PageId"].ToString());
+            DataSet myDs = pxy.GetContentPageDetails(Id, key);//Session["PageId"].ToString());
 
             //if (myDs.Tables[0].Rows.Count == 0)
             //{
@@ -158,7 +159,7 @@ namespace TermProject
 
         public void getAllContentPages()
         {
-            DataSet myDs = GetContentPages(Session["CourseID"].ToString());
+            DataSet myDs = pxy.GetContentPages(Session["CourseID"].ToString(),key);
             gvContent.DataSource = myDs;
             gvContent.DataBind();
         }
@@ -168,49 +169,49 @@ namespace TermProject
 
         }
 
-        public DataSet GetContentPages(string courseID)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataSet GetContentPages(string courseID)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetContentPages";
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_GetContentPages";
 
-                objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(courseID));
+        //        objCommand.Parameters.AddWithValue("@FK_CourseID", Convert.ToInt32(courseID));
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return myDataSet;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return myDataSet;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        public DataSet GetContentPageDetails(string courseID)
-        {
-            if (key == "zuhdi")
-            {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+        //public DataSet GetContentPageDetails(string courseID)
+        //{
+        //    if (key == "zuhdi")
+        //    {
+        //        DBConnect objDB = new DBConnect();
+        //        SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_RetrieveContentPageDetails";
+        //        objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //        objCommand.CommandText = "TP_RetrieveContentPageDetails";
 
-                objCommand.Parameters.AddWithValue("@ContentPageID", Convert.ToInt32(courseID));
+        //        objCommand.Parameters.AddWithValue("@ContentPageID", Convert.ToInt32(courseID));
 
-                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-                objCommand.Parameters.Clear();
-                return myDataSet;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //        DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+        //        objCommand.Parameters.Clear();
+        //        return myDataSet;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         protected void gvContentPages_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -236,7 +237,7 @@ namespace TermProject
             if (e.CommandName == "Remove")
             {
                 string id = gvContentPages.DataKeys[rowIndex]["Id"].ToString();
-                removePost(id);
+                pxy.removePost(id);
                 getContentPageDetails(ddlContentPages.SelectedValue);
             }
         }
@@ -252,25 +253,25 @@ namespace TermProject
             if (e.CommandName == "Remove")
             {
                 string id = gvContent.DataKeys[rowIndex]["ContentPageID"].ToString();
-                deleteContentPage(id);
+                pxy.deleteContentPage(id);
                 getAllContentPages();
             }
         }
 
-        protected void deleteContentPage(string contentPageID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //protected void deleteContentPage(string contentPageID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.Parameters.Clear();
+        //    objCommand.Parameters.Clear();
 
-            string strSQL = "TP_RemoveContentPage";
-            objCommand.CommandText = strSQL;
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.Parameters.AddWithValue("@contentPageID", Convert.ToInt32(contentPageID));
+        //    string strSQL = "TP_RemoveContentPage";
+        //    objCommand.CommandText = strSQL;
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.Parameters.AddWithValue("@contentPageID", Convert.ToInt32(contentPageID));
 
-            objDB.DoUpdateUsingCmdObj(objCommand);
-        }
+        //    objDB.DoUpdateUsingCmdObj(objCommand);
+        //}
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             editPage(txtEditTitle.Text, txtEditDescription.Text, lblId.Text, FileUpload2);
@@ -279,20 +280,20 @@ namespace TermProject
             Panel2.Enabled = true;
         }
 
-        public void removePost(string contentPageID)
-        {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
+        //public void removePost(string contentPageID)
+        //{
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
 
-            objCommand.Parameters.Clear();
+        //    objCommand.Parameters.Clear();
 
-            string strSQL = "TP_RemoveContentPostDetail";
-            objCommand.CommandText = strSQL;
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.Parameters.AddWithValue("@Id", Convert.ToInt32(contentPageID));
+        //    string strSQL = "TP_RemoveContentPostDetail";
+        //    objCommand.CommandText = strSQL;
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.Parameters.AddWithValue("@Id", Convert.ToInt32(contentPageID));
 
-            objDB.DoUpdateUsingCmdObj(objCommand);
-        }
+        //    objDB.DoUpdateUsingCmdObj(objCommand);
+        //}
 
         public DataSet ContentPagesFromCiD(string courseID)
         {
