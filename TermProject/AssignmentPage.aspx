@@ -32,7 +32,7 @@
                     <asp:BoundField DataField="MaximumGrade" HeaderText="Maximum" />
                     <asp:BoundField DataField="Description" HeaderText="Description" />
                     <asp:BoundField DataField="FileTitle" HeaderText="Attached File" />
-                    <asp:ButtonField runat="server" Text="Delete Course" HeaderText="Delete Course" CommandName="Delete" ButtonType="Button" />
+                    <asp:ButtonField runat="server" Text="Delete Assignment" HeaderText="Delete Assignment" CommandName="Delete" ButtonType="Button" />
                 </Columns>
             </asp:GridView>
             <asp:Label ID="lblAssgnID" runat="server" Visible="false"></asp:Label>

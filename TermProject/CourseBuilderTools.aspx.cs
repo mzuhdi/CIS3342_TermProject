@@ -33,6 +33,8 @@ namespace TermProject
 
         protected void btnManageAssignments_Click(object sender, EventArgs e)
         {
+            sessionPass();
+            Response.Redirect("ManageAssignmentPage.aspx");
 
         }
 

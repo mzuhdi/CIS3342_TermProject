@@ -9,7 +9,7 @@ namespace TermProjectClassLibrary
     [Serializable]
     public class BBAdmin
     {
-        public int ID 
+        public int ID { get; set; } 
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }

@@ -411,5 +411,12 @@ namespace TermProject
                 return false;
             }
         }
+        public void sessionPass()
+        {
+            string user = Session["User"] as string;
+            string courseID = Session["CourseID"] as string;
+            string cbID = Session["cbID"] as string;
+            string courseName = Session["CourseName"] as string;
+        }
     }
 }

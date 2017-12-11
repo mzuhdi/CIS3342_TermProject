@@ -110,7 +110,59 @@ namespace TermProject
                 lblSuccess.Text = "A problem occured. Data is not recorded";
             }
         }
+        public DataTable GetAssignmentSvc(string key, Assignment assignment)
+        {
+            if (key == "zuhdi")
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
 
+                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAssignmentByCourseID";
+                objCommand.Parameters.AddWithValue("@FK_CourseID", assignment.FK_CourseID);
+
+                DataSet myDataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = myDataSet.Tables[0];
+                objCommand.Parameters.Clear();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private void download(DataTable dt) //need to get DataTable Based on ID
+        {
+            byte[] bytes = (byte[])dt.Rows[0]["FileData"];
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = dt.Rows[0]["FileType"].ToString();
+            Response.AddHeader("content-disposition", "attachment;filename="
+            + dt.Rows[0]["FileTitle"].ToString());
+            Response.BinaryWrite(bytes);
+            //Response.OutputStream.Write(bytes, 0, bytes.Length);
+            Response.Flush();
+            Response.End();
+        }
+
+        public void GetAssignmentFunc()
+        {
+            //BlackboardSvcPxy.Student student = new BlackboardSvcPxy.Student();
+            Assignment assignment = new Assignment();
+            assignment.FK_CourseID = 1; //Get Session[CourseID]
+
+            if (GetAssignmentSvc(key, assignment) != null)
+            {
+                gvAssignmentCB.DataSource = GetAssignmentSvc(key, assignment);
+                gvAssignmentCB.DataBind();
+            }
+            else
+            {
+                //lblInvalidKey.Text = "Please provide correct API Key";
+                //lblInvalidKey.Visible = true;
+            }
+        }
         protected void btnCreate_Click(object sender, EventArgs e)
         {
 
